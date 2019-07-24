@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import TodoInput from './components/TodoInput/TodoInput';
+import TodoList from './containers/TodoList';
+import { TodoProvider } from './context/TodoContext';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  
+  state = {
+    calendarIsOpened: false,
+    todoBeingEdited: -1
+  }
+
+  app = {
+    getCalendarIsOpened: () => this.state.calendarIsOpened,
+    setCalendarIsOpened: (calendarIsOpened) => this.setState({ calendarIsOpened })
+  }
+
+  render(){
+    return (
+      <TodoProvider>
+        <div className="App">
+          <TodoInput/>
+          <TodoList/>
+        </div>
+      </TodoProvider>
+    );
+  }
 }
-
-export default App;
