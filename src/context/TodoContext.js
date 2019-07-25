@@ -47,6 +47,10 @@ export class TodoProvider extends Component {
             });
 
         },
+        setTodos: (newTodoArray) => {
+            //TODO: assert todo array is of right structure
+            this.setState({ todos: newTodoArray });
+        },
         setCompleted: (todoId, newIsCompleted) => {
 
             const { todos } = this.state;

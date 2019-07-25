@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
+    "react-beautiful-dnd": "^11.0.5",
     "react-collapse": "^4.0.3",
     "react-dom": "^16.8.6",
     "react-motion": "^0.5.2",
