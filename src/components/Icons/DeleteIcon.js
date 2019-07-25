@@ -34,7 +34,7 @@ const DeleteButtonWrapper = styled.div`
 `;
 
 const Lib = styled.span`
-  background-color: gray;
+  background-color: lightgray;
   display: block;
   height: 3px;
   width: 17px;
@@ -44,7 +44,7 @@ const Lib = styled.span`
 `;
 
 const Can = styled.span`
-  background-color: gray;
+  background-color: lightgray;
   display: block;
   margin-top: 1px;
   margin-left: auto;
@@ -55,8 +55,8 @@ const Can = styled.span`
   width: 13px;
 `;
 
-const DeleteButton = () => (
-  <DeleteButtonWrapper>
+const DeleteButton = (props) => (
+  <DeleteButtonWrapper onClick={() => props.onClick && props.onClick()}>
     <Lib id="lib"/>
     <Can />
   </DeleteButtonWrapper>

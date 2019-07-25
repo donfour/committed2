@@ -1,7 +1,11 @@
+// module dependencies
 import React, { Component } from 'react';
+// styles
 import './App.css';
-import TodoInput from './components/TodoInput/TodoInput';
+// components
+import TodoInput from './components/TodoInput';
 import TodoList from './containers/TodoList';
+// react contexts
 import { TodoProvider } from './context/TodoContext';
 
 export default class App extends Component {

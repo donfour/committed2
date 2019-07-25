@@ -1,22 +1,6 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import { TodoInputWrapper } from './todo-input.style';
 import { withTodoContext } from '../../context/TodoContext';
-
-const TodoInputWrapper = styled.input`
-    border: none;
-    border-bottom: 2px solid #4B4B4B;
-    width: 100%;
-    font-size: 36px;
-    letter-spacing: 1px;
-    margin-top: 200px;
-    padding-left: 5px;
-    &:focus{
-        outline: none;
-    }
-    &::-webkit-input-placeholder{
-        color: lightgray;
-    }
-`;
 
 class TodoInput extends Component {
     state = {

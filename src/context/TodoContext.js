@@ -64,6 +64,20 @@ export class TodoProvider extends Component {
             });
 
         },
+        delete: (todoId) => {
+            const { todos } = this.state;
+
+            for(let i=0; i<todos.length; i++){
+                if(todos[i].id === todoId){
+                  todos.splice(i,1);
+                  break;
+                }
+            }
+
+            this.setState({
+                todos
+            });
+        }
     }
 
     render(){

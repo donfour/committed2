@@ -14,7 +14,7 @@ const CheckboxContainer = styled.div`
 const POLYLINE_STLYES = { fill: 'none', stroke: 'black', strokeWidth: 25 };
 
 const Checkbox = (props) => (
-      <CheckboxContainer onClick={props.onClick}>
+      <CheckboxContainer onClick={() => props.onClick && props.onClick()}>
         {
           props.isChecked &&
           <svg  width="100%" height="100%" viewBox="0 0 200 200">

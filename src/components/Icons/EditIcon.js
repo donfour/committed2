@@ -6,6 +6,9 @@ const EditIconWrapper = styled.div`
   display: inline-block;
   height: 15px;
   width: 15px;
+  & svg {
+    fill: lightgray
+  }
 `;
 
 const EditIcon = () => (

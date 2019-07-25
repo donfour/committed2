@@ -9,11 +9,14 @@ const CalendarButtonWrapper = styled.div`
   &:hover {
     cursor: pointer;
   }
+  & svg {
+    fill: lightgray
+  }
 `;
 
-const CalendarButton = () => (
-  <CalendarButtonWrapper>
-    <svg id="calendar" width="100%" height="100%" viewBox="0 0 150 150">
+const CalendarButton = (props) => (
+  <CalendarButtonWrapper onClick={() => props.onClick && props.onClick()}>
+    <svg width="100%" height="100%" viewBox="0 0 150 150">
         <path d="M13.3,126.4V37.4c0-2.4,0.9-4.5,2.6-6.3c1.7-1.8,3.8-2.6,6.2-2.6h8.8v-6.7c0-3.1,1.1-5.7,3.2-7.9
           c2.2-2.2,4.7-3.3,7.8-3.3h4.4c3,0,5.6,1.1,7.8,3.3c2.2,2.2,3.2,4.8,3.2,7.9v6.7h26.4v-6.7c0-3.1,1.1-5.7,3.2-7.9
           c2.2-2.2,4.7-3.3,7.8-3.3h4.4c3,0,5.6,1.1,7.8,3.3c2.2,2.2,3.2,4.8,3.2,7.9v6.7h8.8c2.4,0,4.4,0.9,6.2,2.6

@@ -1,53 +1,12 @@
 // module dependencies
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { Collapse } from 'react-collapse';
 // components
-import { EditIcon } from '../Icons';
-import Footer from './Footer';
+import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper } from './todo-item.style';
+import { CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
 import Checkbox from './Checkbox';
-// context provider
+// react contexts
 import { withTodoContext } from '../../context/TodoContext';
-
-const Todo = styled.div`
-  border-bottom: 1px solid #DDDDDD;
-`;
-
-const Body = styled.div`
-  display: flex;
-  font-size: 20px;
-  letter-spacing: 1px;
-  overflow: scroll;
-`;
-
-const CheckboxContainer = styled.div`
-  flex: 0 0 30px;
-  padding-top: 23px
-`;
-
-const TodoWrapper = styled.div`
-  flex: 1;
-  padding: 20px;
-  min-height: 25px;
-  overflow: scroll;
-`;
-
-const TodoInput = styled.input`
-  font-size: 20px;
-  padding: 0;
-  outline: none;
-  width: 100%;
-  border: none;
-  letter-spacing: 1px;
-  border-bottom: 1px solid black;
-`;
-
-const DuedateWrapper = styled.span`
-  display: inline-block;
-  color: salmon;
-  font-size: 17px;
-  margin-left: 5px;
-`;
 
 // helper functions
 function formatDate(msSince1970) {
@@ -77,7 +36,7 @@ class TodoItem extends Component {
 
   renderTodoText() {
     return (
-      this.state.isEditing ?
+        this.state.isEditing ?
         (
           <TodoInput
             autoFocus
@@ -112,18 +71,24 @@ class TodoItem extends Component {
     return (
       <Todo>
         <Body>
-          <CheckboxContainer>
+          <CheckboxWrapper>
             <Checkbox
               isChecked={this.props.completed}
               onClick={() => this.props.todos.setCompleted(this.props.id, !this.props.completed)}
             />
-          </CheckboxContainer>
+          </CheckboxWrapper>
           <TodoWrapper onClick={() => { this.toggleOpen() }} >
             {this.renderTodoText()}
           </TodoWrapper>
         </Body>
         <Collapse isOpened={this.state.isOpened}>
-          <Footer />
+          <TodoFooterWrapper>
+              <div>Day of week list</div>
+              <ButtonsWrapper>
+                  <CalendarIcon/>
+                  <DeleteIcon/>
+              </ButtonsWrapper>
+          </TodoFooterWrapper>
         </Collapse>
       </Todo>
     )

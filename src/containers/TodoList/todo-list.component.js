@@ -1,6 +1,6 @@
 import React from 'react';
-import TodoItem from '../components/TodoItem/TodoItem';
-import { withTodoContext } from '../context/TodoContext';
+import TodoItem from '../../components/TodoItem';
+import { withTodoContext } from '../../context/TodoContext';
 
 const TodoList = ({todos}) => (
     <div>
