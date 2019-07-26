@@ -8,8 +8,8 @@ export class TodoProvider extends Component {
         todoBeingEdited: null
     }
 
-    todosOperation = {
-        add: (todoName) => {
+    todosOperations = {
+        addTodo: (todoName) => {
 
             const randomId = '_' + Math.random().toString(36).substr(2, 9);
 
@@ -51,7 +51,7 @@ export class TodoProvider extends Component {
             //TODO: assert todo array is of right structure
             this.setState({ todos: newTodoArray });
         },
-        setCompleted: (todoId, newIsCompleted) => {
+        setTodoCompleted: (todoId, newIsCompleted) => {
 
             const { todos } = this.state;
 
@@ -68,7 +68,7 @@ export class TodoProvider extends Component {
             });
 
         },
-        delete: (todoId) => {
+        deleteTodo: (todoId) => {
             const { todos } = this.state;
 
             for(let i=0; i<todos.length; i++){
@@ -87,8 +87,8 @@ export class TodoProvider extends Component {
     render(){
         return (
             <TodoContext.Provider value={{
-                value: this.state.todos,
-                ...this.todosOperation
+                todos: this.state.todos,
+                ...this.todosOperations
             }}>
                 {this.props.children}
             </TodoContext.Provider>
@@ -96,8 +96,9 @@ export class TodoProvider extends Component {
     }
 }
 
+//TODO: delete
 export const withTodoContext = Component => props => (
     <TodoContext.Consumer>
-        {todos => <Component {...props} todos={todos} />}
+        {context => <Component {...props} {...context} />}
     </TodoContext.Consumer>
 );

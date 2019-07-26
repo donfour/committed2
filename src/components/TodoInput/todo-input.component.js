@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TodoInputWrapper } from './todo-input.style';
-import { withTodoContext } from '../../context/TodoContext';
+import { withContext } from '../../context';
 
 class TodoInput extends Component {
     state = {
@@ -23,7 +23,7 @@ class TodoInput extends Component {
         if(e.key === 'Enter'){
             const newTodoName = this.state.newTodoName.trim();
             if(newTodoName!==''){
-                this.props.todos.add(newTodoName);
+                this.props.addTodo(newTodoName);
                 this.setState({ newTodoName: '' });
             }
         }
@@ -41,4 +41,4 @@ class TodoInput extends Component {
     }
 };
 
-export default withTodoContext(TodoInput);
+export default withContext(TodoInput);

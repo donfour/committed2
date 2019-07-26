@@ -7,7 +7,7 @@ import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoInput, DuedateWrapper, To
 import { CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
 import Checkbox from './Checkbox';
 // react contexts
-import { withTodoContext } from '../../context/TodoContext';
+import { withContext } from '../../context';
 
 // helper functions
 function formatDate(msSince1970) {
@@ -32,7 +32,7 @@ class TodoItem extends Component {
 
   onEditEnd() {
     this.setState({ isEditing: false, displayEditIcon: false });
-    this.props.todos.setTodo(this.props.id, this.state.todoInputValue);
+    this.props.setTodo(this.props.id, this.state.todoInputValue);
   }
 
   renderTodoText() {
@@ -82,7 +82,7 @@ class TodoItem extends Component {
                 <CheckboxWrapper>
                   <Checkbox
                     isChecked={this.props.completed}
-                    onClick={() => this.props.todos.setCompleted(this.props.id, !this.props.completed)}
+                    onClick={() => this.props.setTodoCompleted(this.props.id, !this.props.completed)}
                   />
                 </CheckboxWrapper>
                 <TodoWrapper onClick={() => { this.toggleOpen() }} >
@@ -106,4 +106,4 @@ class TodoItem extends Component {
   }
 }
 
-export default withTodoContext(TodoItem);
+export default withContext(TodoItem);

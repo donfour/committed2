@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoItem from '../../components/TodoItem';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { withTodoContext } from '../../context/TodoContext';
+import { withContext } from '../../context';
 
 // helper function
 const reorder = (array, startIndex, endIndex) => {
@@ -11,7 +11,7 @@ const reorder = (array, startIndex, endIndex) => {
   return result;
 };
 
-const TodoList = ({ todos }) => (
+const TodoList = ({ todos, setTodos }) => (
   <DragDropContext
     onDragEnd={result => {
       const { destination, source } = result;
@@ -21,12 +21,12 @@ const TodoList = ({ todos }) => (
       if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
       const newTodos = reorder(
-        todos.value,
+        todos,
         result.source.index,
         result.destination.index
       );
 
-      todos.setTodos(newTodos);
+      setTodos(newTodos);
     }}
   >
     <Droppable droppableId='droppableId'>
@@ -36,7 +36,7 @@ const TodoList = ({ todos }) => (
           {...provided.droppableProps}
         >
           {
-            todos.value.map((todo, index) => (
+            todos.map((todo, index) => (
               <TodoItem
                 key={todo.id}
                 id={todo.id}
@@ -54,4 +54,4 @@ const TodoList = ({ todos }) => (
   </DragDropContext>
 )
 
-export default withTodoContext(TodoList);
+export default withContext(TodoList);
