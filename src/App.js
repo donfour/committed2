@@ -1,11 +1,14 @@
 // external dependencies
-import React, { Component } from 'react';
+import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import Sidebar from "react-sidebar";
 // components
 import TodoInput from './components/TodoInput';
 import TodoList from './containers/TodoList';
+import SideMenu from './containers/SideMenu';
+import {SettingsIcon} from './components/Icons';
 // react contexts
-import { ContextProvider } from './context';
+import { withContext } from './context';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root, .App{
@@ -26,14 +29,19 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const App = () => (
-  <ContextProvider>
-    <GlobalStyle />
+const App = ({sidebarOpen, setSidebarOpen}) => (
+  <Sidebar
+    sidebar={<SideMenu/>}
+    open={sidebarOpen}
+    onSetOpen={setSidebarOpen}
+  >
     <div className="App">
+      <GlobalStyle />
+      <SettingsIcon onClick={()=>setSidebarOpen(true)}/>
       <TodoInput />
       <TodoList />
     </div>
-  </ContextProvider>
+  </Sidebar>
 )
 
-export default App;
+export default withContext(App);

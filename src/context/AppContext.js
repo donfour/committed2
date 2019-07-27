@@ -5,11 +5,13 @@ export const AppContext = createContext();
 
 export class AppProvider extends Component {
     state = {
-        theme: THEMES[0]
+        theme: THEMES[0],
+        sidebarOpen: false
     }
 
     appOperations = {
-        setTheme: (themeNumber) => this.setState({ theme: THEMES[themeNumber] })
+        setTheme: (themeNumber) => this.setState({ theme: THEMES[themeNumber] }),
+        setSidebarOpen: (sidebarOpen) => this.setState({ sidebarOpen }),
     }
 
     render(){
