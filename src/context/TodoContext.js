@@ -95,10 +95,3 @@ export class TodoProvider extends Component {
         )
     }
 }
-
-//TODO: delete
-export const withTodoContext = Component => props => (
-    <TodoContext.Consumer>
-        {context => <Component {...props} {...context} />}
-    </TodoContext.Consumer>
-);
