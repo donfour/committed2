@@ -72,7 +72,7 @@ class TodoItem extends Component {
   }
 
   render() {
-    const { id, index, completed, setTodoCompleted, theme } = this.props;
+    const { id, index, completed, setTodoCompleted, deleteTodo, theme } = this.props;
 
     return (
       <Draggable draggableId={id} index={index}>
@@ -100,7 +100,7 @@ class TodoItem extends Component {
                     <div>Day of week list</div>
                     <ButtonsWrapper>
                         <CalendarIcon theme={theme}/>
-                        <DeleteIcon theme={theme}/>
+                        <DeleteIcon theme={theme} onClick={() => deleteTodo(id)}/>
                     </ButtonsWrapper>
                 </TodoFooterWrapper>
               </Collapse>
