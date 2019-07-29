@@ -36,15 +36,18 @@ class TodoItem extends Component {
   }
 
   renderTodoText() {
+    const { name, dueDate, theme } = this.props;
+
     return (
         this.state.isEditing ?
         (
           <TodoInput
             autoFocus
+            theme={theme}
             value={this.state.todoInputValue}
             onClick={e => e.stopPropagation()}
             onChange={e => { this.setState({ todoInputValue: e.target.value }) }}
-            onFocus={() => this.setState({ todoInputValue: this.props.name })}
+            onFocus={() => this.setState({ todoInputValue: name })}
             onBlur={() => this.onEditEnd()}
             onKeyPress={e => { if (e.key === 'Enter') this.onEditEnd() }}
           />
@@ -59,30 +62,33 @@ class TodoItem extends Component {
               onMouseOver={() => { this.setState({ displayEditIcon: true }) }}
               onMouseOut={() => { this.setState({ displayEditIcon: false }) }}
             >
-              {this.props.name}
+              {name}
             </span>
-            {this.props.dueDate ? <DuedateWrapper>({formatDate(this.props.dueDate)})</DuedateWrapper> : null}
-            {this.state.displayEditIcon && <EditIcon />}
+            {dueDate ? <DuedateWrapper theme={theme}>({formatDate(dueDate)})</DuedateWrapper> : null}
+            {this.state.displayEditIcon && <EditIcon theme={theme}/>}
           </span>
         )
     );
   }
 
   render() {
+    const { id, index, completed, setTodoCompleted, theme } = this.props;
+
     return (
-      <Draggable draggableId={this.props.id} index={this.props.index}>
+      <Draggable draggableId={id} index={index}>
         {
           (provided) => (
             <Todo
               {...provided.draggableProps}
               {...provided.dragHandleProps}
               ref={provided.innerRef}
+              theme={theme}
             >
               <Body>
                 <CheckboxWrapper>
                   <Checkbox
-                    isChecked={this.props.completed}
-                    onClick={() => this.props.setTodoCompleted(this.props.id, !this.props.completed)}
+                    isChecked={completed}
+                    onClick={() => setTodoCompleted(id, !completed)}
                   />
                 </CheckboxWrapper>
                 <TodoWrapper onClick={() => { this.toggleOpen() }} >
@@ -93,8 +99,8 @@ class TodoItem extends Component {
                 <TodoFooterWrapper>
                     <div>Day of week list</div>
                     <ButtonsWrapper>
-                        <CalendarIcon/>
-                        <DeleteIcon/>
+                        <CalendarIcon theme={theme}/>
+                        <DeleteIcon theme={theme}/>
                     </ButtonsWrapper>
                 </TodoFooterWrapper>
               </Collapse>

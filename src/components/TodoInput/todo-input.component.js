@@ -33,8 +33,9 @@ class TodoInput extends Component {
         return (
             <TodoInputWrapper
                 value={this.state.newTodoName}
-                onChange={e => {this.setState({newTodoName: e.target.value})}}
                 placeholder={this.state.timeNow}
+                theme={this.props.theme}
+                onChange={e => {this.setState({newTodoName: e.target.value})}}
                 onKeyPress={this.handleKeyPress.bind(this)}
             />
         )

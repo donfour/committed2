@@ -11,6 +11,10 @@ import {SettingsIcon} from './components/Icons';
 import { withContext } from './context';
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    background: ${({theme}) => theme.background};
+  }
+
   html, body, #root, .App{
     height: 100%;
   }
@@ -29,14 +33,14 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const App = ({sidebarOpen, setSidebarOpen}) => (
+const App = ({sidebarOpen, setSidebarOpen, theme}) => (
   <Sidebar
     sidebar={<SideMenu/>}
     open={sidebarOpen}
     onSetOpen={setSidebarOpen}
   >
     <div className="App">
-      <GlobalStyle />
+      <GlobalStyle theme={theme}/>
       <SettingsIcon onClick={()=>setSidebarOpen(true)}/>
       <TodoInput />
       <TodoList />

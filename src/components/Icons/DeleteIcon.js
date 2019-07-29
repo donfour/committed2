@@ -31,10 +31,13 @@ const DeleteButtonWrapper = styled.div`
     -moz-animation: ${LibAnimation} .4s;
     -o-animation: ${LibAnimation} .4s;
   }
+  &:hover span{
+    background-color: ${({theme}) => theme.icon.hover};
+  }
 `;
 
 const Lib = styled.span`
-  background-color: lightgray;
+  background-color: ${({theme}) => theme.icon.default};
   display: block;
   height: 3px;
   width: 17px;
@@ -44,7 +47,7 @@ const Lib = styled.span`
 `;
 
 const Can = styled.span`
-  background-color: lightgray;
+  background-color: ${({theme}) => theme.icon.default};
   display: block;
   margin-top: 1px;
   margin-left: auto;
@@ -56,9 +59,9 @@ const Can = styled.span`
 `;
 
 const DeleteButton = (props) => (
-  <DeleteButtonWrapper onClick={() => props.onClick && props.onClick()}>
-    <Lib id="lib"/>
-    <Can />
+  <DeleteButtonWrapper onClick={() => props.onClick && props.onClick()} {...props}>
+    <Lib id='lib' {...props}/>
+    <Can id='can' {...props}/>
   </DeleteButtonWrapper>
 )
 

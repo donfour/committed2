@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Todo = styled.div`
-  border-bottom: 1px solid #DDDDDD;
+  border-bottom: 1px solid ${({theme}) => theme.todoBorder};
 `;
 
 export const Body = styled.div`
@@ -30,12 +30,12 @@ export const TodoInput = styled.input`
   width: 100%;
   border: none;
   letter-spacing: 1px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid ${({theme}) => theme.primary};
 `;
 
 export const DuedateWrapper = styled.span`
   display: inline-block;
-  color: salmon;
+  color: ${({theme}) => theme.secondary};
   font-size: 17px;
   margin-left: 5px;
 `;

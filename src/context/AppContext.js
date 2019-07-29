@@ -1,5 +1,5 @@
 import React, { Component, createContext } from 'react';
-import THEMES from '../themes';
+import THEMES from '../constants/themes';
 
 export const AppContext = createContext();
 
@@ -10,7 +10,7 @@ export class AppProvider extends Component {
     }
 
     appOperations = {
-        setTheme: (themeNumber) => this.setState({ theme: THEMES[themeNumber] }),
+        setTheme: (themeId) => this.setState({ theme: THEMES.find(theme => theme.id === themeId) }),
         setSidebarOpen: (sidebarOpen) => this.setState({ sidebarOpen }),
     }
 

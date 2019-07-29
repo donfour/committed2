@@ -1,28 +1,32 @@
 import React from 'react';
-import styled from 'styled-components';
+import THEMES from '../../constants/themes';
+import { withContext } from '../../context';
+import { SideMenuWrapper, Header, MenuItem, ThemesWrapper, ThemeIcon } from './side-menu.style';
 
-const SideMenuWrapper = styled.div`
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    background: white;
-    height:100%;
-`;
-
-const MenuItem = styled.div`
-    padding: 10px;
-    font-size: 16px;
-    &:hover {
-        background-color: #EEEEEE;
-        cursor: pointer;
-    }
-`;
-
-const SideMenu = () => (
+const SideMenu = ({ setTheme }) => (
     <SideMenuWrapper>
-        <MenuItem>one</MenuItem>
-        <MenuItem>two</MenuItem>
+
+        <Header>
+            <div className="extension-name">committed</div>
+            <div className="extension-version">v3.0.0</div>
+        </Header>
+
+        <MenuItem>Customize theme</MenuItem>
+        <ThemesWrapper>
+            {
+                THEMES.map(theme => (
+                    <ThemeIcon
+                        key={theme.id}
+                        theme={theme}
+                        onClick={() => setTheme(theme.id)}
+                    >C</ThemeIcon>
+                ))
+            }
+        </ThemesWrapper>
+
+        <MenuItem>Customize clock</MenuItem>
+
     </SideMenuWrapper>
 )
 
-export default SideMenu;
+export default withContext(SideMenu);
