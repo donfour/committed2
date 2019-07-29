@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "chroma-js": "^2.0.4",
     "react": "^16.8.6",
     "react-beautiful-dnd": "^11.0.5",
     "react-collapse": "^4.0.3",
