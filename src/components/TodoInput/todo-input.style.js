@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const TodoInputWrapper = styled.input`
     border: none;
+    color: ${({theme}) => theme.primary};
     border-bottom: 2px solid ${({theme}) => theme.primary};
     width: 100%;
     font-size: 36px;

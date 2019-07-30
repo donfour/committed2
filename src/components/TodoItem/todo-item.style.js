@@ -24,13 +24,17 @@ export const TodoWrapper = styled.div`
 `;
 
 export const TodoInput = styled.input`
-  font-size: 20px;
-  padding: 0;
-  outline: none;
-  width: 100%;
-  border: none;
-  letter-spacing: 1px;
+  color: ${({theme}) => theme.primary};
   border-bottom: 1px solid ${({theme}) => theme.primary};
+  background: transparent;
+
+  font-size: 20px;
+  letter-spacing: 1px;
+
+  padding: 0;
+  width: 100%;
+  outline: none;
+  border: none;
 `;
 
 export const DuedateWrapper = styled.span`

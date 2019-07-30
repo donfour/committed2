@@ -8,42 +8,42 @@ const THEMES = [
         icon: {
             default: 'lightgray',
             hover: 'gray',
-            selected: 'black',
+            selected: 'salmon',
         },
         inputPlaceholder: 'lightgray',
-        todoBorder: '#DDDDDD'
+        todoBorder: 'lightgray'
     },
     {
         id: '2',
         primary: 'white',
-        secondary: '#EAD379',
-        background: '#142F43',
+        secondary: '#EAD379', // gold
+        background: '#142F43', // royal blue
         icon: {
             default: 'white',
             hover: 'darkgray',
-            selected: 'black',
+            selected: '#EAD379', // gold
         },
         inputPlaceholder: 'white',
-        todoBorder: '#DDDDDD'
+        todoBorder: 'gray'
     },
     {
         id: '3',
-        primary: '#243B6C',
-        secondary: 'salmon',
-        background: '#F4F4ED',
+        primary: '#243B6C', // blue
+        secondary: 'red',
+        background: '#F4F4ED', // grayish
         icon: {
-            default: 'gray',
-            hover: 'darkgray',
-            selected: 'black',
+            default: 'darkgray',
+            hover: 'gray',
+            selected: 'salmon',
         },
-        inputPlaceholder: '#243B6C',
+        inputPlaceholder: '#243B6C', // blue
         todoBorder: '#DDDDDD'
     },
     {
         id: '4',
         primary: 'white',
         secondary: '#287225',
-        background: 'linear-gradient(to right, #a8e063, #88B45B)',
+        background: 'linear-gradient(to right, #a8e063, #88B45B)', // green
         icon: {
             default: 'white',
             hover: '#287225',
