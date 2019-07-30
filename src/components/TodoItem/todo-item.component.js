@@ -63,6 +63,7 @@ class TodoItem extends Component {
             <span
               onMouseOver={() => { this.setState({ displayEditIcon: true }) }}
               onMouseOut={() => { this.setState({ displayEditIcon: false }) }}
+              style={{color: theme.primary}}
             >
               {name}
             </span>
@@ -90,6 +91,7 @@ class TodoItem extends Component {
               <Body>
                 <CheckboxWrapper>
                   <Checkbox
+                    theme={theme}
                     isChecked={completed}
                     onClick={() => setTodoCompleted(id, !completed)}
                   />

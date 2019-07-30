@@ -26,7 +26,7 @@ const App = ({
       
       <GlobalStyle theme={theme}/>
       
-      <SettingsIcon onClick={()=>setSidebarOpen(true)}/>
+      <SettingsIcon theme={theme} onClick={()=>setSidebarOpen(true)}/>
 
       {/* Modals */}
       <CalendarModal

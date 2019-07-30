@@ -11,7 +11,10 @@ const SettingsIconWrapper = styled.div`
         cursor: pointer;
     }
     & svg {
-        fill: darkgray
+        fill: ${({theme}) => theme.icon.default}
+    }
+    & svg:hover {
+        fill: ${({theme}) => theme.icon.hover}
     }
 `;
 
@@ -19,8 +22,8 @@ const SettingsIconWrapper = styled.div`
  * Icon credits to Egor Rumyantsev (https://www.flaticon.com/authors/egor-rumyantsev)
  * */
 
-const SettingsIcon = ({onClick}) => (
-    <SettingsIconWrapper onClick={()=> onClick && onClick()}>
+const SettingsIcon = ({onClick, ...props}) => (
+    <SettingsIconWrapper onClick={()=> onClick && onClick()} {...props}>
         <svg width="100%" height="100%" viewBox="0 0 300 300">
             <path d="M267.92,119.461c-0.425-3.778-4.83-6.617-8.639-6.617
             c-12.315,0-23.243-7.231-27.826-18.414c-4.682-11.454-1.663-24.812,7.515-33.231c2.889-2.641,3.24-7.062,0.817-10.133
