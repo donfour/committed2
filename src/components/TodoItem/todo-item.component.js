@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Collapse } from 'react-collapse';
 import { Draggable } from 'react-beautiful-dnd';
 // components
-import { CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
+import { CalendarIcon, DeleteIcon, EditIcon, LinkIcon } from '../Icons';
 import Checkbox from './Checkbox';
 import DaySelector from './DaySelector';
 // styled components
@@ -38,7 +38,7 @@ class TodoItem extends Component {
   }
 
   renderTodoText() {
-    const { name, dueDate, theme } = this.props;
+    const { name, dueDate, theme, link } = this.props;
 
     return (
         this.state.isEditing ?
@@ -68,6 +68,7 @@ class TodoItem extends Component {
               {name}
             </span>
             {dueDate ? <DuedateWrapper theme={theme}>({formatDate(dueDate)})</DuedateWrapper> : null}
+            {link && <LinkIcon theme={theme}/>}
             {this.state.displayEditIcon && <EditIcon theme={theme}/>}
           </span>
         )

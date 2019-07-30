@@ -13,7 +13,7 @@ import { withContext } from './contexts';
 
 const App = ({
   sidebarOpen, setSidebarOpen,
-  calendarModalOpen, setCalendarModalOpen, setDueDate,
+  calendarModalOpen, setCalendarModalOpen, setTodoDueDate,
   theme
 }) => (
   <Sidebar
@@ -31,7 +31,7 @@ const App = ({
       {/* Modals */}
       <CalendarModal
         isOpen={calendarModalOpen}
-        onDayClick={setDueDate}
+        onDayClick={setTodoDueDate}
         handleCloseModal={() => setCalendarModalOpen(false)}
       />
 

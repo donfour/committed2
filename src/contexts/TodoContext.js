@@ -15,6 +15,7 @@ export class TodoProvider extends Component {
             const newTodo = {
                 id: randomId,
                 name: todoName,
+                link: null,
                 dueDate: null,
                 completed: false,
                 /* indicates if todo is set on repeat on specific days of week */
@@ -94,14 +95,26 @@ export class TodoProvider extends Component {
         setTodoBeingEdited: (todoId) => {
             this.setState({ todoBeingEdited: todoId });
         },
-        setDueDate: (dueDate) => {
-            console.log('set due date');
-
+        setTodoDueDate: (dueDate) => {
             const { todos, todoBeingEdited } = this.state;
 
             for (let i = 0; i < todos.length; i++) {
                 if (todos[i].id === todoBeingEdited) {
                     todos[i].dueDate = dueDate ? String(dueDate.getTime()) : null;
+                    break;
+                }
+            }
+
+            this.setState({
+                todos
+            });
+        },
+        setTodoLink: (todoId, link) => {
+            const { todos } = this.state;
+
+            for (let i = 0; i < todos.length; i++) {
+                if (todos[i].id === todoId) {
+                    todos[i].link = link;
                     break;
                 }
             }
