@@ -5,10 +5,11 @@ import { Draggable } from 'react-beautiful-dnd';
 // components
 import { CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
 import Checkbox from './Checkbox';
+import DaySelector from './DaySelector';
 // styled components
 import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper } from './todo-item.style';
 // contexts
-import { withContext } from '../../context';
+import { withContext } from '../../contexts';
 
 // helper functions
 function formatDate(msSince1970) {
@@ -73,7 +74,7 @@ class TodoItem extends Component {
   }
 
   render() {
-    const { id, index, completed, setTodoCompleted, deleteTodo, setTodoBeingEdited, setCalendarModalOpen, theme } = this.props;
+    const { id, index, completed, setTodoCompleted, deleteTodo, setTodoBeingEdited, setCalendarModalOpen, daysOfWeek, toggleTodoDayOfWeek, theme } = this.props;
 
     return (
       <Draggable draggableId={id} index={index}>
@@ -100,7 +101,11 @@ class TodoItem extends Component {
 
               <Collapse isOpened={this.state.isCollapseOpened}>
                 <TodoFooterWrapper>
-                    <div>Day of week list</div>
+                    <DaySelector
+                      id={id}
+                      daysOfWeek={daysOfWeek}
+                      toggleTodoDayOfWeek={toggleTodoDayOfWeek}
+                    />
                     <ButtonsWrapper>
                         <CalendarIcon
                           theme={theme}

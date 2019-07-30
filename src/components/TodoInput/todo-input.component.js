@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TodoInputWrapper } from './todo-input.style';
-import { withContext } from '../../context';
+import { withContext } from '../../contexts';
 
 class TodoInput extends Component {
     state = {

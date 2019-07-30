@@ -10,17 +10,16 @@ export class TodoProvider extends Component {
 
     todosOperations = {
         addTodo: (todoName) => {
-
             const randomId = '_' + Math.random().toString(36).substr(2, 9);
 
             const newTodo = {
                 id: randomId,
                 name: todoName,
-                daysOfWeek: [false, false, false, false, false, false, false],
+                dueDate: null,
                 completed: false,
-                timeCompleted: null,
-                render: true,
-                dueDate: null
+                /* indicates if todo is set on repeat on specific days of week */
+                daysOfWeek: [false, false, false, false, false, false, false],
+                timeCompleted: null
             }
 
             const newTodos = this.state.todos.slice();
@@ -29,10 +28,8 @@ export class TodoProvider extends Component {
             this.setState({
                 todos: newTodos
             })
-
         },
         setTodo: (todoId, newTodoName) => {
-
             const { todos } = this.state;
 
             for (let i = 0; i < todos.length; i++) {
@@ -45,14 +42,12 @@ export class TodoProvider extends Component {
             this.setState({
                 todos
             });
-
         },
         setTodos: (newTodoArray) => {
             //TODO: assert todo array is of right structure
             this.setState({ todos: newTodoArray });
         },
         setTodoCompleted: (todoId, newIsCompleted) => {
-
             const { todos } = this.state;
 
             for (let i = 0; i < todos.length; i++) {
@@ -66,7 +61,21 @@ export class TodoProvider extends Component {
             this.setState({
                 todos
             });
+        },
+        toggleTodoDayOfWeek: (todoId, day) => {
+            //TODO: assert day is 0 - 6
+            const { todos } = this.state;
 
+            for (let i = 0; i < todos.length; i++) {
+                if (todos[i].id === todoId) {
+                    todos[i].daysOfWeek[day] = !todos[i].daysOfWeek[day];
+                    break;
+                }
+            }
+
+            this.setState({
+                todos
+            });
         },
         deleteTodo: (todoId) => {
             const { todos } = this.state;

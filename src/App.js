@@ -9,7 +9,7 @@ import TodoInput from './components/TodoInput';
 import CalendarModal from './components/CalendarModal';
 import { SettingsIcon } from './components/Icons';
 // react contexts
-import { withContext } from './context';
+import { withContext } from './contexts';
 
 const App = ({
   sidebarOpen, setSidebarOpen,

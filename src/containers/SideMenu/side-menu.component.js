@@ -1,6 +1,6 @@
 import React from 'react';
 import THEMES from '../../constants/themes';
-import { withContext } from '../../context';
+import { withContext } from '../../contexts';
 import { SideMenuWrapper, Header, MenuItem, ThemesWrapper, ThemeIcon } from './side-menu.style';
 
 const SideMenu = ({ setTheme }) => (

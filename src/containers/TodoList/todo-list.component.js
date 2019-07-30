@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoItem from '../../components/TodoItem';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { withContext } from '../../context';
+import { withContext } from '../../contexts';
 
 // helper function
 const reorder = (array, startIndex, endIndex) => {
@@ -39,11 +39,8 @@ const TodoList = ({ todos, setTodos }) => (
             todos.map((todo, index) => (
               <TodoItem
                 key={todo.id}
-                id={todo.id}
                 index={index}
-                name={todo.name}
-                dueDate={todo.dueDate}
-                completed={todo.completed}
+                {...todo}
               />
             ))
           }
