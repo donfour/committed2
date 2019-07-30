@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import { Collapse } from 'react-collapse';
 import { Draggable } from 'react-beautiful-dnd';
 // components
-import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper } from './todo-item.style';
 import { CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
 import Checkbox from './Checkbox';
-// react contexts
+// styled components
+import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper } from './todo-item.style';
+// contexts
 import { withContext } from '../../context';
 
 // helper functions
@@ -19,14 +20,14 @@ function formatDate(msSince1970) {
 class TodoItem extends Component {
   state = {
     todoInputValue: '',
-    isOpened: false,
+    isCollapseOpened: false,
     displayEditIcon: false,
     isEditing: false
   }
 
   toggleOpen() {
-    this.setState(({ isOpened }) => ({
-      isOpened: !isOpened
+    this.setState(({ isCollapseOpened }) => ({
+      isCollapseOpened: !isCollapseOpened
     }))
   }
 
@@ -72,7 +73,7 @@ class TodoItem extends Component {
   }
 
   render() {
-    const { id, index, completed, setTodoCompleted, deleteTodo, theme } = this.props;
+    const { id, index, completed, setTodoCompleted, deleteTodo, setTodoBeingEdited, setCalendarModalOpen, theme } = this.props;
 
     return (
       <Draggable draggableId={id} index={index}>
@@ -84,6 +85,7 @@ class TodoItem extends Component {
               ref={provided.innerRef}
               theme={theme}
             >
+
               <Body>
                 <CheckboxWrapper>
                   <Checkbox
@@ -95,15 +97,22 @@ class TodoItem extends Component {
                   {this.renderTodoText()}
                 </TodoWrapper>
               </Body>
-              <Collapse isOpened={this.state.isOpened}>
+
+              <Collapse isOpened={this.state.isCollapseOpened}>
                 <TodoFooterWrapper>
                     <div>Day of week list</div>
                     <ButtonsWrapper>
-                        <CalendarIcon theme={theme}/>
-                        <DeleteIcon theme={theme} onClick={() => deleteTodo(id)}/>
+                        <CalendarIcon
+                          theme={theme}
+                          onClick={() => { setTodoBeingEdited(id); setCalendarModalOpen(true); }}
+                        />
+                        <DeleteIcon
+                          theme={theme} onClick={() => deleteTodo(id)}
+                        />
                     </ButtonsWrapper>
                 </TodoFooterWrapper>
               </Collapse>
+
             </Todo>
           )
         }

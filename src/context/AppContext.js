@@ -6,12 +6,14 @@ export const AppContext = createContext();
 export class AppProvider extends Component {
     state = {
         theme: THEMES[0],
-        sidebarOpen: false
+        sidebarOpen: false,
+        calendarModalOpen: false
     }
 
     appOperations = {
         setTheme: (themeId) => this.setState({ theme: THEMES.find(theme => theme.id === themeId) }),
         setSidebarOpen: (sidebarOpen) => this.setState({ sidebarOpen }),
+        setCalendarModalOpen: (calendarModalOpen) => this.setState({ calendarModalOpen }),
     }
 
     render(){

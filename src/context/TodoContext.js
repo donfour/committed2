@@ -81,6 +81,25 @@ export class TodoProvider extends Component {
             this.setState({
                 todos
             });
+        },
+        setTodoBeingEdited: (todoId) => {
+            this.setState({ todoBeingEdited: todoId });
+        },
+        setDueDate: (dueDate) => {
+            console.log('set due date');
+
+            const { todos, todoBeingEdited } = this.state;
+
+            for (let i = 0; i < todos.length; i++) {
+                if (todos[i].id === todoBeingEdited) {
+                    todos[i].dueDate = dueDate ? String(dueDate.getTime()) : null;
+                    break;
+                }
+            }
+
+            this.setState({
+                todos
+            });
         }
     }
 
