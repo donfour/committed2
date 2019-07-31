@@ -2,21 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 
 const LinkIconWrapper = styled.div`
-  margin-left: 10px;
   display: inline-block;
-  height: 22px;
-  width: 22px;
+  height: ${({size}) => size || '15'}px;
+  width: ${({size}) => size || '15'}px;
+  &:hover {
+    cursor: pointer;
+  }
   & svg {
-    fill: lightgray
+    fill: ${({theme}) => theme.icon.default}
+  }
+  &:hover svg{
+    fill: ${({theme}) => theme.icon.hover}
   }
 `;
 
 /**
  * Icon credits to SimpleIcon (https://www.flaticon.com/authors/simpleicon)
  * */
-const LinkIcon = () => (
-    <LinkIconWrapper>
-        <svg width="100%" height="100%" viewBox="0 0 528.899 528.899">
+const LinkIcon = ({onClick, ...props}) => (
+    <LinkIconWrapper onClick={onClick} {...props}>
+        <svg width="100%" height="100%" viewBox="0 0 500 500">
             <path d="M421.512,207.074l-85.795,85.767c-47.352,47.38-124.169,47.38-171.529,0c-7.46-7.439-13.296-15.821-18.421-24.465
             l39.864-39.861c1.895-1.911,4.235-3.006,6.471-4.296c2.756,9.416,7.567,18.33,14.972,25.736c23.648,23.667,62.128,23.634,85.762,0
             l85.768-85.765c23.666-23.664,23.666-62.135,0-85.781c-23.635-23.646-62.105-23.646-85.768,0l-30.499,30.532

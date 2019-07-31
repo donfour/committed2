@@ -23,6 +23,13 @@ export const TodoWrapper = styled.div`
   overflow: scroll;
 `;
 
+export const TodoText = styled.span`
+  color: ${({theme}) => theme.primary};
+  &:hover {
+    cursor: text;
+  }
+`;
+
 export const TodoInput = styled.input`
   color: ${({theme}) => theme.primary};
   border-bottom: 1px solid ${({theme}) => theme.primary};

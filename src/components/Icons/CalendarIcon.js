@@ -5,7 +5,7 @@ const CalendarButtonWrapper = styled.div`
   width: 23px;
   height: 23px;
   padding-top: 6px;
-  margin: 0 10px;
+  margin: 0 12px 0 11px;
   &:hover {
     cursor: pointer;
   }

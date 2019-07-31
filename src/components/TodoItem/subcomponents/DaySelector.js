@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { withContext } from '../../contexts';
+import { withContext } from '../../../contexts';
 
 const DaySelectorWrapper = styled.div`
     padding-left: 44px;

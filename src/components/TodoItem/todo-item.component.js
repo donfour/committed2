@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 import { Collapse } from 'react-collapse';
 import { Draggable } from 'react-beautiful-dnd';
 // components
-import { CalendarIcon, DeleteIcon, EditIcon, LinkIcon } from '../Icons';
-import Checkbox from './Checkbox';
-import DaySelector from './DaySelector';
+import { CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
+import { Checkbox, DaySelector, AddLinkButton, LinkButton } from './subcomponents';
 // styled components
-import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper } from './todo-item.style';
+import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper } from './todo-item.style';
 // contexts
 import { withContext } from '../../contexts';
 
@@ -38,7 +37,7 @@ class TodoItem extends Component {
   }
 
   renderTodoText() {
-    const { name, dueDate, theme, link } = this.props;
+    const { id, name, dueDate, theme, link } = this.props;
 
     return (
         this.state.isEditing ?
@@ -60,15 +59,15 @@ class TodoItem extends Component {
               this.setState({ isEditing: true })
             }}
           >
-            <span
+            <TodoText
+              theme={theme}
               onMouseOver={() => { this.setState({ displayEditIcon: true }) }}
               onMouseOut={() => { this.setState({ displayEditIcon: false }) }}
-              style={{color: theme.primary}}
             >
               {name}
-            </span>
+            </TodoText>
             {dueDate ? <DuedateWrapper theme={theme}>({formatDate(dueDate)})</DuedateWrapper> : null}
-            {link && <LinkIcon theme={theme}/>}
+            {link && <LinkButton id={id} link={link} theme={theme}/>}
             {this.state.displayEditIcon && <EditIcon theme={theme}/>}
           </span>
         )
@@ -76,7 +75,15 @@ class TodoItem extends Component {
   }
 
   render() {
-    const { id, index, completed, setTodoCompleted, deleteTodo, setTodoBeingEdited, setCalendarModalOpen, daysOfWeek, toggleTodoDayOfWeek, theme } = this.props;
+    const {
+      id, index, theme,
+      completed, setTodoCompleted,
+      link, setTodoLink,
+      daysOfWeek, toggleTodoDayOfWeek,
+      deleteTodo,
+      setTodoBeingEdited,
+      setCalendarModalOpen,
+    } = this.props;
 
     return (
       <Draggable draggableId={id} index={index}>
@@ -110,6 +117,13 @@ class TodoItem extends Component {
                       toggleTodoDayOfWeek={toggleTodoDayOfWeek}
                     />
                     <ButtonsWrapper>
+                        <AddLinkButton
+                          id={id}
+                          link={link}
+                          size={19}
+                          theme={theme}
+                          setTodoLink={setTodoLink}
+                        />
                         <CalendarIcon
                           theme={theme}
                           onClick={() => { setTodoBeingEdited(id); setCalendarModalOpen(true); }}
