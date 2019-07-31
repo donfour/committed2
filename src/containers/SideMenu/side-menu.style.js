@@ -9,7 +9,6 @@ export const SideMenuWrapper = styled.div`
 `;
 
 export const Header = styled.div`
-    margin-bottom: 10px;
     padding: 10px;
     & .extension-name {
         text-transform: uppercase;
@@ -22,9 +21,15 @@ export const Header = styled.div`
     }
 `;
 
-export const MenuItem = styled.div`
-    padding: 10px;
+export const MenuLabel = styled.div`
     font-size: 16px;
+    margin: 15px 0;
+    padding: 0 10px;
+`;
+
+export const MenuItem = styled.div`
+    font-size: 14px;
+    padding: 0 10px;
 `;
 
 export const ThemesWrapper = styled.div`
