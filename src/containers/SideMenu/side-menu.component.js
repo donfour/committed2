@@ -41,7 +41,7 @@ const SideMenu = ({ setTheme, inputPlaceholderSettings, setInputPlaceholderSetti
                             checked={value}
                             onChange={() => setInputPlaceholderSettings({...inputPlaceholderSettings, [key]: !value})}
                         />
-                        <span style={{ marginLeft: 8 }}>{key.split(/(?=[A-Z])/).map(s => s.toLowerCase()).join(' ')}</span>
+                        <span style={{ marginLeft: 8 }}>{key.split(/(?=[A-Z2])/).map(s => s.toLowerCase()).join(' ')}</span>
                     </label>
                 </div>
             ))

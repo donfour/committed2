@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import { TodoInputWrapper } from './todo-input.style';
 import { withContext } from '../../contexts';
 
+// helper functions
+const convert24HourTo12Hour = timeStr => {
+    const [hour, minute, second] = timeStr.split(':');
+    
+    if(parseInt(hour) === 0) return `${timeStr} midnight`;
+
+    if(parseInt(hour) < 12) return `${timeStr} a.m.`;
+
+    if(parseInt(hour) === 12 ) return `${timeStr} noon`;
+
+    return `${hour-12}:${minute}:${second} p.m.`;
+}
+
 class TodoInput extends Component {
 
     constructor(props) {
@@ -25,7 +38,7 @@ class TodoInput extends Component {
     }
 
     calculateInputPlaceholder(){
-        const { showDayOfWeek, showTime, showDate, showDayBeforeMonth, customQuote } = this.props.inputPlaceholderSettings;
+        const { showDayOfWeek, showTime, showDate, show24HourClock, showDayBeforeMonth, customQuote } = this.props.inputPlaceholderSettings;
         const [ dayOfWeek, month, day, year, time ] = this.state.timeNow.split(' ');
 
         if(customQuote) return customQuote;
@@ -34,7 +47,7 @@ class TodoInput extends Component {
 
         if(showDayOfWeek) inputPlaceholder += `${dayOfWeek} `;
         if(showDate) inputPlaceholder += showDayBeforeMonth ? (`${day} ${month} ${year} `) : (`${month} ${day} ${year} `);
-        if(showTime) inputPlaceholder += `${time}`;
+        if(showTime) inputPlaceholder += show24HourClock ? time : convert24HourTo12Hour(time);
         
         return inputPlaceholder;
     }

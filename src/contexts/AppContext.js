@@ -12,6 +12,7 @@ export class AppProvider extends Component {
             showDayOfWeek: true,
             showTime: true,
             showDate: true,
+            show24HourClock: true,
             showDayBeforeMonth: false,
             customQuote: null
         }
