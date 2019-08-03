@@ -18,7 +18,7 @@ I do read all feature requests! Not every feature on this list is guarenteed to 
 
 ## Done
 - settings:
-  - input placeholder format (clock, date, custom quote) (AM PM)
+  - input placeholder format (clock, date, custom quote, 12/24-hour clock)
 
 ## In consideration
 - general notes intead of a todo

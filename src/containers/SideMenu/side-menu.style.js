@@ -53,3 +53,20 @@ export const ThemeIcon = styled.div`
         cursor: pointer;
     }
 `;
+
+export const CustomQuoteInput = styled.input`
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 3px;
+    border: lightgray solid 1px;
+    border-radius: 4px;
+    padding: 5px;
+    color: gray;
+    &:focus {
+        color: black;
+    }
+    &:disabled {
+        background: lightgray;
+        cursor: not-allowed;
+    }
+`;

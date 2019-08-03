@@ -6,6 +6,9 @@ import styled from 'styled-components'
 const CheckboxContainer = styled.div`
   display: inline-block;
   vertical-align: middle;
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const Icon = styled.svg`

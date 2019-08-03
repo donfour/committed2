@@ -38,10 +38,12 @@ class TodoInput extends Component {
     }
 
     calculateInputPlaceholder(){
-        const { showDayOfWeek, showTime, showDate, show24HourClock, showDayBeforeMonth, customQuote } = this.props.inputPlaceholderSettings;
-        const [ dayOfWeek, month, day, year, time ] = this.state.timeNow.split(' ');
-
+        const { customQuote } = this.props.inputPlaceholderSettings;
+        
         if(customQuote) return customQuote;
+
+        const { showDayOfWeek, showTime, showDate, show24HourClock, showDayBeforeMonth } = this.props.inputPlaceholderSettings;
+        const [ dayOfWeek, month, day, year, time ] = this.state.timeNow.split(' ');
 
         let inputPlaceholder = '';
 
