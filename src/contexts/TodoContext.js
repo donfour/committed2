@@ -2,37 +2,61 @@ import React, { Component, createContext } from 'react';
 
 export const TodoContext = createContext();
 
-// const todos = {
-//     todos: {
-//         'todo-1': {
-//             id: 'todo-1',
-//             listId: null,
-//             name: todoName,
-//             link: null,
-//             dueDate: null,
-//             completed: false,
-//             daysOfWeek: [false, false, false, false, false, false, false],
-//             timeCompleted: null
-//         }
-//     },
-//     lists: {
-//         'list-1': {
-//             id: 'list-1',
-//             title: 'sample list name',
-//             todos: ['todo-1']
-//         }
-//     },
-//     itemOrder: ['list-1'],
-//     todoBeingEdited: null
-// }
+const DUMMY_STATE = {
+    todos: {
+        'todo-1': {
+            id: 'todo-1',
+            listId: 'list-1',
+            name: '1',
+            link: null,
+            dueDate: null,
+            completed: false,
+            daysOfWeek: [false, false, false, false, false, false, false],
+            timeCompleted: null
+        },
+        'todo-2': {
+            id: 'todo-2',
+            listId: 'list-1',
+            name: '2',
+            link: null,
+            dueDate: null,
+            completed: false,
+            daysOfWeek: [false, false, false, false, false, false, false],
+            timeCompleted: null
+        },
+        'todo-3': {
+            id: 'todo-3',
+            listId: null,
+            name: '3',
+            link: null,
+            dueDate: null,
+            completed: false,
+            daysOfWeek: [false, false, false, false, false, false, false],
+            timeCompleted: null
+        }
+    },
+    lists: {
+        'list-1': {
+            id: 'list-1',
+            title: 'sample list name',
+            todos: ['todo-1', 'todo-2']
+        }
+    },
+    itemOrder: ['list-1', 'todo-3'],
+    todoBeingEdited: null
+}
 
 export class TodoProvider extends Component {
+    // state = {
+    //     todos: {},
+    //     lists: {},
+    //     itemOrder: [],
+    //     todoBeingEdited: null
+    // }
+
     state = {
-        todos: {},
-        lists: {},
-        itemOrder: [],
-        todoBeingEdited: null
-    }
+        ...DUMMY_STATE
+    };
 
     todosOperations = {
         addTodo: (name, listId) => {

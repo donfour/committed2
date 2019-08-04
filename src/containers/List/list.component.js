@@ -1,55 +1,42 @@
 import React from 'react';
 import TodoItem from '../../components/Todo';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { withContext } from '../../contexts';
+import { ListWrapper } from './list.style';
 
-// helper function
-const reorder = (array, startIndex, endIndex) => {
-  const result = Array.from(array);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
-  return result;
-};
-
-const TodoList = ({ itemOrder, todos, lists, reorderItems }) => (
-  <DragDropContext
-    onDragEnd={result => {
-      // const { source, destination } = result;
-      // // do nothing if dropped outside list
-      // if (!destination) return; 
-      // // do nothing if draggable's position has not changed
-      // if (destination.droppableId === source.droppableId && destination.index === source.index) return;
-
-      // const newTodos = reorder(
-      //   todos,
-      //   result.source.index,
-      //   result.destination.index
-      // );
-
-      // setTodos(newTodos);
-      console.log('reorder function to be implemented');
-    }}
-  >
-    <Droppable droppableId='droppableId'>
-      {(provided) => (
-        <div
+const List = ({ id, index, todoIds, todos }) => (
+  <Draggable draggableId={id} index={index}>
+    {
+      (provided) => (
+        <ListWrapper
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
           ref={provided.innerRef}
-          {...provided.droppableProps}
         >
-          {
-            itemOrder.map((id, index) => (
-              <TodoItem
-                key={todos[id].id}
-                index={index}
-                {...todos[id]}
-              />
-            ))
-          }
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
-  </DragDropContext>
+            <div>title here</div>
+            <Droppable droppableId={id} type='todo'>
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  {
+                    todoIds.map((id, index) => (
+                      <TodoItem
+                        key={todos[id].id}
+                        index={index}
+                        {...todos[id]}
+                      />
+                    ))
+                  }
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+        </ListWrapper>
+      )
+    }
+  </Draggable>
 )
 
-export default withContext(TodoList);
+export default withContext(List);
