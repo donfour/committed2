@@ -4,7 +4,7 @@ import Sidebar from "react-sidebar";
 // components
 import { GlobalStyle } from './App.style';
 import SideMenu from './containers/SideMenu';
-import TodoList from './containers/TodoList';
+import TodoList from './containers/List';
 import TodoInput from './components/TodoInput';
 import CalendarModal from './components/CalendarModal';
 import { SettingsIcon } from './components/Icons';

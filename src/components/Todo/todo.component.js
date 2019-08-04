@@ -6,7 +6,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import { CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
 import { Checkbox, DaySelector, AddLinkButton, LinkButton } from './subcomponents';
 // styled components
-import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper } from './todo-item.style';
+import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper } from './todo.style';
 // contexts
 import { withContext } from '../../contexts';
 
