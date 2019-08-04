@@ -11,22 +11,23 @@ const reorder = (array, startIndex, endIndex) => {
   return result;
 };
 
-const TodoList = ({ todos, setTodos }) => (
+const TodoList = ({ itemOrder, todos, lists, reorderItems }) => (
   <DragDropContext
     onDragEnd={result => {
-      const { destination, source } = result;
-      // do nothing if dropped outside list
-      if (!destination) return; 
-      // do nothing if draggable's position has not changed
-      if (destination.droppableId === source.droppableId && destination.index === source.index) return;
+      // const { source, destination } = result;
+      // // do nothing if dropped outside list
+      // if (!destination) return; 
+      // // do nothing if draggable's position has not changed
+      // if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
-      const newTodos = reorder(
-        todos,
-        result.source.index,
-        result.destination.index
-      );
+      // const newTodos = reorder(
+      //   todos,
+      //   result.source.index,
+      //   result.destination.index
+      // );
 
-      setTodos(newTodos);
+      // setTodos(newTodos);
+      console.log('reorder function to be implemented');
     }}
   >
     <Droppable droppableId='droppableId'>
@@ -36,11 +37,11 @@ const TodoList = ({ todos, setTodos }) => (
           {...provided.droppableProps}
         >
           {
-            todos.map((todo, index) => (
+            itemOrder.map((id, index) => (
               <TodoItem
-                key={todo.id}
+                key={todos[id].id}
                 index={index}
-                {...todo}
+                {...todos[id]}
               />
             ))
           }

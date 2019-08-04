@@ -11,7 +11,8 @@ class SideMenu extends Component {
     }
 
     componentDidUpdate() {
-        if (this.props.inputPlaceholderSettings.customQuote) {
+        const { open, inputPlaceholderSettings } = this.props;
+        if (open && inputPlaceholderSettings.customQuote) {
             this.quoteInput.current.focus();
         }
     }
@@ -19,7 +20,7 @@ class SideMenu extends Component {
     render() {
         const { setTheme, inputPlaceholderSettings, setInputPlaceholderSettings } = this.props;
         const { customQuote, ...checkboxSettings } = inputPlaceholderSettings;
-        
+
         return (
             <SideMenuWrapper>
 

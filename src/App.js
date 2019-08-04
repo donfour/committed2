@@ -17,7 +17,7 @@ const App = ({
   theme
 }) => (
   <Sidebar
-    sidebar={<SideMenu/>}
+    sidebar={<SideMenu open={sidebarOpen}/>}
     open={sidebarOpen}
     onSetOpen={setSidebarOpen}
   >

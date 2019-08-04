@@ -4,7 +4,7 @@ I do read all feature requests! Not every feature on this list is guarenteed to 
 
 ## Todos
 - tutorial
-- subtodos
+- subtodos (progress)
 - local storage, chrome storage
 - write tests
 - todo cross out when done
