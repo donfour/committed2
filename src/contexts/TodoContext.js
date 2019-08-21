@@ -36,21 +36,32 @@ const DUMMY_STATE = {
         }
     },
     lists: {
+        'all-todos': {
+            id: 'all-todos',
+            title: 'Todos',
+            todoIds: ['todo-1', 'todo-2']
+        },
         'list-1': {
             id: 'list-1',
             title: 'sample list name',
-            todos: ['todo-1', 'todo-2']
+            todoIds: ['todo-3']
         }
     },
-    itemOrder: ['list-1', 'todo-3'],
+    listOrder: ['all-todos', 'list-1'],
     todoBeingEdited: null
 }
 
 export class TodoProvider extends Component {
     // state = {
     //     todos: {},
-    //     lists: {},
-    //     itemOrder: [],
+    //     lists: {
+    //         'all-todos': {
+    //             id: 'all-todos',
+    //             title: 'Todos',
+    //             todoIds: []
+    //         }
+    //     },
+    //     listOrder: ['all-todos'],
     //     todoBeingEdited: null
     // }
 
@@ -59,7 +70,7 @@ export class TodoProvider extends Component {
     };
 
     todosOperations = {
-        addTodo: (name, listId) => {
+        addTodo: (name, listId = 'all-todos') => {
             const newState = JSON.parse(JSON.stringify(this.state));
 
             const id = '_' + Math.random().toString(36).substr(2, 9);
@@ -77,10 +88,10 @@ export class TodoProvider extends Component {
 
             newState.todos[id] = newTodo;
 
-            if(listId && listId in newState.lists){
-                newState.lists[listId].todos.push(id);
+            if (listId && listId in newState.lists) {
+                newState.lists[listId].todoIds.push(id);
             } else {
-                newState.itemOrder.push(id);
+                newState.listOrder.push(id);
             }
 
             this.setState(newState);
@@ -88,7 +99,7 @@ export class TodoProvider extends Component {
         setTodo: (todoId, newTodoName) => {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
 
-            if(!(todoId in todos)) return;
+            if (!(todoId in todos)) return;
 
             todos[todoId].name = newTodoName;
 
@@ -97,7 +108,7 @@ export class TodoProvider extends Component {
         setTodoCompleted: (todoId, newIsCompleted) => {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
 
-            if(!(todoId in todos)) return;
+            if (!(todoId in todos)) return;
 
             todos[todoId].completed = newIsCompleted;
             todos[todoId].timeCompleted = newIsCompleted ? (new Date()).getTime() : null;
@@ -108,7 +119,7 @@ export class TodoProvider extends Component {
             //TODO: assert day is 0 - 6
             const todos = JSON.parse(JSON.stringify(this.state.todos));
 
-            if(!(todoId in todos)) return;
+            if (!(todoId in todos)) return;
 
             todos[todoId].daysOfWeek[day] = !todos[todoId].daysOfWeek[day];
 
@@ -116,19 +127,19 @@ export class TodoProvider extends Component {
         },
         deleteTodo: (todoId) => {
             const newState = JSON.parse(JSON.stringify(this.state));
-            const { todos, lists, itemOrder } = newState;
+            const { todos, lists, listOrder } = newState;
 
-            if(!(todoId in todos)) return;
+            if (!(todoId in todos)) return;
 
             delete todos[todoId];
 
-            if(itemOrder.includes(todoId)){
-                itemOrder.splice(itemOrder.indexOf(todoId),1);
+            if (listOrder.includes(todoId)) {
+                listOrder.splice(listOrder.indexOf(todoId), 1);
             }
 
-            for(let listId in lists){
-                if(lists[listId].todos.includes(todoId)){
-                    lists[listId].todos.splice(lists[listId].todos.indexOf(todoId),1);
+            for (let listId in lists) {
+                if (lists[listId].todoIds.includes(todoId)) {
+                    lists[listId].todoIds.splice(lists[listId].todoIds.indexOf(todoId), 1);
                     break;
                 }
             }
@@ -142,7 +153,7 @@ export class TodoProvider extends Component {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
             const { todoBeingEdited } = this.state;
 
-            if(!todoBeingEdited || !(todoBeingEdited in todos)) return;
+            if (!todoBeingEdited || !(todoBeingEdited in todos)) return;
 
             todos[todoBeingEdited].dueDate = dueDate ? String(dueDate.getTime()) : null;
 
@@ -151,7 +162,7 @@ export class TodoProvider extends Component {
         setTodoLink: (todoId, link) => {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
 
-            if(!(todoId in todos)) return;
+            if (!(todoId in todos)) return;
 
             todos[todoId].link = link;
 
@@ -159,13 +170,13 @@ export class TodoProvider extends Component {
         },
         reorderItems: (newItemOrder, newLists) => {
             const newState = {};
-            if(newItemOrder) newState.itemOrder = newItemOrder;
-            if(newLists) newState.lists = newLists;
+            if (newItemOrder) newState.listOrder = newItemOrder;
+            if (newLists) newState.lists = newLists;
             this.setState(newState);
         },
     }
 
-    render(){
+    render() {
         return (
             <TodoContext.Provider value={{
                 ...this.state,

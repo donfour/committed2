@@ -4,7 +4,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { withContext } from '../../contexts';
 import { ListWrapper } from './list.style';
 
-const List = ({ id, index, todoIds, todos }) => (
+const List = ({ id, index, title, todoIds, todos }) => (
   <Draggable draggableId={id} index={index}>
     {
       (provided) => (
@@ -13,7 +13,7 @@ const List = ({ id, index, todoIds, todos }) => (
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-            <div>title here</div>
+            <div>{title}</div>
             <Droppable droppableId={id} type='todo'>
               {(provided) => (
                 <div

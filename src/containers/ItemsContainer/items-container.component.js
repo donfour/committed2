@@ -12,13 +12,12 @@ const reorder = (array, startIndex, endIndex) => {
     return result;
 };
 
-const ItemsContainer = ({ itemOrder, todos, lists, reorderItems }) => (
+const ItemsContainer = ({ listOrder, lists, reorderItems }) => (
     <DragDropContext
         onDragEnd={result => {
-            console.log(result);
             const { source, destination } = result;
             // do nothing if dropped outside list
-            if (!destination) return; 
+            if (!destination) return;
             // do nothing if draggable's position has not changed
             if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
@@ -26,9 +25,9 @@ const ItemsContainer = ({ itemOrder, todos, lists, reorderItems }) => (
             const endIndex = result.destination.index
 
             // if moving within ItemsContainer
-            if(source.droppableId === 'all-items' && destination.droppableId === 'all-items') {
-                const newItemOrder = reorder(itemOrder, startIndex, endIndex);
-                reorderItems(newItemOrder);
+            if (source.droppableId === 'all-items' && destination.droppableId === 'all-items') {
+                const newListOrder = reorder(listOrder, startIndex, endIndex);
+                reorderItems(newListOrder);
                 return;
             }
 
@@ -36,38 +35,38 @@ const ItemsContainer = ({ itemOrder, todos, lists, reorderItems }) => (
             const destinationList = lists[destination.droppableId];
 
             // if moving within a list
-            if(sourceList === destinationList){
-                const newTodos = reorder(sourceList.todos, startIndex, endIndex);
+            if (sourceList === destinationList) {
+                const newTodos = reorder(sourceList.todoIds, startIndex, endIndex);
 
                 const newList = {
                     ...sourceList,
-                    todos: newTodos
+                    todoIds: newTodos
                 };
 
                 const newLists = {
                     ...lists,
                     [source.droppableId]: newList
                 }
-                
+
                 reorderItems(null, newLists);
                 return;
             }
 
             // if moving across two lists
-            const sourceIds = Array.from(sourceList.todos);
-            const destinationIds = Array.from(destinationList.todos);
+            const sourceIds = Array.from(sourceList.todoIds);
+            const destinationIds = Array.from(destinationList.todoIds);
 
             const [removed] = sourceIds.splice(startIndex, 1);
             destinationIds.splice(endIndex, 0, removed);
 
             const newSourceList = {
                 ...sourceList,
-                todos: sourceIds
+                todoIds: sourceIds
             };
 
             const newDestinationList = {
                 ...destinationList,
-                todos: destinationIds
+                todoIds: destinationIds
             };
 
             const newLists = {
@@ -75,37 +74,26 @@ const ItemsContainer = ({ itemOrder, todos, lists, reorderItems }) => (
                 [source.droppableId]: newSourceList,
                 [destination.droppableId]: newDestinationList,
             }
-            
+
             reorderItems(null, newLists);
             return;
         }}
     >
-        <Droppable droppableId='all-items' type='item' isCombineEnabled>
+        <Droppable droppableId='all-items' type='item'>
             {(provided) => (
                 <div
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                 >
                     {
-                        itemOrder.map((itemId, index) => {
-                            return (
-                                itemId in lists ? 
-                                (
-                                    <List
-                                        key={lists[itemId].id}
-                                        id={lists[itemId].id}
-                                        index={index}
-                                        todoIds={lists[itemId].todos}
-                                    />
-                                ) : (
-                                    <Todo
-                                        key={todos[itemId].id}
-                                        index={index}
-                                        {...todos[itemId]}
-                                    />
-                                )
-                            );
-                        })
+                        listOrder.map((itemId, index) => (
+                            <List
+                                key={lists[itemId].id}
+                                id={lists[itemId].id}
+                                index={index}
+                                {...lists[itemId]}
+                            />
+                        ))
                     }
                     {provided.placeholder}
                 </div>
