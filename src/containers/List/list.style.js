@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
 export const ListWrapper = styled.div`
-    background: lightgray;
+    border-bottom: 1px solid black;
+    margin-top: 15px;
 `;

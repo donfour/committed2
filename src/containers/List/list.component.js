@@ -13,7 +13,10 @@ const List = ({ id, index, title, todoIds, todos }) => (
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-            <div>{title}</div>
+            <div>
+              {title}
+              {todoIds.reduce((acc, cur) => todos[cur].completed ? acc + 1 : acc, 0)}/{todoIds.length}
+            </div>
             <Droppable droppableId={id} type='todo'>
               {(provided) => (
                 <div
