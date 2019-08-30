@@ -17,7 +17,7 @@ const Input = styled.input`
 `;
 
 const AddLinkButtonWrapper = styled.div`
-    padding-top: 12px;
+    padding-top: 4px;
 `;
 
 const AddLinkButton = ({ id, link, setTodoLink, ...props }) => {

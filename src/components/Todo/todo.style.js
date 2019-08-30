@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
+//border-bottom: 1px solid ${({ theme }) => theme.todoBorder};
 export const Todo = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.todoBorder};
 `;
 
 export const Body = styled.div`

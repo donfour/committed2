@@ -20,7 +20,6 @@ const LibAnimation = keyframes`
 
 const DeleteIconWrapper = styled.div`
   display: inline-block;
-  padding-top: 8px;
   padding-right: 20px;
   &:hover {
     cursor: pointer;

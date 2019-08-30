@@ -2,7 +2,7 @@ import React from 'react';
 import TodoItem from '../../components/Todo';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { withContext } from '../../contexts';
-import { ListWrapper } from './list.style';
+import { ListWrapper, ListNameWrapper, ProgressWrapper } from './list.style';
 
 const List = ({ id, index, title, todoIds, todos }) => (
   <Draggable draggableId={id} index={index}>
@@ -14,8 +14,12 @@ const List = ({ id, index, title, todoIds, todos }) => (
           ref={provided.innerRef}
         >
             <div>
-              {title}
-              {todoIds.reduce((acc, cur) => todos[cur].completed ? acc + 1 : acc, 0)}/{todoIds.length}
+              <ListNameWrapper>
+                {title}
+              </ListNameWrapper>
+              <ProgressWrapper>
+                {todoIds.reduce((acc, cur) => todos[cur].completed ? acc + 1 : acc, 0)}/{todoIds.length}
+              </ProgressWrapper>
             </div>
             <Droppable droppableId={id} type='todo'>
               {(provided) => (
