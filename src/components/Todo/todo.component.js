@@ -107,11 +107,17 @@ class TodoItem extends Component {
                 <TodoWrapper
                   onMouseEnter={()=>this.setState({showMenuIcon: true})}
                   onMouseLeave={()=>this.setState({showMenuIcon: false})}
+                  onClick={() => { this.toggleOpen() }}
                 >
                   {this.renderTodoText()}
                 </TodoWrapper>
                 <MenuIconWrapper>
-                  <MenuIcon onClick={() => { this.toggleOpen() }}/>
+                  {
+                    this.state.showMenuIcon &&
+                    <MenuIcon
+                      defaultIconColor={theme.icon.default}
+                    />
+                  }
                 </MenuIconWrapper>
               </Body>
 

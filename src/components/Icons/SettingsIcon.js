@@ -51,6 +51,6 @@ SettingsIcon.propTypes = {
     onClick: PropTypes.func,
     defaultIconColor: PropTypes.string.isRequired,
     hoverIconColor: PropTypes.string.isRequired,
-  };
+};
 
 export default SettingsIcon;

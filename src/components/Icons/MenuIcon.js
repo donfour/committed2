@@ -1,8 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const MenuIconWrapper = styled.div`
   height: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+  & svg {
+      fill: ${({defaultIconColor}) => defaultIconColor}
+  }
 `;
 
 /**
@@ -20,5 +27,9 @@ const MenuIcon = ({onClick, ...props}) => (
   </MenuIconWrapper>
 )
 
+MenuIcon.propTypes = {
+  onClick: PropTypes.func,
+  defaultIconColor: PropTypes.string.isRequired
+};
 
 export default MenuIcon;
