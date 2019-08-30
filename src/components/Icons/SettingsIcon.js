@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const SettingsIconWrapper = styled.div`
@@ -11,10 +12,10 @@ const SettingsIconWrapper = styled.div`
         cursor: pointer;
     }
     & svg {
-        fill: ${({theme}) => theme.icon.default}
+        fill: ${({defaultIconColor}) => defaultIconColor}
     }
     & svg:hover {
-        fill: ${({theme}) => theme.icon.hover}
+        fill: ${({hoverIconColor}) => hoverIconColor}
     }
 `;
 
@@ -44,7 +45,12 @@ const SettingsIcon = ({onClick, ...props}) => (
             C179.418,159.385,159.312,179.491,134.595,179.491z"/>
         </svg>
     </SettingsIconWrapper>
-)
+);
 
+SettingsIcon.propTypes = {
+    onClick: PropTypes.func,
+    defaultIconColor: PropTypes.string.isRequired,
+    hoverIconColor: PropTypes.string.isRequired,
+  };
 
 export default SettingsIcon;

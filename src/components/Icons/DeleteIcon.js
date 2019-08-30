@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 const LibAnimation = keyframes`
@@ -17,7 +18,7 @@ const LibAnimation = keyframes`
   }
 `;
 
-const DeleteButtonWrapper = styled.div`
+const DeleteIconWrapper = styled.div`
   display: inline-block;
   padding-top: 8px;
   padding-right: 20px;
@@ -32,12 +33,12 @@ const DeleteButtonWrapper = styled.div`
     -o-animation: ${LibAnimation} .4s;
   }
   &:hover span{
-    background-color: ${({theme}) => theme.icon.hover};
+    background-color: ${({hoverIconColor}) => hoverIconColor};
   }
 `;
 
 const Lib = styled.span`
-  background-color: ${({theme}) => theme.icon.default};
+  background-color: ${({defaultIconColor}) => defaultIconColor};
   display: block;
   height: 3px;
   width: 17px;
@@ -47,7 +48,7 @@ const Lib = styled.span`
 `;
 
 const Can = styled.span`
-  background-color: ${({theme}) => theme.icon.default};
+  background-color: ${({defaultIconColor}) => defaultIconColor};
   display: block;
   margin-top: 1px;
   margin-left: auto;
@@ -58,12 +59,17 @@ const Can = styled.span`
   width: 13px;
 `;
 
-const DeleteButton = (props) => (
-  <DeleteButtonWrapper onClick={() => props.onClick && props.onClick()} {...props}>
+const DeleteIcon = ({onClick, ...props}) => (
+  <DeleteIconWrapper onClick={() => onClick && onClick()} {...props}>
     <Lib id='lib' {...props}/>
     <Can id='can' {...props}/>
-  </DeleteButtonWrapper>
+  </DeleteIconWrapper>
 )
 
+DeleteIcon.propTypes = {
+  onClick: PropTypes.func,
+  defaultIconColor: PropTypes.string.isRequired,
+  hoverIconColor: PropTypes.string.isRequired,
+};
 
-export default DeleteButton;
+export default DeleteIcon;

@@ -1,5 +1,4 @@
 import React from 'react';
-import Todo from '../../components/Todo';
 import List from '../List';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { withContext } from '../../contexts';

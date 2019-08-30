@@ -16,32 +16,36 @@ const App = ({
   calendarModalOpen, setCalendarModalOpen, setTodoDueDate,
   theme
 }) => (
-  <Sidebar
-    sidebar={<SideMenu open={sidebarOpen}/>}
-    open={sidebarOpen}
-    onSetOpen={setSidebarOpen}
-  >
-    
-    <div className="App">
-      
-      <GlobalStyle theme={theme}/>
-      
-      <SettingsIcon theme={theme} onClick={()=>setSidebarOpen(true)}/>
+    <Sidebar
+      sidebar={<SideMenu open={sidebarOpen} />}
+      open={sidebarOpen}
+      onSetOpen={setSidebarOpen}
+    >
 
-      {/* Modals */}
-      <CalendarModal
-        isOpen={calendarModalOpen}
-        onDayClick={setTodoDueDate}
-        handleCloseModal={() => setCalendarModalOpen(false)}
-      />
+      <div className="App">
 
-      {/* Main app */}
-      <TodoInput />
-      <ItemsContainer />
+        <GlobalStyle theme={theme} />
 
-    </div>
+        <SettingsIcon
+          defaultIconColor={theme.icon.default}
+          hoverIconColor={theme.icon.hover}
+          onClick={() => setSidebarOpen(true)}
+        />
 
-  </Sidebar>
-)
+        {/* Modals */}
+        <CalendarModal
+          isOpen={calendarModalOpen}
+          onDayClick={setTodoDueDate}
+          handleCloseModal={() => setCalendarModalOpen(false)}
+        />
+
+        {/* Main app */}
+        <TodoInput />
+        <ItemsContainer />
+
+      </div>
+
+    </Sidebar>
+  )
 
 export default withContext(App);

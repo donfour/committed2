@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
 import { LinkIcon } from '../../Icons';
@@ -19,12 +20,11 @@ const AddLinkButtonWrapper = styled.div`
     padding-top: 12px;
 `;
 
-const AddLinkButton = ({id, size, theme, link, setTodoLink}) => {
+const AddLinkButton = ({ id, link, setTodoLink, ...props }) => {
     const [value, setValue] = useState('');
-
     return (
         <AddLinkButtonWrapper>
-            <LinkIcon data-tip data-for={`add-link-${id}`} data-event='click' size={size} theme={theme}/>
+            <LinkIcon data-tip data-for={`add-link-${id}`} data-event='click' {...props} />
             <ReactTooltip
                 id={`add-link-${id}`}
                 effect='solid'
@@ -38,10 +38,19 @@ const AddLinkButton = ({id, size, theme, link, setTodoLink}) => {
                     value={value}
                     onChange={e => setValue(e.target.value)}
                     onClick={(e) => e.stopPropagation()}
-                /> 
+                />
             </ReactTooltip>
         </AddLinkButtonWrapper>
     )
+};
+
+AddLinkButton.propTypes = {
+    id: PropTypes.string.isRequired,
+    link: PropTypes.string,
+    size: PropTypes.number,
+    defaultIconColor: PropTypes.string.isRequired,
+    hoverIconColor: PropTypes.string.isRequired,
+    setTodoLink: PropTypes.func.isRequired
 };
 
 export default AddLinkButton;

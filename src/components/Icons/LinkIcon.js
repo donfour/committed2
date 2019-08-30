@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const LinkIconWrapper = styled.div`
@@ -9,10 +10,10 @@ const LinkIconWrapper = styled.div`
     cursor: pointer;
   }
   & svg {
-    fill: ${({theme}) => theme.icon.default}
+    fill: ${({defaultIconColor}) => defaultIconColor}
   }
   &:hover svg{
-    fill: ${({theme}) => theme.icon.hover}
+    fill: ${({hoverIconColor}) => hoverIconColor}
   }
 `;
 
@@ -35,5 +36,12 @@ const LinkIcon = ({onClick, ...props}) => (
         </svg>
     </LinkIconWrapper>
 );
+
+LinkIcon.propTypes = {
+  onClick: PropTypes.func,
+  size: PropTypes.number,
+  defaultIconColor: PropTypes.string.isRequired,
+  hoverIconColor: PropTypes.string.isRequired,
+};
 
 export default LinkIcon;

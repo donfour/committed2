@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { Collapse } from 'react-collapse';
 import { Draggable } from 'react-beautiful-dnd';
 // components
-import { CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
+import { CalendarIcon, DeleteIcon, EditIcon, MenuIcon } from '../Icons';
 import { Checkbox, DaySelector, AddLinkButton, LinkButton } from './subcomponents';
 // styled components
-import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper } from './todo.style';
+import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper, MenuIconWrapper } from './todo.style';
 // contexts
 import { withContext } from '../../contexts';
 
@@ -104,9 +104,15 @@ class TodoItem extends Component {
                     onClick={() => setTodoCompleted(id, !completed)}
                   />
                 </CheckboxWrapper>
-                <TodoWrapper onClick={() => { this.toggleOpen() }} >
+                <TodoWrapper
+                  onMouseEnter={()=>this.setState({showMenuIcon: true})}
+                  onMouseLeave={()=>this.setState({showMenuIcon: false})}
+                >
                   {this.renderTodoText()}
                 </TodoWrapper>
+                <MenuIconWrapper>
+                  <MenuIcon onClick={() => { this.toggleOpen() }}/>
+                </MenuIconWrapper>
               </Body>
 
               <Collapse isOpened={this.state.isCollapseOpened}>
@@ -121,15 +127,19 @@ class TodoItem extends Component {
                           id={id}
                           link={link}
                           size={19}
-                          theme={theme}
+                          defaultIconColor={theme.icon.default}
+                          hoverIconColor={theme.icon.hover}
                           setTodoLink={setTodoLink}
                         />
                         <CalendarIcon
-                          theme={theme}
+                          defaultIconColor={theme.icon.default}
+                          hoverIconColor={theme.icon.hover}
                           onClick={() => { setTodoBeingEdited(id); setCalendarModalOpen(true); }}
                         />
                         <DeleteIcon
-                          theme={theme} onClick={() => deleteTodo(id)}
+                          defaultIconColor={theme.icon.default}
+                          hoverIconColor={theme.icon.hover}
+                          onClick={() => deleteTodo(id)}
                         />
                     </ButtonsWrapper>
                 </TodoFooterWrapper>
