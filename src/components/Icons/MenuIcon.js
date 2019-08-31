@@ -4,9 +4,6 @@ import styled from 'styled-components';
 
 const MenuIconWrapper = styled.div`
   height: 20px;
-  &:hover {
-    cursor: pointer;
-  }
   & svg {
       fill: ${({defaultIconColor}) => defaultIconColor}
   }

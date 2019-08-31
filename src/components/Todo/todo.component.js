@@ -111,7 +111,11 @@ class TodoItem extends Component {
                 >
                   {this.renderTodoText()}
                 </TodoWrapper>
-                <MenuIconWrapper>
+                <MenuIconWrapper
+                  onMouseEnter={() => this.setState({ showMenuIcon: true })}
+                  onMouseLeave={() => this.setState({ showMenuIcon: false })}
+                  onClick={() => { this.toggleOpen() }}
+                >
                   {
                     this.state.showMenuIcon &&
                     <MenuIcon

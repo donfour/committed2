@@ -63,6 +63,6 @@ export const ButtonsWrapper = styled.div`
 `;
 
 export const MenuIconWrapper = styled.div`
-  flex: 0 0 50px;
+  flex: 0 0 30px;
   padding-top: 23px
 `;
