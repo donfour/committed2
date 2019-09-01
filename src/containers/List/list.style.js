@@ -10,14 +10,35 @@ export const ListHeader = styled.div`
 `;
 
 export const ListNameWrapper = styled.span`
-    
+    flex: 1;
 `;
 
-export const ProgressWrapper = styled.span`
-    flex: 1;
-    margin-left: 10px;
+export const ListText = styled.span`
+    font-size: 16px;
+    letter-spacing: 1px;
+    &:hover {
+        cursor: text;
+    }
 `;
 
 export const DragHandleWrapper = styled.div`
     flex: 0 0 30px;
 `;
+
+//TODO: connect to theme object
+export const ListInput = styled.input`
+    color: black;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    background: transparent;
+    letter-spacing: 1px;
+    padding: 0;
+    width: 100%;
+    outline: none;
+    border: none;
+`;
+
+// export const ProgressWrapper = styled.span`
+//     flex: 1;
+//     margin-left: 10px;
+// `;

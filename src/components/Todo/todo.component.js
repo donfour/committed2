@@ -19,10 +19,11 @@ function formatDate(msSince1970) {
 
 class TodoItem extends Component {
   state = {
-    todoInputValue: '',
     isCollapseOpened: false,
-    displayEditIcon: false,
-    isEditing: false
+    isEditing: false,
+    showDragIcon: false,
+    showEditIcon: false,
+    todoInputValue: '',
   }
 
   toggleOpen() {
@@ -32,7 +33,7 @@ class TodoItem extends Component {
   }
 
   onEditEnd() {
-    this.setState({ isEditing: false, displayEditIcon: false });
+    this.setState({ isEditing: false, showEditIcon: false });
     this.props.setTodo(this.props.id, this.state.todoInputValue);
   }
 
@@ -61,14 +62,14 @@ class TodoItem extends Component {
           >
             <TodoText
               theme={theme}
-              onMouseOver={() => { this.setState({ displayEditIcon: true }) }}
-              onMouseOut={() => { this.setState({ displayEditIcon: false }) }}
+              onMouseOver={() => { this.setState({ showEditIcon: true }) }}
+              onMouseOut={() => { this.setState({ showEditIcon: false }) }}
             >
               {name}
             </TodoText>
             {dueDate ? <DuedateWrapper theme={theme}>({formatDate(dueDate)})</DuedateWrapper> : null}
             {link && <LinkButton id={id} link={link} theme={theme}/>}
-            {this.state.displayEditIcon && <EditIcon theme={theme}/>}
+            {this.state.showEditIcon && <EditIcon theme={theme}/>}
           </span>
         )
     );

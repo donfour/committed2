@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const DragHandleIconWrapper = styled.div`
-  height: ${({size}) => size || '20'}px;
+  height: ${({size}) => size || '18'}px;
   & svg {
       fill: ${({defaultIconColor}) => defaultIconColor}
   }

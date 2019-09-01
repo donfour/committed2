@@ -38,12 +38,12 @@ const DUMMY_STATE = {
     lists: {
         'all-todos': {
             id: 'all-todos',
-            title: 'Todos',
+            name: 'Todos',
             todoIds: ['todo-1', 'todo-2']
         },
         'list-1': {
             id: 'list-1',
-            title: 'sample list name',
+            name: 'sample list name',
             todoIds: ['todo-3']
         }
     },
@@ -104,6 +104,15 @@ export class TodoProvider extends Component {
             todos[todoId].name = newTodoName;
 
             this.setState({ todos });
+        },
+        setList: (listId, newListName) => {
+            const lists = JSON.parse(JSON.stringify(this.state.lists));
+
+            if (!(listId in lists)) return;
+
+            lists[listId].name = newListName;
+
+            this.setState({ lists });
         },
         setTodoCompleted: (todoId, newIsCompleted) => {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
