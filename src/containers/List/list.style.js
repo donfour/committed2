@@ -5,13 +5,19 @@ export const ListWrapper = styled.div`
     margin-top: 10px;
 `;
 
+export const ListHeader = styled.div`
+    display: flex;
+`;
+
 export const ListNameWrapper = styled.span`
+    
 `;
 
 export const ProgressWrapper = styled.span`
-    margin-left: 5px;
+    flex: 1;
+    margin-left: 10px;
 `;
 
 export const DragHandleWrapper = styled.div`
-
+    flex: 0 0 30px;
 `;

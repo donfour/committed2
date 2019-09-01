@@ -3,7 +3,7 @@ import TodoItem from '../../components/Todo';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { withContext } from '../../contexts';
 import { DragHandleIcon } from '../../components/Icons';
-import { ListWrapper, ListNameWrapper, ProgressWrapper, DragHandleWrapper } from './list.style';
+import { ListWrapper, ListNameWrapper, ProgressWrapper, DragHandleWrapper, ListHeader } from './list.style';
 
 const List = ({ id, index, title, todoIds, todos, theme }) => {
   const [showDragIcon, setShowDragIcon] = useState(false);
@@ -17,7 +17,7 @@ const List = ({ id, index, title, todoIds, todos, theme }) => {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
-              <div
+              <ListHeader
                 onMouseEnter={() => setShowDragIcon(true)}
                 onMouseLeave={() => setShowDragIcon(false)}
               >
@@ -31,11 +31,12 @@ const List = ({ id, index, title, todoIds, todos, theme }) => {
                     {
                       showDragIcon &&
                       <DragHandleIcon
+                        size={15}
                         defaultIconColor={theme.icon.default}
                       />
                     }
                 </DragHandleWrapper>
-              </div>
+              </ListHeader>
               <Droppable droppableId={id} type='todo'>
                 {(provided) => (
                   <div
