@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const MenuIconWrapper = styled.div`
-  height: 20px;
+const DragHandleIconWrapper = styled.div`
+  height: ${({size}) => size || '20'}px;
   & svg {
       fill: ${({defaultIconColor}) => defaultIconColor}
   }
@@ -12,8 +12,8 @@ const MenuIconWrapper = styled.div`
 /**
  * Icon credits to SimpleIcon (https://www.flaticon.com/authors/those-icons)
  * */
-const MenuIcon = ({onClick, ...props}) => (
-  <MenuIconWrapper onClick={() => onClick && onClick()} {...props}>
+const DragHandleIcon = ({onClick, ...props}) => (
+  <DragHandleIconWrapper onClick={() => onClick && onClick()} {...props}>
     <svg width="100%" height="100%" viewBox="0 0 512 512">
       <g>
         <circle cx="256" cy="256" r="64"/>
@@ -21,12 +21,13 @@ const MenuIcon = ({onClick, ...props}) => (
         <circle cx="256" cy="64" r="64"/>
       </g>
     </svg>
-  </MenuIconWrapper>
+  </DragHandleIconWrapper>
 )
 
-MenuIcon.propTypes = {
+DragHandleIcon.propTypes = {
   onClick: PropTypes.func,
+  size: PropTypes.number,
   defaultIconColor: PropTypes.string.isRequired
 };
 
-export default MenuIcon;
+export default DragHandleIcon;

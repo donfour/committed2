@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { Collapse } from 'react-collapse';
 import { Draggable } from 'react-beautiful-dnd';
 // components
-import { CalendarIcon, DeleteIcon, EditIcon, MenuIcon } from '../Icons';
+import { CalendarIcon, DeleteIcon, EditIcon, DragHandleIcon } from '../Icons';
 import { Checkbox, DaySelector, AddLinkButton, LinkButton } from './subcomponents';
 // styled components
-import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper, MenuIconWrapper } from './todo.style';
+import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper, DragHandleWrapper } from './todo.style';
 // contexts
 import { withContext } from '../../contexts';
 
@@ -105,24 +105,24 @@ class TodoItem extends Component {
                   />
                 </CheckboxWrapper>
                 <TodoWrapper
-                  onMouseEnter={()=>this.setState({showMenuIcon: true})}
-                  onMouseLeave={()=>this.setState({showMenuIcon: false})}
+                  onMouseEnter={()=>this.setState({showDragIcon: true})}
+                  onMouseLeave={()=>this.setState({showDragIcon: false})}
                   onClick={() => { this.toggleOpen() }}
                 >
                   {this.renderTodoText()}
                 </TodoWrapper>
-                <MenuIconWrapper
-                  onMouseEnter={() => this.setState({ showMenuIcon: true })}
-                  onMouseLeave={() => this.setState({ showMenuIcon: false })}
+                <DragHandleWrapper
+                  onMouseEnter={() => this.setState({ showDragIcon: true })}
+                  onMouseLeave={() => this.setState({ showDragIcon: false })}
                   onClick={() => { this.toggleOpen() }}
                 >
                   {
-                    this.state.showMenuIcon &&
-                    <MenuIcon
+                    this.state.showDragIcon &&
+                    <DragHandleIcon
                       defaultIconColor={theme.icon.default}
                     />
                   }
-                </MenuIconWrapper>
+                </DragHandleWrapper>
               </Body>
 
               <Collapse isOpened={this.state.isCollapseOpened}>

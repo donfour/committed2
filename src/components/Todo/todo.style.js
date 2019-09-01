@@ -62,7 +62,7 @@ export const ButtonsWrapper = styled.div`
   align-items: center;
 `;
 
-export const MenuIconWrapper = styled.div`
+export const DragHandleWrapper = styled.div`
   flex: 0 0 30px;
   padding-top: 23px
 `;
