@@ -96,6 +96,24 @@ export class TodoProvider extends Component {
 
             this.setState(newState);
         },
+        addList: (name = 'New list name...') => {
+            const newState = JSON.parse(JSON.stringify(this.state));
+
+            const id = '_' + Math.random().toString(36).substr(2, 9);
+            
+            const newList = {
+                id,
+                name,
+                todoIds: []
+            }
+
+            newState.lists[id] = newList;
+            
+
+            newState.listOrder.push(id);
+
+            this.setState(newState);
+        },
         setTodo: (todoId, newTodoName) => {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
 
@@ -177,9 +195,9 @@ export class TodoProvider extends Component {
 
             this.setState({ todos });
         },
-        reorderItems: (newItemOrder, newLists) => {
+        reorderItems: (newListOrder, newLists) => {
             const newState = {};
-            if (newItemOrder) newState.listOrder = newItemOrder;
+            if (newListOrder) newState.listOrder = newListOrder;
             if (newLists) newState.lists = newLists;
             this.setState(newState);
         },

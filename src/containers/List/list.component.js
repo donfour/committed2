@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TodoItem from '../../components/Todo';
+import Todo from '../../components/Todo';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { withContext } from '../../contexts';
 import { DragHandleIcon, EditIcon } from '../../components/Icons';
@@ -7,10 +7,10 @@ import { ListWrapper, ListNameWrapper, DragHandleWrapper, ListHeader, ListInput,
 
 class List extends Component {
   state = {
-    isEditing: false,
-    listInputValue: '',
     showDragIcon: false,
     showEditIcon: false,
+    isEditing: false,
+    listInputValue: '',
   }
 
   onEditEnd() {
@@ -87,10 +87,11 @@ class List extends Component {
                   <div
                     ref={provided.innerRef}
                     {...provided.droppableProps}
+                    style={{minHeight: 30}}
                   >
                     {
                       todoIds.map((id, index) => (
-                        <TodoItem
+                        <Todo
                           key={todos[id].id}
                           index={index}
                           {...todos[id]}

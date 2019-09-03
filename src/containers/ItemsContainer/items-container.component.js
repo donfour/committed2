@@ -2,6 +2,7 @@ import React from 'react';
 import List from '../List';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { withContext } from '../../contexts';
+import NewListButton from '../../components/NewListButton';
 
 // helper function
 const reorder = (array, startIndex, endIndex) => {
@@ -11,7 +12,7 @@ const reorder = (array, startIndex, endIndex) => {
     return result;
 };
 
-const ItemsContainer = ({ listOrder, lists, reorderItems }) => (
+const ItemsContainer = ({ listOrder, lists, reorderItems, addList }) => (
     <DragDropContext
         onDragEnd={result => {
             const { source, destination } = result;
@@ -98,6 +99,7 @@ const ItemsContainer = ({ listOrder, lists, reorderItems }) => (
                 </div>
             )}
         </Droppable>
+        <NewListButton onClick={() => addList()}/>
     </DragDropContext>
 )
 
