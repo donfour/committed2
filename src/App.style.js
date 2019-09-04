@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   html {
-    background: ${({theme}) => theme.background};
+    background: ${({backgroundColor}) => backgroundColor};
   }
 
   html, body, #root, .App{

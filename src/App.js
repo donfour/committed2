@@ -24,7 +24,7 @@ const App = ({
 
       <div className="App">
 
-        <GlobalStyle theme={theme} />
+        <GlobalStyle backgroundColor={theme.background} />
 
         <SettingsIcon
           defaultIconColor={theme.icon.default}

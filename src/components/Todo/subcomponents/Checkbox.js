@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const CheckboxContainer = styled.div`
   display: inline-block;
-  border: 2px solid ${({theme}) => theme.primary};
+  border: 2px solid ${({color}) => color};
   width: 18px;
   height: 18px;
   &:hover{
@@ -11,12 +11,12 @@ const CheckboxContainer = styled.div`
   }
 `;
 
-const Checkbox = ({isChecked, onClick, theme}) => (
-      <CheckboxContainer onClick={() => onClick && onClick()} theme={theme}>
+const Checkbox = ({isChecked, onClick, ...props}) => (
+      <CheckboxContainer onClick={() => onClick && onClick()} {...props}>
         {
           isChecked &&
           <svg  width="100%" height="100%" viewBox="0 0 200 200">
-            <polyline points="25.1,101 76.9,154 177,45.9" style={{ stroke: theme.primary, fill: 'none', strokeWidth: 25 }}/>
+            <polyline points="25.1,101 76.9,154 177,45.9" style={{ stroke: props.color, fill: 'none', strokeWidth: 25 }}/>
           </svg>
         }
       </CheckboxContainer>

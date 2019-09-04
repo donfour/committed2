@@ -41,7 +41,7 @@ class TodoItem extends Component {
     const { id, name, dueDate, theme, link } = this.props;
 
     return (
-        this.state.isEditing ?
+      this.state.isEditing ?
         (
           <TodoInput
             autoFocus
@@ -68,8 +68,8 @@ class TodoItem extends Component {
               {name}
             </TodoText>
             {dueDate ? <DuedateWrapper theme={theme}>({formatDate(dueDate)})</DuedateWrapper> : null}
-            {link && <LinkButton id={id} link={link} theme={theme}/>}
-            {this.state.showEditIcon && <EditIcon theme={theme}/>}
+            {link && <LinkButton id={id} link={link} theme={theme} />}
+            {this.state.showEditIcon && <EditIcon theme={theme} />}
           </span>
         )
     );
@@ -100,14 +100,14 @@ class TodoItem extends Component {
               <Body>
                 <CheckboxWrapper>
                   <Checkbox
-                    theme={theme}
+                    color={theme.primary}
                     isChecked={completed}
                     onClick={() => setTodoCompleted(id, !completed)}
                   />
                 </CheckboxWrapper>
                 <TodoWrapper
-                  onMouseEnter={()=>this.setState({showDragIcon: true})}
-                  onMouseLeave={()=>this.setState({showDragIcon: false})}
+                  onMouseEnter={() => this.setState({ showDragIcon: true })}
+                  onMouseLeave={() => this.setState({ showDragIcon: false })}
                   onClick={() => { this.toggleOpen() }}
                 >
                   {this.renderTodoText()}
@@ -128,31 +128,34 @@ class TodoItem extends Component {
 
               <Collapse isOpened={this.state.isCollapseOpened}>
                 <TodoFooterWrapper>
-                    <DaySelector
+                  <DaySelector
+                    id={id}
+                    defaultIconColor={theme.icon.default}
+                    hoverIconColor={theme.icon.hover}
+                    selectedIconColor={theme.icon.selected}
+                    daysOfWeek={daysOfWeek}
+                    toggleTodoDayOfWeek={toggleTodoDayOfWeek}
+                  />
+                  <ButtonsWrapper>
+                    <AddLinkButton
                       id={id}
-                      daysOfWeek={daysOfWeek}
-                      toggleTodoDayOfWeek={toggleTodoDayOfWeek}
+                      link={link}
+                      size={19}
+                      defaultIconColor={theme.icon.default}
+                      hoverIconColor={theme.icon.hover}
+                      setTodoLink={setTodoLink}
                     />
-                    <ButtonsWrapper>
-                        <AddLinkButton
-                          id={id}
-                          link={link}
-                          size={19}
-                          defaultIconColor={theme.icon.default}
-                          hoverIconColor={theme.icon.hover}
-                          setTodoLink={setTodoLink}
-                        />
-                        <CalendarIcon
-                          defaultIconColor={theme.icon.default}
-                          hoverIconColor={theme.icon.hover}
-                          onClick={() => { setTodoBeingEdited(id); setCalendarModalOpen(true); }}
-                        />
-                        <DeleteIcon
-                          defaultIconColor={theme.icon.default}
-                          hoverIconColor={theme.icon.hover}
-                          onClick={() => deleteTodo(id)}
-                        />
-                    </ButtonsWrapper>
+                    <CalendarIcon
+                      defaultIconColor={theme.icon.default}
+                      hoverIconColor={theme.icon.hover}
+                      onClick={() => { setTodoBeingEdited(id); setCalendarModalOpen(true); }}
+                    />
+                    <DeleteIcon
+                      defaultIconColor={theme.icon.default}
+                      hoverIconColor={theme.icon.hover}
+                      onClick={() => deleteTodo(id)}
+                    />
+                  </ButtonsWrapper>
                 </TodoFooterWrapper>
               </Collapse>
 
