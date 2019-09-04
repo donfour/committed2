@@ -36,6 +36,9 @@ export const ListInput = styled.input`
     width: 100%;
     outline: none;
     border: none;
+    &::-webkit-input-placeholder{
+        color: lightgray;
+    }
 `;
 
 // export const ProgressWrapper = styled.span`

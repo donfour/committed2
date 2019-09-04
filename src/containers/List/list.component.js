@@ -13,41 +13,52 @@ class List extends Component {
     listInputValue: '',
   }
 
-  onEditEnd() {
-    this.setState({ isEditing: false, showEditIcon: false });
-    this.props.setList(this.props.id, this.state.listInputValue);
+  componentDidMount() {
+    // Autofocus on input if list name is empty (when a new list is created)
+    if (this.props.name === '') {
+      this.setState({ isEditing: true });
+    }
   }
 
-  renderListName(){
+  onEditEnd() {
+    this.props.setList(this.props.id, this.state.listInputValue);
+
+    if (!this.state.listInputValue) return;
+
+    this.setState({ isEditing: false, showEditIcon: false });
+  }
+
+  renderListName() {
     const { name } = this.props;
     return (
       this.state.isEditing ?
-      (
-        <ListInput
-          autoFocus
-          value={this.state.listInputValue}
-          onClick={e => e.stopPropagation()}
-          onChange={e => { this.setState({ listInputValue: e.target.value }) }}
-          onFocus={() => this.setState({ listInputValue: name })}
-          onBlur={() => this.onEditEnd()}
-          onKeyPress={e => { if (e.key === 'Enter') this.onEditEnd() }}
-        />
-      ) : (
-        <span
-          onClick={(e) => {
-            e.stopPropagation();
-            this.setState({ isEditing: true })
-          }}
-        >
-          <ListText
-            onMouseOver={() => { this.setState({ showEditIcon: true }) }}
-            onMouseOut={() => { this.setState({ showEditIcon: false }) }}
+        (
+          <ListInput
+            autoFocus
+            placeholder='New list name...'
+            value={this.state.listInputValue}
+            onClick={e => e.stopPropagation()}
+            onChange={e => { this.setState({ listInputValue: e.target.value }) }}
+            onFocus={() => this.setState({ listInputValue: name })}
+            onBlur={() => this.onEditEnd()}
+            onKeyPress={e => { if (e.key === 'Enter') this.onEditEnd() }}
+          />
+        ) : (
+          <span
+            onClick={(e) => {
+              e.stopPropagation();
+              this.setState({ isEditing: true })
+            }}
           >
-            {name}
-          </ListText>
-          {this.state.showEditIcon && <EditIcon size={10}/>}
-        </span>
-      )
+            <ListText
+              onMouseOver={() => { this.setState({ showEditIcon: true }) }}
+              onMouseOut={() => { this.setState({ showEditIcon: false }) }}
+            >
+              {name}
+            </ListText>
+            {this.state.showEditIcon && <EditIcon size={10} />}
+          </span>
+        )
     )
   }
 
@@ -63,8 +74,8 @@ class List extends Component {
               ref={provided.innerRef}
             >
               <ListHeader
-                onMouseEnter={() => this.setState({showDragIcon: true})}
-                onMouseLeave={() => this.setState({showDragIcon: false})}
+                onMouseEnter={() => this.setState({ showDragIcon: true })}
+                onMouseLeave={() => this.setState({ showDragIcon: false })}
               >
                 <ListNameWrapper>
                   {this.renderListName()}
@@ -87,7 +98,7 @@ class List extends Component {
                   <div
                     ref={provided.innerRef}
                     {...provided.droppableProps}
-                    style={{minHeight: 30}}
+                    style={{ minHeight: 30 }}
                   >
                     {
                       todoIds.map((id, index) => (

@@ -96,19 +96,19 @@ export class TodoProvider extends Component {
 
             this.setState(newState);
         },
-        addList: (name = 'New list name...') => {
+        addList: () => {
             const newState = JSON.parse(JSON.stringify(this.state));
 
             const id = '_' + Math.random().toString(36).substr(2, 9);
-            
+
             const newList = {
                 id,
-                name,
+                name: '',
                 todoIds: []
             }
 
             newState.lists[id] = newList;
-            
+
 
             newState.listOrder.push(id);
 
