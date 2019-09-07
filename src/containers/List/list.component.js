@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Todo from '../../components/Todo';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { withContext } from '../../contexts';
-import { DragHandleIcon, EditIcon } from '../../components/Icons';
-import { ListWrapper, ListNameWrapper, DragHandleWrapper, ListHeader, ListInput, ListText } from './list.style';
+import { DeleteIcon, EditIcon, PlusIcon } from '../../components/Icons';
+import { ListWrapper, ListNameWrapper, SideMenu, ListHeader, ListInput, ListText } from './list.style';
 
 class List extends Component {
   state = {
-    showDragIcon: false,
+    showSideMenu: false,
     showEditIcon: false,
     isEditing: false,
     listInputValue: '',
@@ -74,8 +74,8 @@ class List extends Component {
               ref={provided.innerRef}
             >
               <ListHeader
-                onMouseEnter={() => this.setState({ showDragIcon: true })}
-                onMouseLeave={() => this.setState({ showDragIcon: false })}
+                onMouseEnter={() => this.setState({ showSideMenu: true })}
+                onMouseLeave={() => this.setState({ showSideMenu: false })}
               >
                 <ListNameWrapper>
                   {this.renderListName()}
@@ -83,15 +83,26 @@ class List extends Component {
                 {/* <ProgressWrapper>
                   {todoIds.reduce((acc, cur) => todos[cur].completed ? acc + 1 : acc, 0)}/{todoIds.length}
                 </ProgressWrapper> */}
-                <DragHandleWrapper>
+                <SideMenu>
                   {
-                    this.state.showDragIcon &&
-                    <DragHandleIcon
-                      size={15}
-                      defaultIconColor={theme.icon.default}
-                    />
+                    this.state.showSideMenu &&
+                    (
+                      <React.Fragment>
+                        <PlusIcon
+                          defaultIconColor={theme.icon.default}
+                          hoverIconColor={theme.icon.hover}
+                          onClick={() => console.log('add todo')}
+                        />
+                        <DeleteIcon
+                          small
+                          defaultIconColor={theme.icon.default}
+                          hoverIconColor={theme.icon.hover}
+                          onClick={() => console.log('delete list')}
+                        />
+                      </React.Fragment>
+                    )
                   }
-                </DragHandleWrapper>
+                </SideMenu>
               </ListHeader>
               <Droppable droppableId={id} type='todo'>
                 {(provided) => (

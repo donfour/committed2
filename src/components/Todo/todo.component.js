@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { Collapse } from 'react-collapse';
 import { Draggable } from 'react-beautiful-dnd';
 // components
-import { CalendarIcon, DeleteIcon, EditIcon, DragHandleIcon } from '../Icons';
+import { CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
 import { Checkbox, DaySelector, AddLinkButton, LinkButton } from './subcomponents';
 // styled components
-import { Todo, Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper, DragHandleWrapper } from './todo.style';
+import { Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper, DragHandleWrapper } from './todo.style';
 // contexts
 import { withContext } from '../../contexts';
 
@@ -17,11 +17,10 @@ function formatDate(msSince1970) {
   return date.getDate() + ' ' + months[date.getMonth()];
 }
 
-class TodoItem extends Component {
+class Todo extends Component {
   state = {
     isCollapseOpened: false,
     isEditing: false,
-    showDragIcon: false,
     showEditIcon: false,
     todoInputValue: '',
   }
@@ -90,7 +89,7 @@ class TodoItem extends Component {
       <Draggable draggableId={id} index={index}>
         {
           (provided) => (
-            <Todo
+            <div
               {...provided.draggableProps}
               {...provided.dragHandleProps}
               ref={provided.innerRef}
@@ -106,24 +105,10 @@ class TodoItem extends Component {
                   />
                 </CheckboxWrapper>
                 <TodoWrapper
-                  onMouseEnter={() => this.setState({ showDragIcon: true })}
-                  onMouseLeave={() => this.setState({ showDragIcon: false })}
                   onClick={() => { this.toggleOpen() }}
                 >
                   {this.renderTodoText()}
                 </TodoWrapper>
-                <DragHandleWrapper
-                  onMouseEnter={() => this.setState({ showDragIcon: true })}
-                  onMouseLeave={() => this.setState({ showDragIcon: false })}
-                  onClick={() => { this.toggleOpen() }}
-                >
-                  {
-                    this.state.showDragIcon &&
-                    <DragHandleIcon
-                      defaultIconColor={theme.icon.default}
-                    />
-                  }
-                </DragHandleWrapper>
               </Body>
 
               <Collapse isOpened={this.state.isCollapseOpened}>
@@ -159,7 +144,7 @@ class TodoItem extends Component {
                 </TodoFooterWrapper>
               </Collapse>
 
-            </Todo>
+            </div>
           )
         }
       </Draggable>
@@ -167,4 +152,4 @@ class TodoItem extends Component {
   }
 }
 
-export default withContext(TodoItem);
+export default withContext(Todo);

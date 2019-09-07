@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const CalendarIconWrapper = styled.div`
   width: 23px;
   height: 23px;
-  margin: 0 12px 0 11px;
   &:hover {
     cursor: pointer;
   }

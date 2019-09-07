@@ -21,8 +21,10 @@ export const ListText = styled.span`
     }
 `;
 
-export const DragHandleWrapper = styled.div`
-    flex: 0 0 30px;
+export const SideMenu = styled.div`
+    display: flex;
+    flex-basis: 4.3%;
+    justify-content: space-between;
 `;
 
 //TODO: connect to theme object

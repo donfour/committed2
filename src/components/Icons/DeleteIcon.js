@@ -2,6 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
+const SIZES = {
+  small: {
+    lib: { height: 2,   width: 12, borderRadius: 2 },
+    can: { height: 12,  width: 10, borderRadius: 3 }
+  },
+  medium: {
+    lib: { height: 3,   width: 17, borderRadius: 3 },
+    can: { height: 15,  width: 13, borderRadius: 4 }
+  },
+  large : {
+    lib: { height: 4,   width: 22, borderRadius: 4 },
+    can: { height: 18,  width: 16, borderRadius: 5 }
+  }
+}
+
 const LibAnimation = keyframes`
   0%,
   100% {
@@ -20,7 +35,6 @@ const LibAnimation = keyframes`
 
 const DeleteIconWrapper = styled.div`
   display: inline-block;
-  padding-right: 20px;
   &:hover {
     cursor: pointer;
   }
@@ -39,10 +53,10 @@ const DeleteIconWrapper = styled.div`
 const Lib = styled.span`
   background-color: ${({defaultIconColor}) => defaultIconColor};
   display: block;
-  height: 3px;
-  width: 17px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  height: ${({style}) => style.lib.height}px;
+  width: ${({style}) => style.lib.width}px;
+  border-top-left-radius: ${({style}) => style.lib.borderRadius}px;
+  border-top-right-radius: ${({style}) => style.lib.borderRadius}px;
   transition: all ease 0.4s, background-color 0;
 `;
 
@@ -52,21 +66,28 @@ const Can = styled.span`
   margin-top: 1px;
   margin-left: auto;
   margin-right: auto;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  height: 15px;
-  width: 13px;
+  border-bottom-left-radius: ${({style}) => style.can.borderRadius}px;
+  border-bottom-right-radius: ${({style}) => style.can.borderRadius}px;
+  height: ${({style}) => style.can.height}px;
+  width: ${({style}) => style.can.width}px;
 `;
 
-const DeleteIcon = ({onClick, ...props}) => (
-  <DeleteIconWrapper onClick={() => onClick && onClick()} {...props}>
-    <Lib id='lib' {...props}/>
-    <Can id='can' {...props}/>
-  </DeleteIconWrapper>
-)
+const DeleteIcon = ({onClick, small, medium, large, ...props}) => {
+  // size defaults to medium
+  const style = small ? SIZES.small : medium ? SIZES.medium : large ? SIZES.large : SIZES.medium;
+  return (
+    <DeleteIconWrapper onClick={() => onClick && onClick()} {...props}>
+      <Lib id='lib' {...props} style={style}/>
+      <Can id='can' {...props} style={style}/>
+    </DeleteIconWrapper>
+  )
+}
 
 DeleteIcon.propTypes = {
   onClick: PropTypes.func,
+  small: PropTypes.bool,
+  medium: PropTypes.bool,
+  large: PropTypes.bool,
   defaultIconColor: PropTypes.string.isRequired,
   hoverIconColor: PropTypes.string.isRequired,
 };
