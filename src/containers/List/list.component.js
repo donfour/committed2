@@ -65,7 +65,7 @@ class List extends Component {
   }
 
   render() {
-    const { id, index, todoIds, todos, theme, deleteList } = this.props;
+    const { id, index, todoIds, todos, theme, addTodo, deleteList } = this.props;
     return (
       <Draggable draggableId={id} index={index}>
         {
@@ -77,7 +77,7 @@ class List extends Component {
             >
               <ListHeader
                 onClick={() => this.setState(({ isExpanded }) => ({ isExpanded: !isExpanded }))}
-                onMouseEnter={() => this.setState({ showSideMenu: true })}
+                onMouseOver={() => this.setState({ showSideMenu: true })}
                 onMouseLeave={() => this.setState({ showSideMenu: false })}
               >
                 <ListNameWrapper>
@@ -88,22 +88,19 @@ class List extends Component {
                 </ProgressWrapper> */}
                 <SideMenu>
                   {
-                    true &&
+                    this.state.showSideMenu &&
                     (
                       <React.Fragment>
                         <PlusIcon
                           defaultIconColor={theme.icon.default}
                           hoverIconColor={theme.icon.hover}
-                          onClick={() => console.log('add todo')}
+                          onClick={(e) => { e.stopPropagation(); addTodo('hello', id); }}
                         />
                         <DeleteIcon
                           small
                           defaultIconColor={theme.icon.default}
                           hoverIconColor={theme.icon.hover}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            deleteList(id);
-                          }}
+                          onClick={(e) => { e.stopPropagation(); deleteList(id); }}
                         />
                         <ArrowIcon
                           active={this.state.isExpanded}

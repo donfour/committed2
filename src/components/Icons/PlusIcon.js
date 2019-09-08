@@ -13,7 +13,10 @@ const PlusIconWrapper = styled.div`
 `;
 
 const PlusIcon = ({ onClick, ...props }) => (
-    <PlusIconWrapper {...props}>+</PlusIconWrapper>
+    <PlusIconWrapper
+        {...props}
+        onClick={(...args) => onClick && onClick(...args)}
+    >+</PlusIconWrapper>
 );
 
 PlusIcon.propTypes = {
