@@ -173,6 +173,22 @@ export class TodoProvider extends Component {
 
             this.setState(newState);
         },
+        deleteList: (listId) => {
+            const newState = JSON.parse(JSON.stringify(this.state));
+            const { todos, lists, listOrder } = newState;
+
+            if (!(listId in lists)) return;
+
+            lists[listId].todoIds.forEach(todoId => delete todos[todoId]);
+
+            delete lists[listId];
+
+            if (listOrder.includes(listId)) {
+                listOrder.splice(listOrder.indexOf(listId), 1);
+            }
+
+            this.setState(newState);
+        },
         setTodoBeingEdited: (todoId) => {
             this.setState({ todoBeingEdited: todoId });
         },

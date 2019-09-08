@@ -65,7 +65,7 @@ class List extends Component {
   }
 
   render() {
-    const { id, index, todoIds, todos, theme } = this.props;
+    const { id, index, todoIds, todos, theme, deleteList } = this.props;
     return (
       <Draggable draggableId={id} index={index}>
         {
@@ -100,7 +100,10 @@ class List extends Component {
                           small
                           defaultIconColor={theme.icon.default}
                           hoverIconColor={theme.icon.hover}
-                          onClick={() => console.log('delete list')}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            deleteList(id);
+                          }}
                         />
                         <ArrowIcon
                           active={this.state.isExpanded}

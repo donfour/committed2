@@ -76,7 +76,7 @@ const DeleteIcon = ({onClick, small, medium, large, ...props}) => {
   // size defaults to medium
   const style = small ? SIZES.small : medium ? SIZES.medium : large ? SIZES.large : SIZES.medium;
   return (
-    <DeleteIconWrapper onClick={() => onClick && onClick()} {...props}>
+    <DeleteIconWrapper onClick={(...args) => onClick && onClick(...args)} {...props}>
       <Lib id='lib' {...props} style={style}/>
       <Can id='can' {...props} style={style}/>
     </DeleteIconWrapper>
