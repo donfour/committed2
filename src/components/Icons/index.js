@@ -1,9 +1,19 @@
+import ArrowIcon from './ArrowIcon';
 import CalendarIcon from './CalendarIcon';
 import DeleteIcon from './DeleteIcon';
+import DragHandleIcon from './DragHandleIcon';
 import EditIcon from './EditIcon';
 import LinkIcon from './LinkIcon';
-import DragHandleIcon from './DragHandleIcon';
-import SettingsIcon from './SettingsIcon';
 import PlusIcon from './PlusIcon';
+import SettingsIcon from './SettingsIcon';
 
-export { CalendarIcon, DeleteIcon, EditIcon, LinkIcon, DragHandleIcon, SettingsIcon, PlusIcon };
+export {
+    ArrowIcon,
+    CalendarIcon,
+    DeleteIcon,
+    DragHandleIcon,
+    EditIcon,
+    LinkIcon,
+    PlusIcon,
+    SettingsIcon,
+};

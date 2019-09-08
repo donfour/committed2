@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import Todo from '../../components/Todo';
+import { Collapse } from 'react-collapse';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { withContext } from '../../contexts';
-import { DeleteIcon, EditIcon, PlusIcon } from '../../components/Icons';
+import { ArrowIcon, DeleteIcon, EditIcon, PlusIcon } from '../../components/Icons';
 import { ListWrapper, ListNameWrapper, SideMenu, ListHeader, ListInput, ListText } from './list.style';
 
 class List extends Component {
   state = {
-    showSideMenu: false,
-    showEditIcon: false,
     isEditing: false,
+    isExpanded: true,
     listInputValue: '',
+    showEditIcon: false,
+    showSideMenu: false,
   }
 
   componentDidMount() {
@@ -74,6 +76,7 @@ class List extends Component {
               ref={provided.innerRef}
             >
               <ListHeader
+                onClick={() => this.setState(({ isExpanded }) => ({ isExpanded: !isExpanded }))}
                 onMouseEnter={() => this.setState({ showSideMenu: true })}
                 onMouseLeave={() => this.setState({ showSideMenu: false })}
               >
@@ -85,7 +88,7 @@ class List extends Component {
                 </ProgressWrapper> */}
                 <SideMenu>
                   {
-                    this.state.showSideMenu &&
+                    true &&
                     (
                       <React.Fragment>
                         <PlusIcon
@@ -99,31 +102,40 @@ class List extends Component {
                           hoverIconColor={theme.icon.hover}
                           onClick={() => console.log('delete list')}
                         />
+                        <ArrowIcon
+                          active={this.state.isExpanded}
+                          defaultIconColor={theme.icon.default}
+                          hoverIconColor={theme.icon.hover}
+                        />
                       </React.Fragment>
                     )
                   }
                 </SideMenu>
               </ListHeader>
-              <Droppable droppableId={id} type='todo'>
-                {(provided) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                    style={{ minHeight: 30 }}
-                  >
-                    {
-                      todoIds.map((id, index) => (
-                        <Todo
-                          key={todos[id].id}
-                          index={index}
-                          {...todos[id]}
-                        />
-                      ))
-                    }
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
+
+              <Collapse isOpened={this.state.isExpanded}>
+                <Droppable droppableId={id} type='todo'>
+                  {(provided) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                      style={{ minHeight: 30 }}
+                    >
+                      {
+                        todoIds.map((id, index) => (
+                          <Todo
+                            key={todos[id].id}
+                            index={index}
+                            {...todos[id]}
+                          />
+                        ))
+                      }
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </Collapse>
+
             </ListWrapper>
           )
         }

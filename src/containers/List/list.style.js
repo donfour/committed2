@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const ListWrapper = styled.div`
     border-bottom: 1px solid darkgray;
-    margin-top: 15px;
 `;
 
 export const ListHeader = styled.div`
     display: flex;
+    margin: 15px 0;
 `;
 
 export const ListNameWrapper = styled.span`
@@ -23,7 +23,7 @@ export const ListText = styled.span`
 
 export const SideMenu = styled.div`
     display: flex;
-    flex-basis: 4.3%;
+    flex-basis: 10%;
     justify-content: space-between;
 `;
 

@@ -19,15 +19,15 @@ function formatDate(msSince1970) {
 
 class Todo extends Component {
   state = {
-    isCollapseOpened: false,
+    isExpanded: false,
     isEditing: false,
     showEditIcon: false,
     todoInputValue: '',
   }
 
   toggleOpen() {
-    this.setState(({ isCollapseOpened }) => ({
-      isCollapseOpened: !isCollapseOpened
+    this.setState(({ isExpanded }) => ({
+      isExpanded: !isExpanded
     }))
   }
 
@@ -111,7 +111,7 @@ class Todo extends Component {
                 </TodoWrapper>
               </Body>
 
-              <Collapse isOpened={this.state.isCollapseOpened}>
+              <Collapse isOpened={this.state.isExpanded}>
                 <TodoFooterWrapper>
                   <DaySelector
                     id={id}

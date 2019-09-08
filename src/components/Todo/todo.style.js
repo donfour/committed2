@@ -10,7 +10,7 @@ export const Body = styled.div`
 export const ButtonsWrapper = styled.div`
   align-items: center;
   display: flex;
-  flex-basis: 12%;
+  flex-basis: 14%;
   justify-content: space-between;
 `;
 

@@ -5,7 +5,7 @@ import Sidebar from "react-sidebar";
 import { GlobalStyle } from './App.style';
 import SideMenu from './containers/SideMenu';
 import ItemsContainer from './containers/ItemsContainer';
-import { SettingsIcon } from './components/Icons';
+import { ArrowIcon, SettingsIcon } from './components/Icons';
 import TodoInput from './components/TodoInput';
 import CalendarModal from './components/CalendarModal';
 // react contexts
