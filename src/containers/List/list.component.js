@@ -113,16 +113,16 @@ class List extends Component {
                 </SideMenu>
               </ListHeader>
 
-              <Collapse isOpened={this.state.isExpanded}>
-                <Droppable droppableId={id} type='todo'>
+              <Collapse hasNestedCollapse isOpened={this.state.isExpanded}>
+                <Droppable droppableId={id} isDropDisabled={!this.state.isExpanded} type='todo'>
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      style={{ minHeight: 30 }}
+                      style={{minHeight: '30px'}}
                     >
                       {
-                        todoIds.map((id, index) => (
+                        this.state.isExpanded && todoIds.map((id, index) => (
                           <Todo
                             key={todos[id].id}
                             index={index}

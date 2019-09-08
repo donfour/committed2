@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const ListWrapper = styled.div`
-    border-bottom: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;  
 `;
 
 export const ListHeader = styled.div`
     display: flex;
-    margin: 15px 0;
+    padding: 15px 0;
 `;
 
 export const ListNameWrapper = styled.span`
