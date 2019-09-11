@@ -70,7 +70,7 @@ export class TodoProvider extends Component {
     };
 
     todosOperations = {
-        addTodo: (name, listId = 'all-todos') => {
+        addTodo: (name = '', listId = 'all-todos') => {
             const newState = JSON.parse(JSON.stringify(this.state));
 
             const id = '_' + Math.random().toString(36).substr(2, 9);

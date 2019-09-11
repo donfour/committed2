@@ -94,7 +94,7 @@ class List extends Component {
                         <PlusIcon
                           defaultIconColor={theme.icon.default}
                           hoverIconColor={theme.icon.hover}
-                          onClick={(e) => { e.stopPropagation(); addTodo('hello', id); }}
+                          onClick={(e) => { e.stopPropagation(); addTodo('', id); }}
                         />
                         <DeleteIcon
                           small

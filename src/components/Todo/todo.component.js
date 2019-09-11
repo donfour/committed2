@@ -25,6 +25,13 @@ class Todo extends Component {
     todoInputValue: '',
   }
 
+  componentDidMount() {
+    // Autofocus on input if todo name is empty (when a new todo is created)
+    if (this.props.name === '') {
+      this.setState({ isEditing: true });
+    }
+  }
+
   toggleOpen() {
     this.setState(({ isExpanded }) => ({
       isExpanded: !isExpanded
@@ -32,8 +39,11 @@ class Todo extends Component {
   }
 
   onEditEnd() {
-    this.setState({ isEditing: false, showEditIcon: false });
     this.props.setTodo(this.props.id, this.state.todoInputValue);
+
+    if (!this.state.todoInputValue) return;
+
+    this.setState({ isEditing: false, showEditIcon: false });
   }
 
   renderTodoText() {
@@ -44,13 +54,14 @@ class Todo extends Component {
         (
           <TodoInput
             autoFocus
+            placeholder='New todo name...'
             theme={theme}
             value={this.state.todoInputValue}
             onClick={e => e.stopPropagation()}
             onChange={e => { this.setState({ todoInputValue: e.target.value }) }}
             onFocus={() => this.setState({ todoInputValue: name })}
             onBlur={() => this.onEditEnd()}
-            onKeyPress={e => { if (e.key === 'Enter') this.onEditEnd() }}
+            onKeyPress={e => { if (e.key === 'Enter') this.onEditEnd(); }}
           />
         ) : (
           <span
