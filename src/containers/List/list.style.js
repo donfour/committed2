@@ -14,6 +14,7 @@ export const ListNameWrapper = styled.span`
 `;
 
 export const ListText = styled.span`
+    color: ${({textColor}) => textColor};
     font-size: 16px;
     letter-spacing: 1px;
     &:hover {
@@ -27,23 +28,17 @@ export const SideMenu = styled.div`
     justify-content: space-between;
 `;
 
-//TODO: connect to theme object
+
 export const ListInput = styled.input`
-    color: black;
-    border-bottom: 1px solid black;
+    color: ${({textColor}) => textColor};
+    border: none;
     font-size: 16px;
     background: transparent;
     letter-spacing: 1px;
     padding: 0;
     width: 100%;
     outline: none;
-    border: none;
     &::-webkit-input-placeholder{
         color: lightgray;
     }
 `;
-
-// export const ProgressWrapper = styled.span`
-//     flex: 1;
-//     margin-left: 10px;
-// `;

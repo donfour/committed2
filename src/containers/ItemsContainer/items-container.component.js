@@ -12,7 +12,7 @@ const reorder = (array, startIndex, endIndex) => {
     return result;
 };
 
-const ItemsContainer = ({ listOrder, lists, reorderItems, addList }) => (
+const ItemsContainer = ({ listOrder, lists, reorderItems, addList, theme }) => (
     <DragDropContext
         onDragEnd={result => {
             const { source, destination } = result;
@@ -99,7 +99,10 @@ const ItemsContainer = ({ listOrder, lists, reorderItems, addList }) => (
                 </div>
             )}
         </Droppable>
-        <NewListButton onClick={() => addList()}/>
+        <NewListButton
+            onClick={() => addList()}
+            textColor={theme.icon.default}
+        />
     </DragDropContext>
 )
 

@@ -18,10 +18,10 @@ const THEMES = [
         primary: 'white',
         secondary: '#EAD379', // gold
         background: '#142F43', // royal blue
-        border: 'gray',
+        border: '#d0ebff3b',
         icon: {
-            default: 'white',
-            hover: 'darkgray',
+            default: '#758fa2',
+            hover: '#bcd7ea',
             selected: '#EAD379', // gold
         },
         clock: 'white',

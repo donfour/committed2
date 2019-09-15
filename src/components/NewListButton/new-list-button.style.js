@@ -4,6 +4,6 @@ export const NewListButtonWrapper = styled.div`
     &:hover {
         cursor: pointer;
     }
-    color: lightgray;
+    color: ${({textColor}) => textColor};
     margin-top: 10px;
 `;

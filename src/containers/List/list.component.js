@@ -31,19 +31,20 @@ class List extends Component {
   }
 
   renderListName() {
-    const { name } = this.props;
+    const { name, theme } = this.props;
     return (
       this.state.isEditing ?
         (
           <ListInput
             autoFocus
+            value={this.state.listInputValue}
+            textColor={theme.primary}
+            placeholder='New list name...'
             onBlur={() => this.onEditEnd()}
             onChange={e => { this.setState({ listInputValue: e.target.value }) }}
             onClick={e => e.stopPropagation()}
             onFocus={() => this.setState({ listInputValue: name })}
             onKeyPress={e => { if (e.key === 'Enter') this.onEditEnd() }}
-            placeholder='New list name...'
-            value={this.state.listInputValue}
           />
         ) : (
           <span
@@ -53,6 +54,7 @@ class List extends Component {
             }}
           >
             <ListText
+              textColor={theme.primary}
               onMouseOver={() => { this.setState({ showEditIcon: true }) }}
               onMouseOut={() => { this.setState({ showEditIcon: false }) }}
             >

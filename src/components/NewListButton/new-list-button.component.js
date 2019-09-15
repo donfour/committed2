@@ -4,7 +4,7 @@ import { NewListButtonWrapper } from './new-list-button.style';
 
 const NewListButton = ({onClick, ...props}) => (
     <NewListButtonWrapper
-        onClick={()=>onClick && onClick()}
+        onClick={(e)=>onClick && onClick(e)}
         {...props}
     >
         + New List...
@@ -12,7 +12,8 @@ const NewListButton = ({onClick, ...props}) => (
 );
 
 NewListButton.propTypes = {
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    textColor: PropTypes.string.isRequired
 };
 
 export default NewListButton;

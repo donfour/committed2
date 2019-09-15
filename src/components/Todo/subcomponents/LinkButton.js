@@ -10,10 +10,6 @@ const LinkButtonWrapper = styled.div`
 
   display: inline-block;
   vertical-align: middle;
-
-  & svg {
-    fill: lightgray
-  }
 `;
 
 const LinkButton = ({id, link, ...props}) => (

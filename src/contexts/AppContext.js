@@ -5,7 +5,7 @@ export const AppContext = createContext();
 
 export class AppProvider extends Component {
     state = {
-        theme: THEMES[0],
+        theme: THEMES[1],
         sidebarOpen: false,
         calendarModalOpen: false,
         clockSettings: {
