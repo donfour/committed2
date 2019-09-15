@@ -33,11 +33,11 @@ class SideMenu extends Component {
 
                 <ThemesWrapper>
                     {
-                        THEMES.map(theme => (
+                        THEMES.map((theme, i) => (
                             <ThemeIcon
-                                key={theme.id}
+                                key={i}
                                 theme={theme}
-                                onClick={() => setTheme(theme.id)}
+                                onClick={() => setTheme(i)}
                             >C</ThemeIcon>
                         ))
                     }
