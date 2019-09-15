@@ -4,18 +4,21 @@ import styled from 'styled-components';
 import { LinkIcon } from '../../Icons';
 
 const LinkButtonWrapper = styled.div`
+  height: 18px;
+  width: 18px;
   margin-left: 10px;
+
   display: inline-block;
-  height: 15px;
-  width: 15px;
+  vertical-align: middle;
+
   & svg {
     fill: lightgray
   }
 `;
 
-const LinkButton = ({id, link, theme}) => (
+const LinkButton = ({id, link, ...props}) => (
     <LinkButtonWrapper>
-        <LinkIcon data-tip data-for={`link-${id}`} theme={theme} onClick={()=> window.open(link, "_blank")}/>
+        <LinkIcon data-tip data-for={`link-${id}`} onClick={()=> window.open(link, "_blank")} {...props} />
         <ReactTooltip id={`link-${id}`} effect='solid'>
             <span>{link}</span>
         </ReactTooltip>

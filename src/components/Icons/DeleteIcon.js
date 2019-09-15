@@ -8,8 +8,8 @@ const SIZES = {
     can: { height: 12,  width: 10, borderRadius: 3 }
   },
   medium: {
-    lib: { height: 3,   width: 17, borderRadius: 3 },
-    can: { height: 15,  width: 13, borderRadius: 4 }
+    lib: { height: 3,   width: 14, borderRadius: 3 },
+    can: { height: 14,  width: 12, borderRadius: 4 }
   },
   large : {
     lib: { height: 4,   width: 22, borderRadius: 4 },

@@ -8,7 +8,7 @@ export const TodoInputWrapper = styled.input`
     width: 100%;
     font-size: 36px;
     letter-spacing: 1px;
-    margin-top: 200px;
+    margin-top: 20%;
     &:focus{
         outline: none;
     }

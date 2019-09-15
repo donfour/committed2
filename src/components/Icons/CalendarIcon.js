@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const CalendarIconWrapper = styled.div`
-  width: 23px;
-  height: 23px;
+  width: ${({size}) => size || 20}px;
+  height: ${({size}) => size || 20}px;
   &:hover {
     cursor: pointer;
   }
@@ -34,6 +34,7 @@ const CalendarIcon = ({onClick, ...props}) => (
 
 CalendarIcon.propTypes = {
   onClick: PropTypes.func,
+  size: PropTypes.number,
   defaultIconColor: PropTypes.string.isRequired,
   hoverIconColor: PropTypes.string.isRequired,
 };

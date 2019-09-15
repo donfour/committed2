@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 const LinkIconWrapper = styled.div`
   display: inline-block;
-  height: ${({size}) => size || '15'}px;
-  width: ${({size}) => size || '15'}px;
+  height: ${({size}) => size || '14'}px;
+  width: ${({size}) => size || '14'}px;
   &:hover {
     cursor: pointer;
   }

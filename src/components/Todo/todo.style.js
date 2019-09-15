@@ -2,33 +2,32 @@ import styled from 'styled-components';
 
 export const Body = styled.div`
   display: flex;
-  font-size: 20px;
-  letter-spacing: 1px;
   overflow: scroll;
+  padding: 16px 0;
+  font-size: 18px;
 `;
 
 export const ButtonsWrapper = styled.div`
   align-items: center;
   display: flex;
-  flex-basis: 14%;
+  flex-basis: 12%;
   justify-content: space-between;
 `;
 
 export const CheckboxWrapper = styled.div`
   flex: 0 0 30px;
-  padding-top: 23px
+  padding-top: 2px;
 `;
 
-export const DragHandleWrapper = styled.div`
-  flex: 0 0 30px;
-  padding-top: 23px
+export const ArrowIconWrapper = styled.div`
+  flex: 0 0 10px;
 `;
 
 export const DuedateWrapper = styled.span`
   color: ${({ theme }) => theme.secondary};
   display: inline-block;
-  font-size: 17px;
   margin-left: 5px;
+  font-size: 16px;
 `;
 
 export const TodoFooterWrapper = styled.div`
@@ -38,14 +37,13 @@ export const TodoFooterWrapper = styled.div`
 
 export const TodoInput = styled.input`
   background: transparent;
-  border-bottom: 1px solid ${({ theme }) => theme.primary};
   border: none;
+  border-bottom: 1px solid ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.primary};
-  font-size: 20px;
-  letter-spacing: 1px;
   outline: none;
   padding: 0;
   width: 100%;
+  font-size: 18px;
 `;
 
 export const TodoText = styled.span`
@@ -59,5 +57,4 @@ export const TodoWrapper = styled.div`
   flex: 1;
   min-height: 25px;
   overflow: scroll;
-  padding: 20px;
 `;

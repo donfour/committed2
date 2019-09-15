@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const EditIconWrapper = styled.div`
-  margin-left: 10px;
+  margin-left: 8px;
   display: inline-block;
-  height: ${({size}) => size || 15}px;
-  width: ${({size}) => size || 15}px;
+  height: ${({size}) => size || 14}px;
+  width: ${({size}) => size || 14}px;
   & svg {
     fill: lightgray
   }

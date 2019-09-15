@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { Collapse } from 'react-collapse';
 import { Draggable } from 'react-beautiful-dnd';
 // components
-import { CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
+import { ArrowIcon, CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
 import { Checkbox, DaySelector, AddLinkButton, LinkButton } from './subcomponents';
 // styled components
-import { Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper, DragHandleWrapper } from './todo.style';
+import { Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper, ArrowIconWrapper } from './todo.style';
 // contexts
 import { withContext } from '../../contexts';
 
@@ -19,8 +19,9 @@ function formatDate(msSince1970) {
 
 class Todo extends Component {
   state = {
-    isExpanded: false,
     isEditing: false,
+    isExpanded: false,
+    showArrowIcon: false,
     showEditIcon: false,
     todoInputValue: '',
   }
@@ -78,7 +79,15 @@ class Todo extends Component {
               {name}
             </TodoText>
             {dueDate ? <DuedateWrapper theme={theme}>({formatDate(dueDate)})</DuedateWrapper> : null}
-            {link && <LinkButton id={id} link={link} theme={theme} />}
+            {link &&
+              <LinkButton
+                id={id}
+                link={link}
+                size={16}
+                defaultIconColor={theme.icon.default}
+                hoverIconColor={theme.icon.hover}
+              />
+            }
             {this.state.showEditIcon && <EditIcon theme={theme} />}
           </span>
         )
@@ -107,19 +116,31 @@ class Todo extends Component {
               theme={theme}
             >
 
-              <Body>
+              <Body
+                onMouseOver={() => { this.setState({ showArrowIcon: true }) }}
+                onMouseOut={() => { this.setState({ showArrowIcon: false }) }}
+                onClick={() => { this.toggleOpen() }}
+              >
                 <CheckboxWrapper>
                   <Checkbox
                     color={theme.primary}
                     isChecked={completed}
-                    onClick={() => setTodoCompleted(id, !completed)}
+                    onClick={(e) => {e.stopPropagation(); setTodoCompleted(id, !completed);}}
                   />
                 </CheckboxWrapper>
-                <TodoWrapper
-                  onClick={() => { this.toggleOpen() }}
-                >
+                <TodoWrapper>
                   {this.renderTodoText()}
                 </TodoWrapper>
+                  <ArrowIconWrapper>
+                    {
+                      this.state.showArrowIcon &&
+                      <ArrowIcon
+                        active={this.state.isExpanded}
+                        defaultIconColor={theme.icon.default}
+                        hoverIconColor={theme.icon.hover}
+                      />
+                    }
+                  </ArrowIconWrapper>
               </Body>
 
               <Collapse isOpened={this.state.isExpanded}>
@@ -136,7 +157,7 @@ class Todo extends Component {
                     <AddLinkButton
                       id={id}
                       link={link}
-                      size={19}
+                      size={16}
                       defaultIconColor={theme.icon.default}
                       hoverIconColor={theme.icon.hover}
                       setTodoLink={setTodoLink}

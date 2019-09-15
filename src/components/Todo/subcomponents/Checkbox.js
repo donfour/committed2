@@ -2,17 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CheckboxContainer = styled.div`
-  display: inline-block;
+  display: flex;
   border: 2px solid ${({color}) => color};
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
   &:hover{
     cursor: pointer;
   }
 `;
 
 const Checkbox = ({isChecked, onClick, ...props}) => (
-      <CheckboxContainer onClick={() => onClick && onClick()} {...props}>
+      <CheckboxContainer onClick={(e) => onClick && onClick(e)} {...props}>
         {
           isChecked &&
           <svg  width="100%" height="100%" viewBox="0 0 200 200">

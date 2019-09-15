@@ -37,13 +37,13 @@ class List extends Component {
         (
           <ListInput
             autoFocus
+            onBlur={() => this.onEditEnd()}
+            onChange={e => { this.setState({ listInputValue: e.target.value }) }}
+            onClick={e => e.stopPropagation()}
+            onFocus={() => this.setState({ listInputValue: name })}
+            onKeyPress={e => { if (e.key === 'Enter') this.onEditEnd() }}
             placeholder='New list name...'
             value={this.state.listInputValue}
-            onClick={e => e.stopPropagation()}
-            onChange={e => { this.setState({ listInputValue: e.target.value }) }}
-            onFocus={() => this.setState({ listInputValue: name })}
-            onBlur={() => this.onEditEnd()}
-            onKeyPress={e => { if (e.key === 'Enter') this.onEditEnd() }}
           />
         ) : (
           <span
@@ -74,6 +74,7 @@ class List extends Component {
               {...provided.draggableProps}
               {...provided.dragHandleProps}
               ref={provided.innerRef}
+              borderColor={theme.border}
             >
               <ListHeader
                 onClick={() => this.setState(({ isExpanded }) => ({ isExpanded: !isExpanded }))}
@@ -83,9 +84,6 @@ class List extends Component {
                 <ListNameWrapper>
                   {this.renderListName()}
                 </ListNameWrapper>
-                {/* <ProgressWrapper>
-                  {todoIds.reduce((acc, cur) => todos[cur].completed ? acc + 1 : acc, 0)}/{todoIds.length}
-                </ProgressWrapper> */}
                 <SideMenu>
                   {
                     this.state.showSideMenu &&

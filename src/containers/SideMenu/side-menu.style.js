@@ -12,7 +12,7 @@ export const Header = styled.div`
     padding: 10px;
     & .extension-name {
         text-transform: uppercase;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         font-size: 18px;
     }
     & .extension-version {

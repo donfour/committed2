@@ -7,7 +7,7 @@ const DUMMY_STATE = {
         'todo-1': {
             id: 'todo-1',
             listId: 'list-1',
-            name: '1',
+            name: 'A very long todo with a very long todo name A very long todo with a very long todo name A very long todo with a very long todo name A very long todo with a very long todo name',
             link: null,
             dueDate: null,
             completed: false,
@@ -114,12 +114,12 @@ export class TodoProvider extends Component {
 
             this.setState(newState);
         },
-        setTodo: (todoId, newTodoName) => {
+        setTodo: (todoId, newTodoName = '') => {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
 
             if (!(todoId in todos)) return;
 
-            todos[todoId].name = newTodoName;
+            todos[todoId].name = newTodoName.trim();
 
             this.setState({ todos });
         },

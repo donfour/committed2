@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const DaySelectorWrapper = styled.div`
-    padding-left: 44px;
+    padding-left: 22px;
 `;
 
 const Day = styled.div`
