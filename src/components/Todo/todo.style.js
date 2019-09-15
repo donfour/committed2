@@ -44,10 +44,12 @@ export const TodoInput = styled.input`
   padding: 0;
   width: 100%;
   font-size: 18px;
+  letter-spacing: 1px;
 `;
 
 export const TodoText = styled.span`
   color: ${({ theme }) => theme.primary};
+  letter-spacing: 1px;
   &:hover {
     cursor: text;
   }

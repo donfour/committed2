@@ -5,8 +5,8 @@ import Sidebar from "react-sidebar";
 import { GlobalStyle } from './App.style';
 import SideMenu from './containers/SideMenu';
 import ItemsContainer from './containers/ItemsContainer';
-import { ArrowIcon, SettingsIcon } from './components/Icons';
-import TodoInput from './components/TodoInput';
+import { SettingsIcon } from './components/Icons';
+import Clock from './components/Clock';
 import CalendarModal from './components/CalendarModal';
 // react contexts
 import { withContext } from './contexts';
@@ -40,7 +40,7 @@ const App = ({
         />
 
         {/* Main app */}
-        <TodoInput />
+        <Clock/>
         <ItemsContainer />
 
       </div>

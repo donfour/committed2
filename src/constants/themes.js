@@ -11,7 +11,7 @@ const THEMES = [
             hover: 'gray',
             selected: 'salmon',
         },
-        inputPlaceholder: 'lightgray'
+        clock: 'lightgray'
     },
     {
         id: '2',
@@ -24,7 +24,7 @@ const THEMES = [
             hover: 'darkgray',
             selected: '#EAD379', // gold
         },
-        inputPlaceholder: 'white',
+        clock: 'white',
         
     },
     {
@@ -38,7 +38,7 @@ const THEMES = [
             hover: 'gray',
             selected: 'salmon',
         },
-        inputPlaceholder: '#243B6C', // blue
+        clock: '#243B6C', // blue
     },
     {
         id: '4',
@@ -51,7 +51,7 @@ const THEMES = [
             hover: '#287225',
             selected: 'black',
         },
-        inputPlaceholder: 'white',
+        clock: 'white',
     },
     {
         id: '5',
@@ -64,7 +64,7 @@ const THEMES = [
             hover: 'cyan',
             selected: 'black',
         },
-        inputPlaceholder: 'white',
+        clock: 'white',
     },
     {
         id: '6',
@@ -77,7 +77,7 @@ const THEMES = [
             hover: 'lightgray',
             selected: 'black',
         },
-        inputPlaceholder: 'white',
+        clock: 'white',
     }
 ];
 

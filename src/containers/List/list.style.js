@@ -6,7 +6,7 @@ export const ListWrapper = styled.div`
 
 export const ListHeader = styled.div`
     display: flex;
-    padding: 15px 0;
+    padding: 20px 0;
 `;
 
 export const ListNameWrapper = styled.span`

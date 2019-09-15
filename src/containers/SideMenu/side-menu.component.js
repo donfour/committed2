@@ -11,15 +11,15 @@ class SideMenu extends Component {
     }
 
     componentDidUpdate() {
-        const { open, inputPlaceholderSettings } = this.props;
-        if (open && inputPlaceholderSettings.customQuote) {
+        const { open, clockSettings } = this.props;
+        if (open && clockSettings.customQuote) {
             this.quoteInput.current.focus();
         }
     }
 
     render() {
-        const { setTheme, inputPlaceholderSettings, setInputPlaceholderSettings } = this.props;
-        const { customQuote, ...checkboxSettings } = inputPlaceholderSettings;
+        const { setTheme, clockSettings, setClockSettings } = this.props;
+        const { customQuote, ...checkboxSettings } = clockSettings;
 
         return (
             <SideMenuWrapper>
@@ -52,7 +52,7 @@ class SideMenu extends Component {
                                 <label>
                                     <Checkbox
                                         checked={value}
-                                        onChange={() => setInputPlaceholderSettings({ ...inputPlaceholderSettings, [key]: !value })}
+                                        onChange={() => setClockSettings({ ...clockSettings, [key]: !value })}
                                     />
                                     <span style={{ marginLeft: 8 }}>{key.split(/(?=[A-Z2])/).map(s => s.toLowerCase()).join(' ')}</span>
                                 </label>
@@ -64,7 +64,7 @@ class SideMenu extends Component {
                         <label>
                             <Checkbox
                                 checked={!!customQuote}
-                                onChange={() => setInputPlaceholderSettings({ ...inputPlaceholderSettings, customQuote: !!customQuote ? null : 'your quote here...' })}
+                                onChange={() => setClockSettings({ ...clockSettings, customQuote: !!customQuote ? null : 'your quote here...' })}
                             />
                             <span style={{ marginLeft: 8 }}>show custom quote</span>
                         </label>
@@ -72,7 +72,7 @@ class SideMenu extends Component {
                             ref={this.quoteInput}
                             value={customQuote || 'your quote here...'}
                             disabled={!customQuote}
-                            onChange={e => setInputPlaceholderSettings({ ...inputPlaceholderSettings, customQuote: e.target.value })}
+                            onChange={e => setClockSettings({ ...clockSettings, customQuote: e.target.value })}
                         />
                     </div>
                 </MenuItem>

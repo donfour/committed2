@@ -7,9 +7,9 @@ const DUMMY_STATE = {
         'todo-1': {
             id: 'todo-1',
             listId: 'list-1',
-            name: 'A very long todo with a very long todo name A very long todo with a very long todo name A very long todo with a very long todo name A very long todo with a very long todo name',
-            link: null,
-            dueDate: null,
+            name: 'COMP3111',
+            link: 'test',
+            dueDate: 1568347200000,
             completed: false,
             daysOfWeek: [false, false, false, false, false, false, false],
             timeCompleted: null
@@ -17,7 +17,7 @@ const DUMMY_STATE = {
         'todo-2': {
             id: 'todo-2',
             listId: 'list-1',
-            name: '2',
+            name: 'COMP5712 HW3',
             link: null,
             dueDate: null,
             completed: false,
@@ -27,7 +27,7 @@ const DUMMY_STATE = {
         'todo-3': {
             id: 'todo-3',
             listId: null,
-            name: '3',
+            name: 'Milk',
             link: null,
             dueDate: null,
             completed: false,
@@ -36,18 +36,18 @@ const DUMMY_STATE = {
         }
     },
     lists: {
-        'all-todos': {
-            id: 'all-todos',
-            name: 'Todos',
+        '123': {
+            id: '123',
+            name: 'School',
             todoIds: ['todo-1', 'todo-2']
         },
-        'list-1': {
-            id: 'list-1',
-            name: 'sample list name',
+        '456': {
+            id: '456',
+            name: 'Groceries',
             todoIds: ['todo-3']
         }
     },
-    listOrder: ['all-todos', 'list-1'],
+    listOrder: ['123', '456'],
     todoBeingEdited: null
 }
 
@@ -70,7 +70,7 @@ export class TodoProvider extends Component {
     };
 
     todosOperations = {
-        addTodo: (name = '', listId = 'all-todos') => {
+        addTodo: (name = '', listId) => {
             const newState = JSON.parse(JSON.stringify(this.state));
 
             const id = '_' + Math.random().toString(36).substr(2, 9);
