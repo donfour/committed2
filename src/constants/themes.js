@@ -50,6 +50,18 @@ const THEMES = [
         clock: '#f1f1f1', //lightgray
     },
     {
+        primary: '#0b5167',
+        secondary: '#ff5722',
+        background: '#FFEFED',
+        border: '#ecdddc',
+        icon: {
+            default: '#dabebb',
+            hover: '#bda09c',
+            selected: '#ff5722',
+        },
+        clock: '#0b5167',
+    },
+    {
         primary: 'white',
         secondary: '#ffb015',
         background: '#1F25AF',
@@ -60,18 +72,6 @@ const THEMES = [
             selected: '#ffb015',
         },
         clock: '#e7e8ff',
-    },
-    {
-        primary: 'white',
-        secondary: '#83ff00',
-        background: 'linear-gradient(to right, #fc6767, #ec008c)',
-        border: '#DDDDDD',
-        icon: {
-            default: 'white',
-            hover: 'lightgray',
-            selected: 'black',
-        },
-        clock: 'white',
     }
 ];
 
