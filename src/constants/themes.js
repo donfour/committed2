@@ -14,40 +14,40 @@ const THEMES = [
     },
     {
         primary: 'white',
-        secondary: '#EAD379', // gold
-        background: '#142F43', // royal blue
+        secondary: '#EAD379', //gold
+        background: '#142F43', //royal blue
         border: '#d0ebff3b',
         icon: {
             default: '#758fa2',
             hover: '#bcd7ea',
-            selected: '#EAD379', // gold
+            selected: '#EAD379', //gold
         },
         clock: 'white',
         
     },
     {
-        primary: '#243B6C', // blue
-        secondary: 'red',
-        background: '#F4F4ED', // grayish
+        primary: '#243B6C', //blue
+        secondary: 'salmon',
+        background: '#F4F4ED', //grayish
         border: '#DDDDDD',
         icon: {
             default: '#c5c5b7',
             hover: 'gray',
             selected: 'salmon',
         },
-        clock: '#243B6C', // blue
+        clock: '#243B6C', //blue
     },
     {
-        primary: 'white',
-        secondary: '#287225',
-        background: 'linear-gradient(to right, #a8e063, #88B45B)', // green
-        border: '#DDDDDD',
+        primary: '#f1f1f1', //lightgray
+        secondary: '#f1f1f1',
+        background: '#222222',
+        border: '#3a3a3a',
         icon: {
-            default: 'white',
-            hover: '#287225',
-            selected: 'black',
+            default: 'gray',
+            hover: '#bfbfbf', //lightgray
+            selected: '#f1f1f1',
         },
-        clock: 'white',
+        clock: '#f1f1f1', //lightgray
     },
     {
         primary: 'white',

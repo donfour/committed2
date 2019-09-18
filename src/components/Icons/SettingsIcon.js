@@ -6,8 +6,8 @@ const SettingsIconWrapper = styled.div`
     position: absolute;
     top: 15px;
     left: 15px;
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     &:hover {
         cursor: pointer;
     }
