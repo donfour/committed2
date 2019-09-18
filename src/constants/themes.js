@@ -51,15 +51,15 @@ const THEMES = [
     },
     {
         primary: 'white',
-        secondary: 'cyan',
-        background: 'linear-gradient(to right, #9733EE, #DA22FF)',
+        secondary: '#ffb015',
+        background: '#1F25AF',
         border: '#DDDDDD',
         icon: {
-            default: 'white',
-            hover: 'cyan',
-            selected: 'black',
+            default: '#767cff',
+            hover: '#dddeff',
+            selected: '#ffb015',
         },
-        clock: 'white',
+        clock: '#e7e8ff',
     },
     {
         primary: 'white',
