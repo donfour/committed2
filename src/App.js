@@ -34,6 +34,9 @@ const App = ({
 
         {/* Modals */}
         <CalendarModal
+          overlayColor='rgba(0,0,0,0.7)'
+          buttonColor={theme.secondary}
+          fontColor={theme.background}
           isOpen={calendarModalOpen}
           onDayClick={setTodoDueDate}
           handleCloseModal={() => setCalendarModalOpen(false)}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import THEMES from '../../constants/themes';
 import { withContext } from '../../contexts';
-import { SideMenuWrapper, Header, MenuLabel, MenuItem, ThemesWrapper, ThemeIcon, CustomQuoteInput } from './side-menu.style';
+import { SideMenuWrapper, Header, MenuLabel, MenuItem, ThemesWrapper, ThemeIcon, CustomQuoteInput, CheckboxGroup } from './side-menu.style';
 import Checkbox from './checkbox';
 
 class SideMenu extends Component {
@@ -43,12 +43,12 @@ class SideMenu extends Component {
                     }
                 </ThemesWrapper>
 
-                <MenuLabel>Customize Input Field</MenuLabel>
+                <MenuLabel>Customize Clock</MenuLabel>
 
                 <MenuItem>
                     {
                         Object.entries(checkboxSettings).map(([key, value]) => (
-                            <div key={key}>
+                            <CheckboxGroup key={key}>
                                 <label>
                                     <Checkbox
                                         checked={value}
@@ -56,11 +56,10 @@ class SideMenu extends Component {
                                     />
                                     <span style={{ marginLeft: 8 }}>{key.split(/(?=[A-Z2])/).map(s => s.toLowerCase()).join(' ')}</span>
                                 </label>
-                            </div>
+                            </CheckboxGroup>
                         ))
                     }
-
-                    <div>
+                    <CheckboxGroup>
                         <label>
                             <Checkbox
                                 checked={!!customQuote}
@@ -74,7 +73,7 @@ class SideMenu extends Component {
                             disabled={!customQuote}
                             onChange={e => setClockSettings({ ...clockSettings, customQuote: e.target.value })}
                         />
-                    </div>
+                    </CheckboxGroup>
                 </MenuItem>
 
             </SideMenuWrapper>

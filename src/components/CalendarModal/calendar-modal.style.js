@@ -12,33 +12,36 @@ export const CalendarContainer = styled.div`
 
 export const RemoveDuedateButton = styled.button`
     border: none;
-    background-color: salmon;
-    color: white;
+    background-color: ${({buttonColor}) => buttonColor};
+    color: ${({fontColor}) => fontColor};
     text-transform: uppercase;
-    margin-top: 5px;
     letter-spacing: 1px;
     width: 100%;
-    height: 22px;
+    height: 30px;
     transition: all 0.2s;
     
     &:hover{
         cursor: pointer;
-        background-color: white;
-        color: gray;
-      }
+        background-color: ${({fontColor}) => fontColor};
+        color: ${({buttonColor}) => buttonColor};
+    }
       
     &:focus{
-    outline: none;
+        outline: none;
     }
 `;
 
-export const MODAL_STYLES = {
+export const getModalStyles = (backgroundColor) => ({
+    overlay: {
+        backgroundColor: ''
+    },
     content : {
+        alignItems: 'center',
+        backgroundColor,
+        border: 'none',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
         pointerEvents: 'none',
-        background: 'transparent',
-        border: 'none'
+        top: 0, right: 0, left: 0, bottom: 0,
     }
-};
+})

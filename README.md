@@ -3,18 +3,21 @@
 I do read all feature requests! Not every feature on this list is guarenteed to be added, since Committed is a side project I work on in my spare time.
 
 ## Todos
+- Firefox support
 - tutorial
 - progress
 - local storage, chrome storage
 - write tests
 - todo cross out when done
-
-## Working on
 - show all / show completed / due today / due this week (view saved)
 - settings:
   - duedate format
   - delete / not delete completed todos at the end of the day
   - hide / show completed todos
+
+## Working on
+- Todo updates
+- Local Storage & Chrome Storage
 
 ## Done
 - settings:

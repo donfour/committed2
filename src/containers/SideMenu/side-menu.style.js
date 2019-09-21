@@ -23,13 +23,17 @@ export const Header = styled.div`
 
 export const MenuLabel = styled.div`
     font-size: 16px;
-    margin: 15px 0;
+    margin: 10px 0;
     padding: 0 10px;
 `;
 
 export const MenuItem = styled.div`
     font-size: 14px;
     padding: 0 10px;
+`;
+
+export const CheckboxGroup = styled.div`
+    margin-bottom: 5px;
 `;
 
 export const ThemesWrapper = styled.div`
