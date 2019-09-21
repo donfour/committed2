@@ -18,7 +18,7 @@ class SideMenu extends Component {
     }
 
     render() {
-        const { setTheme, clockSettings, setClockSettings } = this.props;
+        const { setTheme, clockSettings, setClockSettings, checkboxStyles } = this.props;
         const { customQuote, ...checkboxSettings } = clockSettings;
 
         return (
@@ -51,6 +51,7 @@ class SideMenu extends Component {
                             <CheckboxGroup key={key}>
                                 <label>
                                     <Checkbox
+                                        {...checkboxStyles}
                                         checked={value}
                                         onChange={() => setClockSettings({ ...clockSettings, [key]: !value })}
                                     />
@@ -62,6 +63,7 @@ class SideMenu extends Component {
                     <CheckboxGroup>
                         <label>
                             <Checkbox
+                                {...checkboxStyles}
                                 checked={!!customQuote}
                                 onChange={() => setClockSettings({ ...clockSettings, customQuote: !!customQuote ? null : 'your quote here...' })}
                             />

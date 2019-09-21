@@ -1,5 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 /* code borrowed from https://medium.com/@colebemis/building-a-checkbox-component-with-react-and-styled-components-8d3aa1d826dd */
 
@@ -13,7 +14,7 @@ const CheckboxContainer = styled.div`
 
 const Icon = styled.svg`
   fill: none;
-  stroke: white;
+  stroke: ${({tickColor}) => tickColor};
   stroke-width: 2px;
 `
 
@@ -34,13 +35,9 @@ const StyledCheckbox = styled.div`
   display: inline-block;
   width: 16px;
   height: 16px;
-  background: ${props => (props.checked ? 'salmon' : 'papayawhip')}
+  background: ${({checked, checkboxColor}) => (checked ? checkboxColor : 'lightgray')}
   border-radius: 3px;
   transition: all 150ms;
-
-  ${HiddenCheckbox}:focus + & {
-    box-shadow: 0 0 0 3px pink;
-  }
 
   ${Icon} {
     visibility: ${props => (props.checked ? 'visible' : 'hidden')}
@@ -50,12 +47,17 @@ const StyledCheckbox = styled.div`
 const Checkbox = ({ className, checked, ...props }) => (
   <CheckboxContainer className={className}>
     <HiddenCheckbox checked={checked} {...props} />
-    <StyledCheckbox checked={checked}>
-      <Icon viewBox="0 0 24 24">
+    <StyledCheckbox checked={checked} {...props}>
+      <Icon {...props} viewBox="0 0 24 24">
         <polyline points="20 6 9 17 4 12" />
       </Icon>
     </StyledCheckbox>
   </CheckboxContainer>
 );
+
+Checkbox.propTypes = {
+  checkboxColor: PropTypes.string.isRequired,
+  tickColor: PropTypes.string.isRequired,
+};
 
 export default Checkbox;

@@ -10,6 +10,10 @@ const THEMES = [
             hover: 'gray',
             selected: 'salmon',
         },
+        checkbox: {
+            background: 'salmon',
+            tick: 'white',
+        },
         clock: 'lightgray'
     },
     {
@@ -21,6 +25,10 @@ const THEMES = [
             default: '#758fa2',
             hover: '#bcd7ea',
             selected: '#EAD379', //gold
+        },
+        checkbox: {
+            background: '#142F43',
+            tick: 'white',
         },
         clock: 'white',
         
@@ -35,6 +43,10 @@ const THEMES = [
             hover: 'gray',
             selected: 'salmon',
         },
+        checkbox: {
+            background: 'salmon',
+            tick: 'white',
+        },
         clock: '#243B6C', //blue
     },
     {
@@ -46,6 +58,10 @@ const THEMES = [
             default: 'gray',
             hover: '#bfbfbf', //lightgray
             selected: '#f1f1f1',
+        },
+        checkbox: {
+            background: '#222222',
+            tick: 'white',
         },
         clock: '#f1f1f1', //lightgray
     },
@@ -59,17 +75,25 @@ const THEMES = [
             hover: '#bda09c',
             selected: '#ff5722',
         },
+        checkbox: {
+            background: '#ff5722',
+            tick: '#FFEFED',
+        },
         clock: '#0b5167',
     },
     {
         primary: 'white',
-        secondary: '#ffb015',
-        background: '#1F25AF',
+        secondary: '#ffb015', //orange
+        background: '#1F25AF', //blue
         border: '#DDDDDD',
         icon: {
             default: '#767cff',
             hover: '#dddeff',
             selected: '#ffb015',
+        },
+        checkbox: {
+            background: '#1F25AF',
+            tick: 'white',
         },
         clock: '#e7e8ff',
     }

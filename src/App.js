@@ -17,7 +17,15 @@ const App = ({
   theme
 }) => (
     <Sidebar
-      sidebar={<SideMenu open={sidebarOpen} />}
+      sidebar={
+        <SideMenu
+          open={sidebarOpen}
+          checkboxStyles={{
+            checkboxColor: theme.checkbox.background,
+            tickColor: theme.checkbox.tick,
+          }}
+        />
+      }
       open={sidebarOpen}
       onSetOpen={setSidebarOpen}
     >
