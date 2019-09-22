@@ -45,6 +45,10 @@ export const TodoInput = styled.input`
   width: 100%;
   font-size: 18px;
   letter-spacing: 1px;
+
+  &::-webkit-input-placeholder{
+    font-size: 18px;
+  }
 `;
 
 export const TodoText = styled.span`

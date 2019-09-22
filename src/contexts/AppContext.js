@@ -6,7 +6,8 @@ export const AppContext = createContext();
 
 export class AppProvider extends Component {
     state = {
-        theme: THEMES[0], //TODO: dont need to store the whole theme object
+        //TODO: dont need to store the whole theme object
+        theme: THEMES[0],
         sidebarOpen: false,
         calendarModalOpen: false,
         clockSettings: {
