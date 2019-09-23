@@ -38,8 +38,7 @@ export const TodoFooterWrapper = styled.div`
 export const TodoInput = styled.input`
   background: transparent;
   border: none;
-  border-bottom: 1px solid ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.primary};
+  color: ${({ textColor }) => textColor};
   outline: none;
   padding: 0;
   width: 100%;
@@ -48,6 +47,7 @@ export const TodoInput = styled.input`
 
   &::-webkit-input-placeholder{
     font-size: 18px;
+    color: ${({inputPlaceholderColor}) => inputPlaceholderColor};
   }
 `;
 

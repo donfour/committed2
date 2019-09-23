@@ -39,6 +39,6 @@ export const ListInput = styled.input`
     width: 100%;
     outline: none;
     &::-webkit-input-placeholder{
-        color: lightgray;
+        color: ${({inputPlaceholderColor}) => inputPlaceholderColor};
     }
 `;

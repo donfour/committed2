@@ -56,7 +56,8 @@ class Todo extends Component {
           <TodoInput
             autoFocus
             placeholder='New todo name...'
-            theme={theme}
+            textColor={theme.primary}
+            inputPlaceholderColor={theme.inputPlaceholder}
             value={this.state.todoInputValue}
             onClick={e => e.stopPropagation()}
             onChange={e => { this.setState({ todoInputValue: e.target.value }) }}

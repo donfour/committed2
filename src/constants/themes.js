@@ -14,7 +14,8 @@ const THEMES = [
             background: 'salmon',
             tick: 'white',
         },
-        clock: 'lightgray'
+        clock: 'lightgray',
+        inputPlaceholder: 'lightgray'
     },
     {
         primary: 'white',
@@ -31,7 +32,7 @@ const THEMES = [
             tick: 'white',
         },
         clock: 'white',
-        
+        inputPlaceholder: '#758fa2'
     },
     {
         primary: '#243B6C', //blue
@@ -48,6 +49,7 @@ const THEMES = [
             tick: 'white',
         },
         clock: '#243B6C', //blue
+        inputPlaceholder: '#c5c5b7'
     },
     {
         primary: '#f1f1f1', //lightgray
@@ -64,6 +66,7 @@ const THEMES = [
             tick: 'white',
         },
         clock: '#f1f1f1', //lightgray
+        inputPlaceholder: 'gray'
     },
     {
         primary: '#0b5167',
@@ -80,6 +83,7 @@ const THEMES = [
             tick: '#FFEFED',
         },
         clock: '#0b5167',
+        inputPlaceholder: '#dabebb'
     },
     {
         primary: 'white',
@@ -96,6 +100,7 @@ const THEMES = [
             tick: 'white',
         },
         clock: '#e7e8ff',
+        inputPlaceholder: '#767cff'
     }
 ];
 

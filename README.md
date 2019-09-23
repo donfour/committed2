@@ -3,6 +3,7 @@
 I do read all feature requests! Not every feature on this list is guarenteed to be added, since Committed is a side project I work on in my spare time.
 
 ## Todos
+- styling to input placeholder
 - Firefox support
 - tutorial
 - progress

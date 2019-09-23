@@ -39,6 +39,7 @@ class List extends Component {
             autoFocus
             value={this.state.listInputValue}
             textColor={theme.primary}
+            inputPlaceholderColor={theme.inputPlaceholder}
             placeholder='New list name...'
             onBlur={() => this.onEditEnd()}
             onChange={e => { this.setState({ listInputValue: e.target.value }) }}
