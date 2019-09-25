@@ -46,7 +46,7 @@ export class TodoProvider extends Component {
             } else {
                 newState.listOrder.push(id);
             }
-
+            //TODO: not save the whole state (e.g. no need todoBeingEdited)
             this.setStateAndStorage(newState);
         },
         addList: () => {

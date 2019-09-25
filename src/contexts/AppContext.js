@@ -6,8 +6,7 @@ export const AppContext = createContext();
 
 export class AppProvider extends Component {
     state = {
-        //TODO: dont need to store the whole theme object
-        theme: THEMES[0],
+        themeIndex: 0,
         sidebarOpen: false,
         calendarModalOpen: false,
         clockSettings: {
@@ -22,7 +21,7 @@ export class AppProvider extends Component {
 
     async componentDidMount(){
         this.storage = new Storage({ localStorage: localStorage });
-        this.setState(await this.storage.get(['theme', 'clockSettings']));
+        this.setState(await this.storage.get(['themeIndex', 'clockSettings']));
     }
 
     //helper
@@ -32,7 +31,7 @@ export class AppProvider extends Component {
     }
 
     appOperations = {
-        setTheme: (themeIndex) => this.setStateAndStorage({ theme: THEMES[themeIndex] }),
+        setTheme: (themeIndex) => { this.setStateAndStorage({ themeIndex: themeIndex }) },
         setSidebarOpen: (sidebarOpen) => this.setState({ sidebarOpen }),
         setCalendarModalOpen: (calendarModalOpen) => this.setState({ calendarModalOpen }),
         setClockSettings: (settingsObj) => {
@@ -45,6 +44,7 @@ export class AppProvider extends Component {
     render(){
         return (
             <AppContext.Provider value={{
+                theme: THEMES[this.state.themeIndex],
                 ...this.state,
                 ...this.appOperations
             }}>
