@@ -3,7 +3,7 @@
 I do read all feature requests! Not every feature on this list is guarenteed to be added, since Committed is a side project I work on in my spare time.
 
 ## Todos
-- styling to input placeholder
+- consistent naming: "textColor" -> "fontColor"
 - Firefox support
 - tutorial
 - progress
@@ -24,6 +24,8 @@ I do read all feature requests! Not every feature on this list is guarenteed to 
 - settings:
   - input placeholder format (clock, date, custom quote, 12/24-hour clock)
 - subtodos (lists)
+- styling to input placeholder
+- style tooltip
 
 ## In consideration
 - general notes intead of a todo

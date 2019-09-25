@@ -159,9 +159,12 @@ class Todo extends Component {
                       id={id}
                       link={link}
                       size={16}
+                      setTodoLink={setTodoLink}
                       defaultIconColor={theme.icon.default}
                       hoverIconColor={theme.icon.hover}
-                      setTodoLink={setTodoLink}
+                      tooltipBackgroundColor={theme.tooltip.background}
+                      tooltipPlaceholderColor={theme.tooltip.placeholder}
+                      tooltipTextColor={theme.tooltip.text}
                     />
                     <CalendarIcon
                       defaultIconColor={theme.icon.default}

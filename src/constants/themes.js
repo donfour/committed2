@@ -15,7 +15,12 @@ const THEMES = [
             tick: 'white',
         },
         clock: 'lightgray',
-        inputPlaceholder: 'lightgray'
+        inputPlaceholder: 'lightgray',
+        tooltip: {
+            background: 'rgba(0,0,0,0.7)',
+            placeholder: 'lightgray',
+            text: 'white',
+        }
     },
     {
         primary: 'white',
@@ -32,7 +37,12 @@ const THEMES = [
             tick: 'white',
         },
         clock: 'white',
-        inputPlaceholder: '#758fa2'
+        inputPlaceholder: '#758fa2',
+        tooltip: {
+            background: 'rgba(255,255,255,0.9)',
+            placeholder: 'gray',
+            text: 'black',
+        }
     },
     {
         primary: '#243B6C', //blue
@@ -49,7 +59,12 @@ const THEMES = [
             tick: 'white',
         },
         clock: '#243B6C', //blue
-        inputPlaceholder: '#c5c5b7'
+        inputPlaceholder: '#c5c5b7',
+        tooltip: {
+            background: 'rgba(0,0,0,0.7)',
+            placeholder: 'lightgray',
+            text: 'white',
+        }
     },
     {
         primary: '#f1f1f1', //lightgray
@@ -66,7 +81,12 @@ const THEMES = [
             tick: 'white',
         },
         clock: '#f1f1f1', //lightgray
-        inputPlaceholder: 'gray'
+        inputPlaceholder: 'gray',
+        tooltip: {
+            background: 'rgba(255,255,255,0.9)',
+            placeholder: 'gray',
+            text: 'black',
+        }
     },
     {
         primary: '#0b5167',
@@ -83,7 +103,12 @@ const THEMES = [
             tick: '#FFEFED',
         },
         clock: '#0b5167',
-        inputPlaceholder: '#dabebb'
+        inputPlaceholder: '#dabebb',
+        tooltip: {
+            background: 'rgba(0,0,0,0.7)',
+            placeholder: 'lightgray',
+            text: 'white',
+        }
     },
     {
         primary: 'white',
@@ -100,7 +125,12 @@ const THEMES = [
             tick: 'white',
         },
         clock: '#e7e8ff',
-        inputPlaceholder: '#767cff'
+        inputPlaceholder: '#767cff',
+        tooltip: {
+            background: 'rgba(255,255,255,0.9)',
+            placeholder: 'gray',
+            text: 'black',
+        }
     }
 ];
 
