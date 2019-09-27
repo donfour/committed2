@@ -1,6 +1,6 @@
 import React, { Component, createContext } from 'react';
 import THEMES from '../constants/themes';
-import Storage from '../utils/storage';
+import storage from '../utils/storage';
 
 export const AppContext = createContext();
 
@@ -20,7 +20,7 @@ export class AppProvider extends Component {
     }
 
     async componentDidMount(){
-        this.storage = new Storage({ localStorage: localStorage });
+        this.storage = storage;
         this.setState(await this.storage.get(['themeIndex', 'clockSettings']));
     }
 

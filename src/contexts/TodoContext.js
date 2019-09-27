@@ -1,5 +1,5 @@
 import React, { Component, createContext } from 'react';
-import Storage from '../utils/storage';
+import storage from '../utils/storage';
 
 export const TodoContext = createContext();
 
@@ -12,7 +12,7 @@ export class TodoProvider extends Component {
     }
 
     async componentDidMount(){
-        this.storage = new Storage({ localStorage: localStorage });
+        this.storage = storage;
         this.setState(await this.storage.get(['todos', 'lists', 'listOrder']));
     }
 

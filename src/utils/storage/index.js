@@ -28,4 +28,10 @@ class Storage {
     }
 }
 
-export default Storage;
+// { chromeStorage: chrome.storage }
+
+const storage = new Storage(
+    { localStorage: localStorage }
+);
+
+export default storage;
