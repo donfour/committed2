@@ -1,6 +1,8 @@
 import LocalStorage from './local-storage';
 import ChromeStorage from './chrome-storage';
 
+/* global chrome */
+
 class Storage {
     constructor(options){
         //singleton
@@ -29,9 +31,10 @@ class Storage {
 }
 
 // { chromeStorage: chrome.storage }
+// { localStorage: localStorage }
 
 const storage = new Storage(
-    { localStorage: localStorage }
+    { chromeStorage: chrome.storage }
 );
 
 export default storage;

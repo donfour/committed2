@@ -31,7 +31,6 @@ const ToolTip = styled(ReactTooltip)`
 
 const AddLinkButton = ({ id, link, setTodoLink, ...props }) => {
     const [value, setValue] = useState('');
-    console.log(props)
     return (
         <AddLinkButtonWrapper>
             <LinkIcon data-tip data-for={`add-link-${id}`} data-event='click' {...props} />

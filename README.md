@@ -3,8 +3,8 @@
 I do read all feature requests! Not every feature on this list is guarenteed to be added, since Committed is a side project I work on in my spare time.
 
 ## Todos
-- test if chrome storage is working
 - update todos at the end of the day
+- Add icon
 - show all / show completed / due today / due this week (view saved)
 
 - consistent naming: "textColor" -> "fontColor"
@@ -21,6 +21,7 @@ I do read all feature requests! Not every feature on this list is guarenteed to 
 ## Working on
 - Todo updates
 - Local Storage & Chrome Storage
+- test if chrome storage is working
 
 ## Done
 - settings:
