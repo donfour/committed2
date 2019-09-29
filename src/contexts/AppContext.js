@@ -1,6 +1,7 @@
 import React, { Component, createContext } from 'react';
 import THEMES from '../constants/themes';
 import storage from '../utils/storage';
+import { FILTER_OPTIONS } from '../constants/enums';
 
 export const AppContext = createContext();
 
@@ -16,18 +17,26 @@ export class AppProvider extends Component {
             show24HourClock: true,
             showDayBeforeMonth: false,
             customQuote: null
-        }
+        },
+        todoSettings: {
+            hideCompleted: false,
+            filterByDuedate: FILTER_OPTIONS.SHOW_ALL
+        },
+        // duedateSettings: {
+        //     showDate: true,
+        //     showDaysTillDue: false
+        // },
     }
 
     async componentDidMount(){
         this.storage = storage;
-        this.setState(await this.storage.get(['themeIndex', 'clockSettings']));
+        this.setState(await this.storage.get(['themeIndex', 'clockSettings', 'todoSettings']));
     }
 
     //helper
-    async setStateAndStorage(obj){
+    setStateAndStorage(obj){
         this.setState(obj);
-        await this.storage.set(obj);
+        this.storage.set(obj);
     }
 
     appOperations = {
@@ -38,15 +47,58 @@ export class AppProvider extends Component {
             //TODO: assert settingsObj doesn't have undefined keys
             const newSettings = {...this.state.clockSettings, ...settingsObj};
             this.setStateAndStorage({clockSettings: newSettings});
+        },
+        setTodoSettings: (settingsObj) => {
+            //TODO: assert settingsObj doesn't have undefined keys
+            const newSettings = {...this.state.todoSettings, ...settingsObj};
+            this.setStateAndStorage({todoSettings: newSettings});
         }
     }
 
     render(){
+        const { showDayOfWeek, showTime, showDate, show24HourClock, showDayBeforeMonth, customQuote } = this.state.clockSettings;
+        const { hideCompleted, filterByDuedate } = this.state.todoSettings;
         return (
             <AppContext.Provider value={{
                 theme: THEMES[this.state.themeIndex],
                 ...this.state,
-                ...this.appOperations
+                ...this.appOperations,
+                clockSettings: {
+                    showDayOfWeek: {
+                        label: 'Show day of week',
+                        value: showDayOfWeek
+                    },
+                    showTime: {
+                        label: 'Show time',
+                        value: showTime
+                    },
+                    showDate: {
+                        label: 'Show date',
+                        value: showDate
+                    },
+                    show24HourClock: {
+                        label: 'Show 24-hour clock',
+                        value: show24HourClock
+                    },
+                    showDayBeforeMonth: {
+                        label: 'Show day before month',
+                        value: showDayBeforeMonth
+                    },
+                    customQuote: {
+                        label: 'Show custom quote',
+                        value: customQuote
+                    }
+                },
+                todoSettings: {
+                    hideCompleted: {
+                        label: 'Hide completed',
+                        value: hideCompleted
+                    },
+                    filterByDuedate: {
+                        label: 'Filter by Duedate',
+                        value: filterByDuedate
+                    }
+                }
             }}>
                 {this.props.children}
             </AppContext.Provider>

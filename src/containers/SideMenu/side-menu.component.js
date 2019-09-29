@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import THEMES from '../../constants/themes';
 import { withContext } from '../../contexts';
-import { SideMenuWrapper, Header, MenuLabel, MenuItem, ThemesWrapper, ThemeIcon, CustomQuoteInput, CheckboxGroup } from './side-menu.style';
+import {
+    CheckboxGroup,
+    CustomQuoteInput,
+    Header,
+    MenuItem,
+    MenuLabel,
+    Select,
+    SideMenuWrapper,
+    ThemeIcon,
+    ThemesWrapper,
+} from './side-menu.style';
 import Checkbox from './checkbox';
-
+import { FILTER_OPTIONS } from '../../constants/enums';
 class SideMenu extends Component {
     constructor(props) {
         super(props);
@@ -12,14 +22,15 @@ class SideMenu extends Component {
 
     componentDidUpdate() {
         const { open, clockSettings } = this.props;
-        if (open && clockSettings.customQuote) {
+        if (open && clockSettings.customQuote.value) {
             this.quoteInput.current.focus();
         }
     }
 
     render() {
-        const { setTheme, clockSettings, setClockSettings, checkboxStyles } = this.props;
+        const { setTheme, clockSettings, setClockSettings, todoSettings, setTodoSettings, checkboxStyles } = this.props;
         const { customQuote, ...checkboxSettings } = clockSettings;
+        const { hideCompleted, filterByDuedate } = todoSettings;
 
         return (
             <SideMenuWrapper>
@@ -43,19 +54,19 @@ class SideMenu extends Component {
                     }
                 </ThemesWrapper>
 
-                <MenuLabel>Customize Clock</MenuLabel>
+                <MenuLabel>Clock Settings</MenuLabel>
 
                 <MenuItem>
                     {
-                        Object.entries(checkboxSettings).map(([key, value]) => (
+                        Object.entries(checkboxSettings).map(([key, { label, value }]) => (
                             <CheckboxGroup key={key}>
                                 <label>
                                     <Checkbox
                                         {...checkboxStyles}
                                         checked={value}
-                                        onChange={() => setClockSettings({ ...clockSettings, [key]: !value })}
+                                        onChange={() => setClockSettings({ [key]: !value })}
                                     />
-                                    <span style={{ marginLeft: 8 }}>{key.split(/(?=[A-Z2])/).map(s => s.toLowerCase()).join(' ')}</span>
+                                    <span style={{ marginLeft: 8 }}>{label}</span>
                                 </label>
                             </CheckboxGroup>
                         ))
@@ -64,18 +75,53 @@ class SideMenu extends Component {
                         <label>
                             <Checkbox
                                 {...checkboxStyles}
-                                checked={!!customQuote}
-                                onChange={() => setClockSettings({ ...clockSettings, customQuote: !!customQuote ? null : 'your quote here...' })}
+                                checked={!!customQuote.value}
+                                onChange={() => setClockSettings({ customQuote: !!customQuote.value ? null : 'your quote here...' })}
                             />
-                            <span style={{ marginLeft: 8 }}>show custom quote</span>
+                            <span style={{ marginLeft: 8 }}>Show custom quote</span>
                         </label>
                         <CustomQuoteInput
                             ref={this.quoteInput}
-                            value={customQuote || 'your quote here...'}
-                            disabled={!customQuote}
-                            onChange={e => setClockSettings({ ...clockSettings, customQuote: e.target.value })}
+                            value={customQuote.value || 'your quote here...'}
+                            disabled={!customQuote.value}
+                            onChange={e => setClockSettings({ customQuote: e.target.value })}
                         />
                     </CheckboxGroup>
+                </MenuItem>
+
+                <MenuLabel>Filter Todos</MenuLabel>
+
+                <MenuItem>
+
+                    <CheckboxGroup>
+                        <label>
+                            <Checkbox
+                                {...checkboxStyles}
+                                checked={hideCompleted.value}
+                                onChange={() => setTodoSettings({ hideCompleted: !hideCompleted.value })}
+                            />
+                            <span style={{ marginLeft: 8 }}>{hideCompleted.label}</span>
+                        </label>
+                    </CheckboxGroup>
+
+                    <CheckboxGroup>
+                        <Select
+                            value={filterByDuedate.value}
+                            onChange={e => setTodoSettings({ filterByDuedate: e.target.value })}
+                        >
+                            {
+                                Object.entries(FILTER_OPTIONS).map(([key, value]) => (
+                                    <option
+                                        key={key}
+                                        value={value}
+                                    >
+                                        {value}
+                                    </option>
+                                ))
+                            }
+                        </Select>
+                    </CheckboxGroup>
+
                 </MenuItem>
 
             </SideMenuWrapper>

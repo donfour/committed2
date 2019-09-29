@@ -11,17 +11,46 @@ export class TodoProvider extends Component {
         todoBeingEdited: null
     }
 
-    async componentDidMount(){
-        this.storage = storage;
-        this.setState(await this.storage.get(['todos', 'lists', 'listOrder']));
-    }
-
-    //helper
-    async setStateAndStorage(obj){
+    // helpers
+    setStateAndStorage(obj) {
         this.setState(obj);
-        await this.storage.set(obj);
+        this.storage.set(obj);
     }
 
+    uncheckRecurringTodos() {
+        const { todos } = this.state;
+
+        for (let todoId in todos) {
+            const todo = todos[todoId];
+
+            const isRecurring = todo.daysOfWeek.includes(true)
+
+            const dayCompleted = todo.timeCompleted && (new Date(todo.timeCompleted)).getDate();
+
+            const dayToday = (new Date()).getDate();
+
+            if (todo.completed && isRecurring && (dayCompleted && dayCompleted !== dayToday)) {
+                this.todosOperations.setTodoCompleted(todoId, false);
+            }
+        }
+    }
+
+    // component lifecycle
+    async componentDidMount() {
+        this.storage = storage;
+
+        this.storage
+            .get(['todos', 'lists', 'listOrder'])
+            .then(result => {
+                this.setState(result);
+
+                this.uncheckRecurringTodos();
+
+                setInterval(this.uncheckRecurringTodos.bind(this), 1000);
+            });
+    }
+
+    // state operations
     todosOperations = {
         addTodo: (name = '', listId) => {
             const newState = JSON.parse(JSON.stringify(this.state));
@@ -85,13 +114,13 @@ export class TodoProvider extends Component {
 
             this.setStateAndStorage({ lists });
         },
-        setTodoCompleted: (todoId, newIsCompleted) => {
+        setTodoCompleted: (todoId, completed) => {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
 
             if (!(todoId in todos)) return;
 
-            todos[todoId].completed = newIsCompleted;
-            todos[todoId].timeCompleted = newIsCompleted ? (new Date()).getTime() : null;
+            todos[todoId].completed = completed;
+            todos[todoId].timeCompleted = completed ? (new Date()).getTime() : null;
 
             this.setStateAndStorage({ todos });
         },

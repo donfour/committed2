@@ -74,3 +74,7 @@ export const CustomQuoteInput = styled.input`
         cursor: not-allowed;
     }
 `;
+
+export const Select = styled.select`
+    width: 100%;
+`;

@@ -5,6 +5,8 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { withContext } from '../../contexts';
 import { ArrowIcon, DeleteIcon, EditIcon, PlusIcon } from '../../components/Icons';
 import { ListWrapper, ListNameWrapper, SideMenu, ListHeader, ListInput, ListText } from './list.style';
+import { FILTER_OPTIONS } from '../../constants/enums';
+import moment from 'moment';
 
 class List extends Component {
   state = {
@@ -69,6 +71,9 @@ class List extends Component {
 
   render() {
     const { id, index, todoIds, todos, theme, addTodo, deleteList } = this.props;
+    const hideCompleted = this.props.todoSettings.hideCompleted.value;
+    const filterByDuedate = this.props.todoSettings.filterByDuedate.value;
+
     return (
       <Draggable draggableId={id} index={index}>
         {
@@ -120,16 +125,53 @@ class List extends Component {
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      style={{minHeight: '30px'}}
+                      style={{ minHeight: '30px' }}
                     >
                       {
-                        this.state.isExpanded && todoIds.map((id, index) => (
-                          <Todo
-                            key={todos[id].id}
-                            index={index}
-                            {...todos[id]}
-                          />
-                        ))
+                        this.state.isExpanded &&
+                        todoIds
+                          .map(todoId => todos[todoId])
+                          .filter(todo => hideCompleted ? !todo.completed : true)
+                          .filter(todo => {
+                            if(filterByDuedate === FILTER_OPTIONS.SHOW_ALL) return true;
+
+                            if(!todo.dueDate && !todo.daysOfWeek.includes(true)) return true;
+                            
+                            const now = moment().startOf('day');
+
+                            let daysTillDueDate = Number.MAX_SAFE_INTEGER;
+                            if(todo.dueDate){
+                              const dueDate = moment(parseInt(todo.dueDate));
+                              daysTillDueDate = dueDate.diff(now, 'days');
+                            }
+
+                            let daysTillNextRecurringDay = Number.MAX_SAFE_INTEGER;
+                            if(todo.daysOfWeek.includes(true)){
+                              daysTillNextRecurringDay = todo.daysOfWeek.indexOf(true,now.day()) - now.day();
+                            }
+                            
+                            const daysTillNext = Math.min(daysTillDueDate, daysTillNextRecurringDay);
+
+                            switch (filterByDuedate) {
+                              case FILTER_OPTIONS.DUE_BY_TODAY:
+                                return daysTillNext < 1;
+                              case FILTER_OPTIONS.DUE_BY_TOMORROW:
+                                return daysTillNext <= 1;
+                              case FILTER_OPTIONS.DUE_IN_A_WEEL:
+                                return daysTillNext <= 7;;
+                              case FILTER_OPTIONS.DUE_IN_A_MONTH:
+                                return daysTillNext <= 31;;
+                              default:
+                                return true;
+                            }
+                          })
+                          .map((todo, index) => (
+                            <Todo
+                              key={todo.id}
+                              index={index}
+                              {...todo}
+                            />
+                          ))
                       }
                       {provided.placeholder}
                     </div>
