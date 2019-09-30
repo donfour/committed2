@@ -42,17 +42,19 @@ class SideMenu extends Component {
 
                 <MenuLabel>Choose Theme</MenuLabel>
 
-                <ThemesWrapper>
-                    {
-                        THEMES.map((theme, i) => (
-                            <ThemeIcon
-                                key={i}
-                                theme={theme}
-                                onClick={() => setTheme(i)}
-                            >C</ThemeIcon>
-                        ))
-                    }
-                </ThemesWrapper>
+                <MenuItem>
+                    <ThemesWrapper>
+                        {
+                            THEMES.map((theme, i) => (
+                                <ThemeIcon
+                                    key={i}
+                                    theme={theme}
+                                    onClick={() => setTheme(i)}
+                                >C</ThemeIcon>
+                            ))
+                        }
+                    </ThemesWrapper>
+                </MenuItem>
 
                 <MenuLabel>Clock Settings</MenuLabel>
 

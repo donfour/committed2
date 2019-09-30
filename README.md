@@ -1,35 +1,32 @@
 # Committed Dev Log
-
 I do read all feature requests! Not every feature on this list is guarenteed to be added, since Committed is a side project I work on in my spare time.
 
 ## Todos
-- update todos at the end of the day
 - Add icon
-- show all / show completed / due today / due this week (view saved)
-
-- consistent naming: "textColor" -> "fontColor"
-- Firefox support
+- test if everything works locally + as an extension
 - tutorial
+- consistent naming: "textColor" -> "fontColor", "duedate" -> "dueDate"
+- rewrite with react hooks (context -> useReducer & useEffect)
+
+- Firefox support
 - progress
 - write tests
 - todo cross out when done
 - settings:
   - duedate format
   - delete / not delete completed todos at the end of the day
-  - hide / show completed todos
-
-## Working on
-- Todo updates
-- Local Storage & Chrome Storage
-- test if chrome storage is working
 
 ## Done
 - settings:
   - input placeholder format (clock, date, custom quote, 12/24-hour clock)
+  - hide / show completed todos
 - subtodos (lists)
 - styling to input placeholder
 - style tooltip
-- local storage
+- local & chrome storage
+- update todos at the end of the day
+- show all / show completed / due today / due this week (view saved)
+- Todo updates
 
 ## In consideration
 - general notes intead of a todo

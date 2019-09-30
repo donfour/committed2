@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const SideMenuWrapper = styled.div`
-    width: 200px;
+    width: 210px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     background: white;
@@ -9,7 +10,6 @@ export const SideMenuWrapper = styled.div`
 `;
 
 export const Header = styled.div`
-    padding: 10px;
     & .extension-name {
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -24,16 +24,16 @@ export const Header = styled.div`
 export const MenuLabel = styled.div`
     font-size: 16px;
     margin: 10px 0;
-    padding: 0 10px;
+    border-top
 `;
 
 export const MenuItem = styled.div`
     font-size: 14px;
-    padding: 0 10px;
+    margin-bottom: 8px;
 `;
 
 export const CheckboxGroup = styled.div`
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 `;
 
 export const ThemesWrapper = styled.div`
@@ -61,7 +61,8 @@ export const ThemeIcon = styled.div`
 export const CustomQuoteInput = styled.input`
     box-sizing: border-box;
     width: 100%;
-    margin-top: 3px;
+    height: 20px;
+    margin-top: 6px;
     border: lightgray solid 1px;
     border-radius: 4px;
     padding: 5px;
