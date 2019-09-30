@@ -12,9 +12,17 @@ const LinkButtonWrapper = styled.div`
   vertical-align: middle;
 `;
 
+const parseUrl = url => {
+    if(url.startsWith('http://') || url.startsWith('https://')){
+        return url;
+    } else {
+        return `https://${url}`;
+    }
+}
+
 const LinkButton = ({id, link, ...props}) => (
     <LinkButtonWrapper>
-        <LinkIcon data-tip data-for={`link-${id}`} onClick={()=> window.open(link, "_blank")} {...props} />
+        <LinkIcon data-tip data-for={`link-${id}`} onClick={()=> window.open(parseUrl(link), "_blank")} {...props} />
         <ReactTooltip id={`link-${id}`} effect='solid'>
             <span>{link}</span>
         </ReactTooltip>

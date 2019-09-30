@@ -4,36 +4,34 @@ import ChromeStorage from './chrome-storage';
 /* global chrome */
 
 class Storage {
-    constructor(options){
+    constructor(options) {
         //singleton
         if (!!Storage.instance) return Storage.instance;
         Storage.instance = this;
 
         //actual constructor logic
-        if(!options) throw new Error('options is not passed to Storage constructor');
+        if (!options) throw new Error('options is not passed to Storage constructor');
 
         const { localStorage, chromeStorage } = options;
 
-        if(localStorage) {
+        if (localStorage) {
             this.storage = new LocalStorage(localStorage);
-        } else if(chromeStorage) {
+        } else if (chromeStorage) {
             this.storage = new ChromeStorage(chromeStorage);
         };
     }
 
-    async get(keys){
+    async get(keys) {
         return await this.storage.get(...keys);
     }
 
-    async set(obj){
+    async set(obj) {
         return await this.storage.set(obj);
     }
 }
 
-// { chromeStorage: chrome.storage }
-// { localStorage: localStorage }
-
 const storage = new Storage(
+    // { chromeStorage: chrome.storage }
     { localStorage: localStorage }
 );
 
