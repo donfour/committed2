@@ -6,4 +6,5 @@ export const NewListButtonWrapper = styled.div`
     }
     color: ${({textColor}) => textColor};
     margin-top: 10px;
+    font-size: 16px;
 `;
