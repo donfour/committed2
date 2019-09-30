@@ -87,6 +87,8 @@ class Todo extends Component {
                 size={16}
                 defaultIconColor={theme.icon.default}
                 hoverIconColor={theme.icon.hover}
+                tooltipBackgroundColor={theme.tooltip.background}
+                tooltipTextColor={theme.tooltip.text}
               />
             }
             {this.state.showEditIcon && <EditIcon theme={theme} />}
