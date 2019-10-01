@@ -31,8 +31,8 @@ class Storage {
 }
 
 const storage = new Storage(
-    // { chromeStorage: chrome.storage }
-    { localStorage: localStorage }
+    { chromeStorage: chrome.storage }
+    // { localStorage: localStorage }
 );
 
 export default storage;

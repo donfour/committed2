@@ -2,7 +2,6 @@
 I do read all feature requests! Not every feature on this list is guarenteed to be added, since Committed is a side project I work on in my spare time.
 
 ## Todos
-- Add icon
 - test if everything works locally + as an extension
 - tutorial
 - consistent naming: "textColor" -> "fontColor", "duedate" -> "dueDate"
@@ -17,6 +16,7 @@ I do read all feature requests! Not every feature on this list is guarenteed to 
   - delete / not delete completed todos at the end of the day
 
 ## Done
+- Add icon
 - settings:
   - input placeholder format (clock, date, custom quote, 12/24-hour clock)
   - hide / show completed todos

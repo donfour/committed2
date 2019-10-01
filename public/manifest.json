@@ -2,7 +2,7 @@
   "name": "Committed - NewTab Todo and Goal Manager",
   "short_name": "Committed",
   "description": "Manage your weekly goals and todos in your newtab",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "manifest_version": 2,
   "chrome_url_overrides": {
     "newtab": "index.html"
