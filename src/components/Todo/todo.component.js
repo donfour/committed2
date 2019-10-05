@@ -26,13 +26,6 @@ class Todo extends Component {
     todoInputValue: '',
   }
 
-  componentDidMount() {
-    // Autofocus on input if todo name is empty (when a new todo is created)
-    if (this.props.name === '') {
-      this.setState({ isEditing: true });
-    }
-  }
-
   toggleOpen() {
     this.setState(({ isExpanded }) => ({
       isExpanded: !isExpanded
@@ -51,7 +44,7 @@ class Todo extends Component {
     const { id, name, dueDate, theme, link } = this.props;
 
     return (
-      this.state.isEditing ?
+      this.props.name === '' || this.state.isEditing ?
         (
           <TodoInput
             autoFocus

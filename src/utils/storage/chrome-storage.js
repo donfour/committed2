@@ -1,7 +1,20 @@
-class ChromeStorage {
+import EventEmitter from 'events';
+
+class ChromeStorage extends EventEmitter {
     constructor(chromeStorage) {
-        if (chromeStorage == null) throw new Error('chromeStorage did not get passed into the chromeStorage constructor!')
-        this.chromeStorage = chromeStorage
+        super();
+        
+        if (chromeStorage == null) throw new Error('chromeStorage did not get passed into the chromeStorage constructor!');
+        
+        this.chromeStorage = chromeStorage;
+
+        chromeStorage.onChanged.addListener(changes => {
+            const result = {};
+            Object.entries(changes).forEach(([key, {newValue}]) => {
+                result[key] = newValue;
+            })
+            this.emit('save', result);
+        })
     }
 
     get = (...keys) => {

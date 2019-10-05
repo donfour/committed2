@@ -17,13 +17,6 @@ class List extends Component {
     showSideMenu: false,
   }
 
-  componentDidMount() {
-    // Autofocus on input if list name is empty (when a new list is created)
-    if (this.props.name === '') {
-      this.setState({ isEditing: true });
-    }
-  }
-
   onEditEnd() {
     this.props.setList(this.props.id, this.state.listInputValue);
 
@@ -35,7 +28,7 @@ class List extends Component {
   renderListName() {
     const { name, theme } = this.props;
     return (
-      this.state.isEditing ?
+      this.props.name === '' || this.state.isEditing ?
         (
           <ListInput
             autoFocus

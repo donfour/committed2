@@ -11,12 +11,6 @@ export class TodoProvider extends Component {
         todoBeingEdited: null
     }
 
-    // helpers
-    setStateAndStorage(obj) {
-        this.setState(obj);
-        this.storage.set(obj);
-    }
-
     uncheckRecurringTodos() {
         const { todos } = this.state;
 
@@ -39,15 +33,18 @@ export class TodoProvider extends Component {
     async componentDidMount() {
         this.storage = storage;
 
-        this.storage
-            .get(['todos', 'lists', 'listOrder'])
-            .then(result => {
-                this.setState(result);
+        const result = await storage.get('todos', 'lists', 'listOrder');
+        
+        this.setState(result);
+        
+        this.uncheckRecurringTodos();
+        
+        setInterval(this.uncheckRecurringTodos.bind(this), 1000);
 
-                this.uncheckRecurringTodos();
-
-                setInterval(this.uncheckRecurringTodos.bind(this), 1000);
-            });
+        storage.on('save', (changes) => {
+            console.log('changes in TodoContext', changes);
+            this.setState(changes);
+        })
     }
 
     // state operations
@@ -76,7 +73,7 @@ export class TodoProvider extends Component {
                 newState.listOrder.push(id);
             }
             //TODO: not save the whole state (e.g. no need todoBeingEdited)
-            this.setStateAndStorage(newState);
+            this.storage.set(newState);
         },
         addList: () => {
             const newState = JSON.parse(JSON.stringify(this.state));
@@ -94,7 +91,7 @@ export class TodoProvider extends Component {
 
             newState.listOrder.push(id);
 
-            this.setStateAndStorage(newState);
+            this.storage.set(newState);
         },
         setTodo: (todoId, newTodoName = '') => {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
@@ -103,7 +100,7 @@ export class TodoProvider extends Component {
 
             todos[todoId].name = newTodoName.trim();
 
-            this.setStateAndStorage({ todos });
+            this.storage.set({ todos });
         },
         setList: (listId, newListName) => {
             const lists = JSON.parse(JSON.stringify(this.state.lists));
@@ -112,7 +109,7 @@ export class TodoProvider extends Component {
 
             lists[listId].name = newListName;
 
-            this.setStateAndStorage({ lists });
+            this.storage.set({ lists });
         },
         setTodoCompleted: (todoId, completed) => {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
@@ -122,7 +119,7 @@ export class TodoProvider extends Component {
             todos[todoId].completed = completed;
             todos[todoId].timeCompleted = completed ? (new Date()).getTime() : null;
 
-            this.setStateAndStorage({ todos });
+            this.storage.set({ todos });
         },
         toggleTodoDayOfWeek: (todoId, day) => {
             //TODO: assert day is 0 - 6
@@ -132,7 +129,7 @@ export class TodoProvider extends Component {
 
             todos[todoId].daysOfWeek[day] = !todos[todoId].daysOfWeek[day];
 
-            this.setStateAndStorage({ todos });
+            this.storage.set({ todos });
         },
         deleteTodo: (todoId) => {
             const newState = JSON.parse(JSON.stringify(this.state));
@@ -153,7 +150,7 @@ export class TodoProvider extends Component {
                 }
             }
 
-            this.setStateAndStorage(newState);
+            this.storage.set(newState);
         },
         deleteList: (listId) => {
             const newState = JSON.parse(JSON.stringify(this.state));
@@ -169,7 +166,7 @@ export class TodoProvider extends Component {
                 listOrder.splice(listOrder.indexOf(listId), 1);
             }
 
-            this.setStateAndStorage(newState);
+            this.storage.set(newState);
         },
         setTodoBeingEdited: (todoId) => {
             this.setState({ todoBeingEdited: todoId });
@@ -182,7 +179,7 @@ export class TodoProvider extends Component {
 
             todos[todoBeingEdited].dueDate = dueDate ? String(dueDate.getTime()) : null;
 
-            this.setStateAndStorage({ todos });
+            this.storage.set({ todos });
         },
         setTodoLink: (todoId, link) => {
             const todos = JSON.parse(JSON.stringify(this.state.todos));
@@ -191,13 +188,13 @@ export class TodoProvider extends Component {
 
             todos[todoId].link = link;
 
-            this.setStateAndStorage({ todos });
+            this.storage.set({ todos });
         },
         reorderItems: (newListOrder, newLists) => {
             const newState = {};
             if (newListOrder) newState.listOrder = newListOrder;
             if (newLists) newState.lists = newLists;
-            this.setStateAndStorage(newState);
+            this.storage.set(newState);
         },
     }
 

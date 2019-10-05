@@ -87,6 +87,7 @@ const ItemsContainer = ({ listOrder, lists, reorderItems, addList, theme }) => (
                 >
                     {
                         listOrder.map((itemId, index) => (
+                            lists[itemId] &&
                             <List
                                 key={lists[itemId].id}
                                 id={lists[itemId].id}

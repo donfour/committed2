@@ -21,41 +21,43 @@ export class AppProvider extends Component {
         todoSettings: {
             hideCompleted: false,
             filterByDuedate: FILTER_OPTIONS.SHOW_ALL
-        },
-        // duedateSettings: {
-        //     showDate: true,
-        //     showDaysTillDue: false
-        // },
-    }
-
-    async componentDidMount(){
-        this.storage = storage;
-        this.setState(await this.storage.get(['themeIndex', 'clockSettings', 'todoSettings']));
-    }
-
-    //helper
-    setStateAndStorage(obj){
-        this.setState(obj);
-        this.storage.set(obj);
-    }
-
-    appOperations = {
-        setTheme: (themeIndex) => { this.setStateAndStorage({ themeIndex: themeIndex }) },
-        setSidebarOpen: (sidebarOpen) => this.setState({ sidebarOpen }),
-        setCalendarModalOpen: (calendarModalOpen) => this.setState({ calendarModalOpen }),
-        setClockSettings: (settingsObj) => {
-            //TODO: assert settingsObj doesn't have undefined keys
-            const newSettings = {...this.state.clockSettings, ...settingsObj};
-            this.setStateAndStorage({clockSettings: newSettings});
-        },
-        setTodoSettings: (settingsObj) => {
-            //TODO: assert settingsObj doesn't have undefined keys
-            const newSettings = {...this.state.todoSettings, ...settingsObj};
-            this.setStateAndStorage({todoSettings: newSettings});
         }
     }
 
-    render(){
+    async componentDidMount() {
+        this.storage = storage;
+
+        this.setState(await this.storage.get('themeIndex', 'clockSettings', 'todoSettings'));
+
+        storage.on('save', (changes) => {
+            console.log('changes in AppContext', changes);
+            this.setState(changes);
+        })
+    }
+
+    appOperations = {
+        setTheme: (themeIndex) => {
+            this.storage.set({ themeIndex: themeIndex });
+        },
+        setSidebarOpen: (sidebarOpen) => {
+            this.setState({ sidebarOpen });
+        },
+        setCalendarModalOpen: (calendarModalOpen) => {
+            this.setState({ calendarModalOpen });
+        },
+        setClockSettings: (settingsObj) => {
+            //TODO: assert settingsObj doesn't have undefined keys
+            const newSettings = { ...this.state.clockSettings, ...settingsObj };
+            this.storage.set({ clockSettings: newSettings });
+        },
+        setTodoSettings: (settingsObj) => {
+            //TODO: assert settingsObj doesn't have undefined keys
+            const newSettings = { ...this.state.todoSettings, ...settingsObj };
+            this.storage.set({ todoSettings: newSettings });
+        }
+    }
+
+    render() {
         const { showDayOfWeek, showTime, showDate, show24HourClock, showDayBeforeMonth, customQuote } = this.state.clockSettings;
         const { hideCompleted, filterByDuedate } = this.state.todoSettings;
         return (
