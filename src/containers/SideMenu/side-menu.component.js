@@ -142,11 +142,11 @@ class SideMenu extends Component {
                         value={storage}
                         onChange={e => setStorage(e.target.value)}
                     >
-                        <option value={STORAGE.LOCAL}>
-                            Local - faster, but only available in this browser
-                        </option>
                         <option value={STORAGE.CHROME}>
                             Chrome - data synced to all logged in browsers, but slower
+                        </option>
+                        <option value={STORAGE.LOCAL}>
+                            Local - faster, but only available in this browser
                         </option>
                     </Select>
                 </CheckboxGroup>

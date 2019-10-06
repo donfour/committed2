@@ -57,7 +57,7 @@ export class StoreProvider extends Component {
   initializeStorage() {
     // storage is always stored in localStorage
     const storageName = StorageFactory.getStorage(STORAGE.LOCAL).get('storage').storage;
-    this.appOperations.setStorage(storageName || STORAGE.LOCAL);
+    this.appOperations.setStorage(storageName || STORAGE.CHROME);
   }
 
   async componentDidMount() {
