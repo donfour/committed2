@@ -12,6 +12,9 @@ I do read all feature requests! Not every feature on this list is guarenteed to 
 - Firefox support
 - Sort tasks (e.g. by due dates)
 
+## Bugs
+- clicking on the "V" button at the right corner in a task does not cause drop-down. The empty space around it is clickable and causes the drop-down
+
 ## Todos
 - Tutorial
 - Save list expanded state / have an indication that a list is collapsed
