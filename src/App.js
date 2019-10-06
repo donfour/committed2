@@ -8,8 +8,8 @@ import ItemsContainer from './containers/ItemsContainer';
 import { SettingsIcon } from './components/Icons';
 import Clock from './components/Clock';
 import CalendarModal from './components/CalendarModal';
-// react contexts
-import { withContext } from './contexts';
+// store
+import { withStore } from './store';
 
 const App = ({
   sidebarOpen, setSidebarOpen,
@@ -59,4 +59,4 @@ const App = ({
     </Sidebar>
   )
 
-export default withContext(App);
+export default withStore(App);

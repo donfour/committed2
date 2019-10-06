@@ -1,7 +1,7 @@
 import React from 'react';
 import List from '../List';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { withContext } from '../../contexts';
+import { withStore } from '../../store';
 import NewListButton from '../../components/NewListButton';
 
 // helper function
@@ -107,5 +107,5 @@ const ItemsContainer = ({ listOrder, lists, reorderItems, addList, theme }) => (
     </DragDropContext>
 )
 
-export default withContext(ItemsContainer);
+export default withStore(ItemsContainer);
 

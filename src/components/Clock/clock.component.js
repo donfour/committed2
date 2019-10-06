@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Clock } from './clock.style';
-import { withContext } from '../../contexts';
+import { withStore } from '../../store';
 
 // helper functions
 const convert24HourTo12Hour = timeStr => {
@@ -65,4 +65,4 @@ class TodoInput extends Component {
     }
 };
 
-export default withContext(TodoInput);
+export default withStore(TodoInput);

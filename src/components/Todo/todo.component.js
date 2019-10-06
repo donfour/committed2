@@ -7,8 +7,8 @@ import { ArrowIcon, CalendarIcon, DeleteIcon, EditIcon } from '../Icons';
 import { Checkbox, DaySelector, AddLinkButton, LinkButton } from './subcomponents';
 // styled components
 import { Body, CheckboxWrapper, TodoWrapper, TodoText, TodoInput, DuedateWrapper, TodoFooterWrapper, ButtonsWrapper, ArrowIconWrapper } from './todo.style';
-// contexts
-import { withContext } from '../../contexts';
+// store
+import { withStore } from '../../store';
 
 // helper functions
 function formatDate(msSince1970) {
@@ -183,4 +183,4 @@ class Todo extends Component {
   }
 }
 
-export default withContext(Todo);
+export default withStore(Todo);

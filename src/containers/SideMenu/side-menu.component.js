@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import THEMES from '../../constants/themes';
-import { withContext } from '../../contexts';
+import { withStore } from '../../store';
 import {
     CheckboxGroup,
     CustomQuoteInput,
@@ -13,7 +13,7 @@ import {
     ThemesWrapper,
 } from './side-menu.style';
 import Checkbox from './checkbox';
-import { FILTER_OPTIONS } from '../../constants/enums';
+import { FILTER_OPTIONS, STORAGE } from '../../constants/enums';
 class SideMenu extends Component {
     constructor(props) {
         super(props);
@@ -28,7 +28,16 @@ class SideMenu extends Component {
     }
 
     render() {
-        const { setTheme, clockSettings, setClockSettings, todoSettings, setTodoSettings, checkboxStyles } = this.props;
+        const {
+            setTheme,
+            clockSettings,
+            setClockSettings,
+            todoSettings,
+            setTodoSettings,
+            checkboxStyles,
+            storage,
+            setStorage
+        } = this.props;
         const { customQuote, ...checkboxSettings } = clockSettings;
         const { hideCompleted, filterByDuedate } = todoSettings;
 
@@ -126,8 +135,24 @@ class SideMenu extends Component {
 
                 </MenuItem>
 
+                <MenuLabel>Set Storage</MenuLabel>
+
+                <CheckboxGroup>
+                    <Select
+                        value={storage}
+                        onChange={e => setStorage(e.target.value)}
+                    >
+                        <option value={STORAGE.LOCAL}>
+                            Local - faster, but only available in this browser
+                        </option>
+                        <option value={STORAGE.CHROME}>
+                            Chrome - data synced to all logged in browsers, but slower
+                        </option>
+                    </Select>
+                </CheckboxGroup>
+
             </SideMenuWrapper>
         )
     }
 }
-export default withContext(SideMenu);
+export default withStore(SideMenu);

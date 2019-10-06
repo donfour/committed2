@@ -5,23 +5,17 @@ import ChromeStorage from './chrome-storage';
 
 class StorageFactory {
     static getStorage(storage) {
-        //return existing storage
-        if (this.storage) return this.storage;
-
-        //initialize storage
         switch (storage) {
             case 'local':
-                this.storage = new LocalStorage(localStorage);
-                return this.storage;
+                if (!this.localStorage) this.localStorage = new LocalStorage(localStorage);
+                return this.localStorage;
             case 'chrome':
-                this.storage = new ChromeStorage(chrome.storage);
-                return this.storage;
+                if (!this.chromeStorage) this.chromeStorage = new ChromeStorage(chrome.storage);
+                return this.chromeStorage;
             default:
                 throw new Error('storage can only be local or chrome, but got:', storage);
         }
     }
 }
 
-const storage = StorageFactory.getStorage('chrome');
-
-export default storage;
+export default StorageFactory;

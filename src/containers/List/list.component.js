@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Todo from '../../components/Todo';
 import { Collapse } from 'react-collapse';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import { withContext } from '../../contexts';
+import { withStore } from '../../store';
 import { ArrowIcon, DeleteIcon, EditIcon, PlusIcon } from '../../components/Icons';
 import { ListWrapper, ListNameWrapper, SideMenu, ListHeader, ListInput, ListText } from './list.style';
 import { FILTER_OPTIONS } from '../../constants/enums';
@@ -180,4 +180,4 @@ class List extends Component {
   }
 }
 
-export default withContext(List);
+export default withStore(List);
