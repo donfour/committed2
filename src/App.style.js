@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html, body, #root, .App{
-    height: 100%;
+    max-height: 100%;
   }
 
   *{
