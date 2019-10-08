@@ -114,7 +114,7 @@ class Todo extends Component {
 
               <Body
                 onMouseOver={() => { this.setState({ showArrowIcon: true }) }}
-                onMouseOut={() => { this.setState({ showArrowIcon: false }) }}
+                onMouseLeave={() => { this.setState({ showArrowIcon: false }) }}
                 onClick={() => { this.toggleOpen() }}
               >
                 <CheckboxWrapper>
