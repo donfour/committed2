@@ -1,3 +1,6 @@
+## Contributions welcome!
+Just pick up anything from the requested features / todos below!
+
 # Committed Dev Log
 I do read all feature requests! Not every feature on this list is guarenteed to be added, since Committed is a side project I work on in my spare time.
 
@@ -11,9 +14,6 @@ I do read all feature requests! Not every feature on this list is guarenteed to 
 - Allow todo list to be printed / exported
 - Firefox support
 - Sort tasks (e.g. by due dates)
-
-## Bugs
-- clicking on the "V" button at the right corner in a task does not cause drop-down. The empty space around it is clickable and causes the drop-down
 
 ## Todos
 - Tutorial
