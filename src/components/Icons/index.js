@@ -1,6 +1,7 @@
 import ArrowIcon from './ArrowIcon';
 import CalendarIcon from './CalendarIcon';
 import DeleteIcon from './DeleteIcon';
+import DevFoxIcon from './DevFoxIcon';
 import DragHandleIcon from './DragHandleIcon';
 import EditIcon from './EditIcon';
 import LinkIcon from './LinkIcon';
@@ -11,6 +12,7 @@ export {
     ArrowIcon,
     CalendarIcon,
     DeleteIcon,
+    DevFoxIcon,
     DragHandleIcon,
     EditIcon,
     LinkIcon,

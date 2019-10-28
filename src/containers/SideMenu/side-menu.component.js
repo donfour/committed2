@@ -13,6 +13,7 @@ import {
     ThemesWrapper,
 } from './side-menu.style';
 import Checkbox from './checkbox';
+import DevFoxIcon from '../../components/Icons/DevFoxIcon';
 import { FILTER_OPTIONS, STORAGE } from '../../constants/enums';
 class SideMenu extends Component {
     constructor(props) {
@@ -150,6 +151,8 @@ class SideMenu extends Component {
                         </option>
                     </Select>
                 </CheckboxGroup>
+
+                <DevFoxIcon/>
 
             </SideMenuWrapper>
         )
