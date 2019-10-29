@@ -1,5 +1,5 @@
 ## Committed - NewTab Todo and Goal Manager
-Try [here](https://chrome.google.com/webstore/detail/committed-newtab-todo-and/mffcogdacgpjnckjepacaicfliaocneb)
+Try [here](https://chrome.google.com/webstore/detail/committed-newtab-todo-and/mffcogdacgpjnckjepacaicfliaocneb)!
 
 ## Contributions welcome!
 Just pick up anything from the requested features / todos below!
